@@ -1,0 +1,30 @@
+{ pkgs, ... }:
+
+{
+  # Collection of useful CLI apps
+  environment.systemPackages = with pkgs; [
+    acpi
+    bat
+    btop
+    curl
+    efibootmgr
+    eza
+    ffmpeg
+    fzf
+    gnugrep
+    gnused
+    htop
+    killall
+    libnotify
+    neofetch
+    pandoc
+    pciutils
+    rsync
+    tldr
+    tmux
+    unzip
+    wget
+  ];
+
+  programs.dconf.enable = true;
+}

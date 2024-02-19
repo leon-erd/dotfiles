@@ -1,0 +1,22 @@
+[Desktop Entry]
+FullScreen=false
+
+[General]
+LockSidebar=true
+ShowSidebar=true
+
+[MainWindow]
+3 screens: Window-Maximized=true
+State=AAAA/wAAAAD9AAAAAQAAAAAAAABaAAADmfwCAAAAAfsAAAAcAG8AawB1AGwAYQByAF8AcwBpAGQAZQBiAGEAcgEAAABTAAADmQAAARUA///+AAACjwAAA5kAAAAEAAAABAAAAAgAAAAI/AAAAAMAAAABAAAAAQAAACwAcQB1AGkAYwBrAEEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgIAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAiAGEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+
+[Recent Files]
+File1[$e]=$HOME/Downloads/cv-martin-loeper.pdf
+File2[$e]=$HOME/Downloads/pastedImage.png
+File3[$e]=$HOME/Nextcloud/dotfiles/README.md
+Name1[$e]=cv-martin-loeper.pdf
+Name2[$e]=pastedImage.png
+Name3[$e]=README.md
+
+[UiSettings]
+ColorScheme=Kvantum
