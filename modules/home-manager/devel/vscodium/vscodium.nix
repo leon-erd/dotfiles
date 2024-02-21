@@ -16,6 +16,7 @@ in
       github.copilot
       #github.copilot-chat
       james-yu.latex-workshop
+      jnoortheen.nix-ide
       k--kato.intellij-idea-keybindings
       ms-python.python
       ms-python.vscode-pylance
