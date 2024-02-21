@@ -18,9 +18,7 @@ y_coord=$((1080-$y_coord))
 # Set wallpaper
 swww img --transition-type grow --transition-pos "${x_coord}${y_coord}" $script_directory/wallpaper.jpg
 
-# Update color scheme
-wal -c
-wal -s -t -i $script_directory/wallpaper.jpg
+# Update waybar
 $parent_directory/launch_waybar.sh
 
 ffmpeg -i $script_directory/wallpaper.jpg -vf "boxblur=15:5" $script_directory/wallpaper_blurred.png

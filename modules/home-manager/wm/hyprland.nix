@@ -12,7 +12,6 @@
     ./submodules/media_controls.nix
     ./submodules/tofi.nix
     ./submodules/screenshot.nix
-    ./submodules/swaylock.nix
     ./submodules/swaync/swaync.nix
     ./submodules/swww.nix
     ./submodules/waybar/waybar.nix

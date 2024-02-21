@@ -12,7 +12,7 @@
 
   wayland.windowManager.hyprland.settings = {
     bind = [ "CTRL + ALT, B, exec, ~/scripts/launch_waybar.sh" ];
-    exec-once = [ "waybar" ];
+    exec-once = [ "~/scripts/launch_waybar.sh" ];
     layerrule = [ "blur, waybar" ];
   };
 
