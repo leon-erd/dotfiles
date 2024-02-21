@@ -15,11 +15,18 @@ in
     backgrounds = [{ path = "/home/leon/scripts/wallpaper/wallpaper_blurred.png"; }];
     labels = [
       {
-        text = "<b>$TIME</b>";
+        text = ''cmd[update:500] echo "<b>$(date +'%H:%M:%S')</b>"'';
         color = labelColor;
         font_size = 50;
         font_family = "NotoMonoNerdFont";
         position = {x=0; y=250;};
+      }
+      {
+        text = ''cmd[update:10000] echo "$(date +'%a %d. %b')"'';
+        color = labelColor;
+        font_size = 15;
+        font_family = "NotoSansNerdFont";
+        position = {x=0; y=330;};
       }
       {
         text = ''󱁕 Hey <span foreground="##880000" style="italic">$USER</span> 󱁕'';
