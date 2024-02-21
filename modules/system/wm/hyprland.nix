@@ -19,9 +19,6 @@
   # crashes vscode though when menu bar not enabled (see github issue)
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Set this so that swaylock can unlock the screen with the correct pwassword
-  security.pam.services.swaylock = {};
-
   # udev rules for swayosd
   services.udev.packages = [ pkgs.swayosd ];
 }

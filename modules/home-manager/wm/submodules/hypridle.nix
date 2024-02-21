@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
-
+{ config, lib, pkgs, inputs, ... }:
+let
+  hyprlockCmd = lib.meta.getExe config.programs.hyprlock.package;
+  hyprctlCmd = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+in
 {
   imports = [
     inputs.hypridle.homeManagerModules.hypridle
@@ -9,11 +12,17 @@
     enable = true;
     listeners = [
       {
-        timeout = 500;
-        onTimeout = "${pkgs.libnotify}/bin/notify-send timeout reached";
-        onResume = "${pkgs.libnotify}/bin/notify-send service resumed";
+        timeout = 300;
+        onTimeout = hyprlockCmd;
+      }
+      {
+        timeout = 600;
+        onTimeout = "${hyprctlCmd} dispatch dpms off";
+        onResume = "${hyprctlCmd} dispatch dpms on";
       }
     ];
+    lockCmd = hyprlockCmd;
+    beforeSleepCmd = hyprlockCmd;
   };
 }
 

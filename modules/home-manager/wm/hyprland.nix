@@ -7,6 +7,7 @@
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
     ./submodules/hyprland_conf/hyprland_conf.nix
+    ./submodules/hyprlock.nix
     ./submodules/kanshi.nix
     ./submodules/media_controls.nix
     ./submodules/tofi.nix
@@ -21,7 +22,6 @@
   home.packages = with pkgs; [
     libsForQt5.polkit-kde-agent
     nwg-displays
-    swayidle
     #wlr-randr
   ];
 

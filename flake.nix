@@ -34,7 +34,7 @@
     nixosConfigurations = {
       system = inputs.nixpkgs.lib.nixosSystem {
         system = systemSettings.system;
-        modules = [ (./. + "/hosts/${systemSettings.host}/configuration.nix") ]; # load configuration.nix from selected PROFILE
+        modules = [ (./. + "/hosts/${systemSettings.host}/configuration.nix") ]; # load configuration.nix from selected host
         specialArgs = {
           inherit inputs;
           inherit systemSettings;
@@ -45,7 +45,7 @@
     homeConfigurations = {
       user = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ (./. + "/hosts/${systemSettings.host}/home.nix") ]; # load home.nix from selected PROFILE
+        modules = [ (./. + "/hosts/${systemSettings.host}/home.nix") ]; # load home.nix from selected host
         extraSpecialArgs = {
           # pass config variables from above
           inherit inputs;
@@ -75,6 +75,12 @@
 
     hypridle = {
       url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      #url = "git+file:///home/leon/Downloads/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

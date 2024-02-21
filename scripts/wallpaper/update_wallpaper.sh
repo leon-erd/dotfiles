@@ -22,3 +22,5 @@ swww img --transition-type grow --transition-pos "${x_coord}${y_coord}" $script_
 wal -c
 wal -s -t -i $script_directory/wallpaper.jpg
 $parent_directory/launch_waybar.sh
+
+ffmpeg -i $script_directory/wallpaper.jpg -vf "boxblur=15:5" $script_directory/wallpaper_blurred.png

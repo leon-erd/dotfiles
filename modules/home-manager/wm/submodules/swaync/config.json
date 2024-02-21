@@ -95,7 +95,7 @@
           },
           {
             "label": "  Lock",
-            "command": "swaylock -f"
+            "command": "hyprlock"
           },
           {
             "label": "   Logout",
