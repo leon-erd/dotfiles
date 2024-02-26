@@ -35,6 +35,6 @@ sudo nixos-rebuild switch --flake .#system
 
 The home-manager configuration can be installed with:
 ```nix
-cd ~/.dotfiles
+cd ~/dotfiles
 home-manager switch --flake .#user
 ```
