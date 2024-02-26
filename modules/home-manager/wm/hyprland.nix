@@ -9,6 +9,8 @@
     ./submodules/hyprland_conf/hyprland_conf.nix
     ./submodules/hyprlock.nix
     ./submodules/kanshi.nix
+    ./submodules/kdeconnect.nix
+    ./submodules/kdepolkit.nix
     ./submodules/media_controls.nix
     ./submodules/tofi.nix
     ./submodules/screenshot.nix
@@ -19,13 +21,7 @@
 
   # programs needed to run hyprland with to current config
   home.packages = with pkgs; [
-    libsForQt5.polkit-kde-agent
     nwg-displays
-    #wlr-randr
+    wlr-randr # required for nwg-displays
   ];
-
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
 }
