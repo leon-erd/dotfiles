@@ -30,11 +30,11 @@ systemSettings = {
 Once the variables are set, then switch into the system configuration by running:
 ```nix
 cd ~/dotfiles
-sudo nixos-rebuild switch --flake .#system
+sudo nixos-rebuild switch --flake ./#system
 ```
 
 The home-manager configuration can be installed with:
 ```nix
 cd ~/dotfiles
-home-manager switch --flake .#user
+home-manager switch --flake ./#user
 ```
