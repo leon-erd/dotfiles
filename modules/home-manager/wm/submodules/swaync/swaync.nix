@@ -24,6 +24,7 @@
       ];
     }))
   ];
+
   wayland.windowManager.hyprland.settings = {
     bind = [ "$mainMod, N, exec, swaync-client -t -sw" ];
     exec-once = [ "swaync" ];
@@ -34,6 +35,9 @@
       "ignorezero, swaync-notification-window"
     ];
   };
-  xdg.configFile."swaync/config.json".source = ./config.json;
-  xdg.configFile."swaync/style.css".source = ./style.css;
+
+  xdg.configFile."swaync" = {
+    source = ./configs;
+    recursive = true;
+  };
 }

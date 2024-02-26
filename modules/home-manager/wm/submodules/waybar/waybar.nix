@@ -16,10 +16,9 @@
     layerrule = [ "blur, waybar" ];
   };
 
-  xdg.configFile."waybar/colors.css".source = ./colors.css;
-  xdg.configFile."waybar/config".source = ./config;
-  xdg.configFile."waybar/mediaplayer.py".source = ./mediaplayer.py;
-  xdg.configFile."waybar/modules.json".source = ./modules.json;
-  xdg.configFile."waybar/style.css".source = ./style.css;
+  xdg.configFile."waybar" = {
+    source = ./configs;
+    recursive = true;
+  };
 }
 

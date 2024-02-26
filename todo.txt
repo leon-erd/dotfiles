@@ -1,2 +1,0 @@
-- waybar und swaync files nicht mit "source" sondern im nix way definieren
-- swaylock und swayidle
