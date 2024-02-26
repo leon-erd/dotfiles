@@ -12,7 +12,15 @@ in
 
   programs.hyprlock = {
     enable = true;
-    backgrounds = [{ path = "/home/leon/scripts/wallpaper/wallpaper_blurred.png"; }];
+    general.grace = 3;
+    backgrounds = [
+      {
+#         path = "/home/leon/scripts/wallpaper/wallpaper.png";
+        path = "screenshot";
+        blur_size = 4;
+        blur_passes = 4;
+      }
+    ];
     labels = [
       {
         text = ''cmd[update:500] echo "<b>$(date +'%H:%M:%S')</b>"'';
@@ -36,8 +44,8 @@ in
       {
         text = "";
         color = labelColor;
-        position = {x=0; y=0;};
-        valign = "bottom";
+        position = {x=0; y=80;};
+        valign = "center";
       }
     ];
 
