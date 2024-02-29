@@ -12,7 +12,8 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+#     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = pkgs.hyprland;
   };
 
   # Optional, hint electron apps to use wayland:

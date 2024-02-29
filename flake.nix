@@ -26,6 +26,10 @@
     pkgs = import inputs.nixpkgs {
       overlays = [
         inputs.nur.overlay
+#         (final: prev: {
+#           hyprland = inputs.hyprland.packages.${systemSettings.system}.hyprland;
+#         };)
+        inputs.hyprland.overlays.default
       ];
       system = systemSettings.system;
       config.allowUnfree = true;
@@ -36,6 +40,7 @@
         system = systemSettings.system;
         modules = [ (./. + "/hosts/${systemSettings.host}/configuration.nix") ]; # load configuration.nix from selected host
         specialArgs = {
+          inherit pkgs;
           inherit inputs;
           inherit systemSettings;
           inherit userSettings;
@@ -68,10 +73,8 @@
 
     nur.url = "github:nix-community/NUR";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Do not override Hyprland’s nixpkgs input. Doing so will make the cache useless, since you’re building from a different Nixpkgs commit.
+    hyprland.url = "github:hyprwm/Hyprland";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
