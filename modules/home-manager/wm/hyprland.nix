@@ -12,16 +12,11 @@
     ./submodules/kdeconnect.nix
     ./submodules/kdepolkit.nix
     ./submodules/media_controls.nix
+    ./submodules/nwg-displays.nix
     ./submodules/tofi.nix
     ./submodules/screenshot.nix
     ./submodules/swaync/swaync.nix
     ./submodules/swww.nix
     ./submodules/waybar/waybar.nix
-  ];
-
-  # programs needed to run hyprland with to current config
-  home.packages = with pkgs; [
-    nwg-displays
-    wlr-randr # required for nwg-displays
   ];
 }
