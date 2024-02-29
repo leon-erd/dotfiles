@@ -14,6 +14,14 @@
       layout = "master";
     };
 
+    bezier = [
+      "linear, 0, 0, 1, 1"
+    ];
+
+    animation = [
+      "borderangle, 1, 40, linear, loop"
+    ];
+
     decoration = {
       rounding = 5;
       blur = {
