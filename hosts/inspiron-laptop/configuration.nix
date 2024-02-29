@@ -14,6 +14,7 @@
       ../../modules/system/hardware/power.nix
       ../../modules/system/hardware/printing.nix
       ../../modules/system/security/firewall.nix
+      ../../modules/system/security/run_binaries.nix
       ../../modules/system/wm/sddm.nix
       ../../modules/system/wm/hyprland.nix
       #../../modules/system/wm/kde.nix
