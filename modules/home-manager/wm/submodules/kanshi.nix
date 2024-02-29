@@ -68,4 +68,8 @@
       ];
     };
   };
+
+  wayland.windowManager.hyprland.settings = {
+    bind = [ "$mainMod + SHIFT, P, exec, pkill -HUP kanshi" ];
+  };
 }
