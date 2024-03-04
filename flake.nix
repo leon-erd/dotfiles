@@ -26,10 +26,6 @@
     pkgs = import inputs.nixpkgs {
       overlays = [
         inputs.nur.overlay
-#         (final: prev: {
-#           hyprland = inputs.hyprland.packages.${systemSettings.system}.hyprland;
-#         };)
-        inputs.hyprland.overlays.default
       ];
       system = systemSettings.system;
       config.allowUnfree = true;
