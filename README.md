@@ -4,7 +4,7 @@ Just my personal dotfiles :)
 
 ## Install instructions
 
-To get this running on a NixOS system, start by going into a shell with git installed:
+To get this running on a NixOS system, start by going into a shell with `git` installed:
 ```bash
 nix-shell -p git
 ```
@@ -20,7 +20,7 @@ cd ~/dotfiles
 sudo nixos-generate-config --show-hardware-config > hosts/<host>/hardware-configuration.nix
 ```
 
-Make sure to update the systemSettings and userSettings at the top of the flake.nix to your needs:
+Make sure to update the `systemSettings` and `userSettings` at the top of the `flake.nix` to your needs:
 ```nix
 ...
 let
