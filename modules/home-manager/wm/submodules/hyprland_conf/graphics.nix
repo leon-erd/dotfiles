@@ -20,6 +20,7 @@
 
     animation = [
       "borderangle, 1, 40, linear, loop"
+      "layers, 1, 5, default, popin"
     ];
 
     decoration = {

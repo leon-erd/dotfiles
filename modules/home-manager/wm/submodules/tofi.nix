@@ -5,6 +5,10 @@
   wayland.windowManager.hyprland.settings = {
     bindr = [ "$mainMod, $mainMod_L, exec, tofi-drun --drun-launch=true" ];
     exec-once = [ "rm ~/.cache/tofi-drun" ];
+    layerrule = [
+      "blur, launcher"
+      "animation slide, launcher"
+    ];
   };
   xdg.configFile."tofi/config".text = ''
     anchor = top
@@ -15,7 +19,7 @@
     prompt-text = " run: "
     outline-width = 0
     border-width = 0
-    background-color = #000000
+    background-color = #00000099
     min-input-width = 120
     result-spacing = 15
     padding-top = 5

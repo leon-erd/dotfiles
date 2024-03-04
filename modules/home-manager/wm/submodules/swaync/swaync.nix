@@ -2,27 +2,16 @@
 
 {
   home.packages = [
-    (pkgs.swaynotificationcenter.overrideAttrs (previousAttrs:  rec {
-      version = "0.10.0";
-      src = pkgs.fetchFromGitHub {
-        owner = "ErikReider";
-        repo = previousAttrs.pname;
-        rev = "v${version}";
-        hash = "sha256-7O+DX4uuncUqx5zEKQprZE6tctteT6NU01V2EBHiFqA=";
-      };
-      patches = [];
-      postPatch = ''
-        chmod +x build-aux/meson/postinstall.py
-        patchShebangs build-aux/meson/postinstall.py
-      '';
-      nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
-        pkgs.sassc
-      ];
-      buildInputs = previousAttrs.buildInputs ++ [
-        pkgs.gvfs
-        pkgs.pantheon.granite
-      ];
-    }))
+#     (pkgs.swaynotificationcenter.overrideAttrs (previousAttrs:  rec {
+#       nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
+#         pkgs.sassc
+#       ];
+#       buildInputs = previousAttrs.buildInputs ++ [
+#         pkgs.gvfs
+#         pkgs.pantheon.granite
+#       ];
+#     }))
+    pkgs.swaynotificationcenter
   ];
 
   wayland.windowManager.hyprland.settings = {
@@ -33,6 +22,8 @@
       "blur, swaync-notification-window"
       "ignorezero, swaync-control-center"
       "ignorezero, swaync-notification-window"
+      "animation popin 90%, swaync-control-center"
+      "animation popin, swaync-notification-window"
     ];
   };
 
