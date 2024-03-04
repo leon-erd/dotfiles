@@ -4,7 +4,12 @@ Just my personal dotfiles :)
 
 ## Install instructions
 
-To get this running on a NixOS system, start by cloning the repo:
+To get this running on a NixOS system, start by going into a shell with git installed:
+```bash
+nix-shell -p git
+```
+
+Then clone the repo:
 ```bash
 git clone https://github.com/leon-erd/dotfiles.git ~/dotfiles
 ```
@@ -27,13 +32,13 @@ systemSettings = {
 ...
 ```
 
-Once the variables are set, then switch into the system configuration by running:
+Once the variables are set, switch into the system configuration by running:
 ```nix
 cd ~/dotfiles
 sudo nixos-rebuild switch --flake ./#system
 ```
 
-The home-manager configuration can be installed with:
+The home-manager configuration can be installed with (might need to logout/login once before):
 ```nix
 cd ~/dotfiles
 home-manager switch --flake ./#user
