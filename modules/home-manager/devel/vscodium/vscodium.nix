@@ -3,6 +3,7 @@
 let
    # configure extensions
   vscode-extensions = inputs.nix-vscode-extensions.extensions.${systemSettings.system};
+  myPylance = pkgs.callPackage ./extensions/pylance.nix {};
   vscodePackage = pkgs.vscodium-fhs;
 in
 {
@@ -14,12 +15,12 @@ in
       charliermarsh.ruff
       corker.vscode-micromamba
       github.copilot
-      #github.copilot-chat
+#       github.copilot-chat
       james-yu.latex-workshop
       jnoortheen.nix-ide
       k--kato.intellij-idea-keybindings
       ms-python.python
-      ms-python.vscode-pylance
+      myPylance.ms-python.vscode-pylance
       ms-toolsai.jupyter
       ms-toolsai.jupyter-keymap
       ms-toolsai.jupyter-renderers
