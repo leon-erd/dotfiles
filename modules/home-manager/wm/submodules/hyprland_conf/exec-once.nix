@@ -8,7 +8,6 @@
       "blueman-applet"
       "sleep 5 && nextcloud --background"
       "~/scripts/hibernate_on_low_battery.sh"
-      "hyprctl setcursor breeze_cursors 24"
     ];
   };
 }

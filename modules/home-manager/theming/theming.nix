@@ -7,6 +7,7 @@
     layan-gtk-theme
   ];
 
+
   gtk = {
     enable = true;
     theme = {
@@ -29,6 +30,7 @@
     };
   };
 
+
   qt = {
     enable = true;
     platformTheme = "qtct";
@@ -47,5 +49,12 @@
       standard_dialogs=default
       style=kvantum
     '';
+  };
+
+
+  wayland.windowManager.hyprland.settings = {
+    exec-once = [
+      "hyprctl setcursor breeze_cursors 24"
+    ];
   };
 }
