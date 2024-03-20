@@ -1,31 +1,28 @@
 {
+    "editor.cursorBlinking": "expand",
     "editor.cursorSmoothCaretAnimation": "on",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.editorAssociations": {
-        "*.pdf": "latex-workshop-pdf-hook"
-    },
-    "latex-workshop.bibtex-fields.sort.enabled": true,
-    "latex-workshop.bibtex-format.sort.enabled": true,
-    "latex-workshop.latex.recipe.default": "lastUsed",
-    "latex-workshop.latex.outDir": "%DIR%/out",
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.cursorBlinking": true,
     "editor.wordWrap": "on",
-    "latex-workshop.latexindent.args": [
-        "-c",
-        "%DIR%/out",
-        "%TMPFILE%",
-        "-y=defaultIndent: '%INDENT%'"
-    ],
+    "files.autoSave": "afterDelay",
     "grammarly.files.include": [
         "**/readme.md",
         "**/README.md",
         "**/*.txt",
         "**/*.tex"
     ],
-    "files.autoSave": "afterDelay",
+    "latex-workshop.bibtex-fields.sort.enabled": true,
+    "latex-workshop.bibtex-format.sort.enabled": true,
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.latexindent.args": [
+        "-c",
+        "%DIR%/out",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'"
+    ],
     "security.workspace.trust.enabled": false,
-    "editor.cursorBlinking": "expand",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorBlinking": true,
     "window.menuBarVisibility": "hidden",
     "workbench.colorCustomizations": {
         "editor.background": "#000000",
@@ -35,4 +32,8 @@
         "panel.background": "#000000",
         "statusBar.background": "#000000",
     },
+    "workbench.editorAssociations": {
+        "*.pdf": "latex-workshop-pdf-hook"
+    },
+    "workbench.iconTheme": "material-icon-theme",
 }
