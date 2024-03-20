@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     cliphist
-    rofi
+    rofi-wayland
     wl-clipboard
     wtype
   ];
@@ -14,5 +14,6 @@
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
     ];
+    windowrule = [ "stayfocused, Rofi" ];
   };
 }
