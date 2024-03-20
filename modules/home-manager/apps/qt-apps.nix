@@ -2,11 +2,12 @@
 
 {
   home.packages = with pkgs; [
-    dolphin
-    libsForQt5.kate
-    libsForQt5.okular
     libsForQt5.ark
+    libsForQt5.dolphin
     libsForQt5.filelight
+    libsForQt5.kate
+    libsForQt5.kio-extras # mtp support for dolphin
+    libsForQt5.okular
     qalculate-qt
   ];
 
