@@ -1,25 +1,25 @@
 { config, pkgs, inputs, systemSettings, userSettings, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix
-      ../../modules/system/apps/cli-apps.nix
-      ../../modules/system/apps/virtualisation.nix
-      ../../modules/system/boot/grub.nix
-      #../../modules/system/boot/plymouth.nix
-      ../../modules/system/fonts/fonts.nix
-      ../../modules/system/hardware/automount.nix
-      ../../modules/system/hardware/bluetooth.nix
-      ../../modules/system/hardware/networking.nix
-      ../../modules/system/hardware/pipewire.nix
-      ../../modules/system/hardware/power.nix
-      ../../modules/system/hardware/printing.nix
-      ../../modules/system/security/firewall.nix
-      ../../modules/system/security/run_binaries.nix
-      ../../modules/system/wm/sddm.nix
-      ../../modules/system/wm/hyprland.nix
-      #../../modules/system/wm/kde.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/system/apps/cli-apps.nix
+    ../../modules/system/apps/virtualisation.nix
+    ../../modules/system/boot/grub.nix
+    #../../modules/system/boot/plymouth.nix
+    ../../modules/system/fonts/fonts.nix
+    ../../modules/system/hardware/automount.nix
+    ../../modules/system/hardware/bluetooth.nix
+    ../../modules/system/hardware/networking.nix
+    ../../modules/system/hardware/pipewire.nix
+    ../../modules/system/hardware/power.nix
+    ../../modules/system/hardware/printing.nix
+    ../../modules/system/security/firewall.nix
+    ../../modules/system/security/run_binaries.nix
+    ../../modules/system/wm/sddm.nix
+    ../../modules/system/wm/hyprland.nix
+    #../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
+  ];
 
   # set some important things
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
