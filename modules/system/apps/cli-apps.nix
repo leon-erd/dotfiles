@@ -23,6 +23,7 @@
     tldr
     tmux
     unzip
+    usbutils
     wget
   ];
 
