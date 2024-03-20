@@ -1,5 +1,7 @@
 [Desktop Entry]
 FullScreen=false
+shouldShowMenuBarComingFromFullScreen=true
+shouldShowToolBarComingFromFullScreen=true
 
 [General]
 LockSidebar=true
