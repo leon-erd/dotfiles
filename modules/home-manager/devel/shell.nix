@@ -19,7 +19,7 @@ in
   programs.zsh = {
     enable = true;
     autocd = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     initExtra = "bindkey '^[[Z' autosuggest-accept";
     syntaxHighlighting.enable = true;
     shellAliases = myAliases;
