@@ -53,8 +53,9 @@
 
 
   wayland.windowManager.hyprland.settings = {
-    exec-once = [
-      "hyprctl setcursor breeze_cursors 24"
+    env = [
+      "XCURSOR_THEME, breeze_cursors"
+      "XCURSOR_SIZE, 24"
     ];
   };
 }
