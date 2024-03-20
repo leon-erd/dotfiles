@@ -4,6 +4,7 @@
   imports =
     [ ./hardware-configuration.nix
       ../../modules/system/apps/cli-apps.nix
+      ../../modules/system/apps/virtualisation.nix
       ../../modules/system/boot/grub.nix
       #../../modules/system/boot/plymouth.nix
       ../../modules/system/fonts/fonts.nix
@@ -52,7 +53,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "video"];
+    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd"];
   };
 
   # set zsh as default shell
