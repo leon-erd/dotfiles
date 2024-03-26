@@ -23,4 +23,4 @@ $parent_directory/launch_waybar.sh
 
 ffmpeg -y -i $script_directory/wallpaper.jpg $script_directory/wallpaper.png
 
-ffmpeg -y -i $script_directory/wallpaper.png -vf "boxblur=15:5" $script_directory/wallpaper_blurred.png
+ffmpeg -y -i $script_directory/wallpaper.jpg -vf "boxblur=15:5" $script_directory/wallpaper_blurred.jpg

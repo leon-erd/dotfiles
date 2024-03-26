@@ -1,4 +1,4 @@
-{ pkgs, systemSettings, ... }:
+{ pkgs, systemSettings, userSettings, ... }:
 
 {
   imports = [
@@ -6,7 +6,18 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    sddm-chili-theme
+    ((sddm-chili-theme.overrideAttrs (previousAttrs: {
+      postInstall = ''
+        mkdir -p $out/share/sddm/themes/chili
+        mv * $out/share/sddm/themes/chili/
+        cp ${../../../scripts/wallpaper/wallpaper.jpg} $out/share/sddm/themes/chili/assets/my_wallpaper.jpg
+      '';
+    })).override {
+      themeConfig = {
+        background = "assets/my_wallpaper.jpg";
+        blur = true;
+      };
+    })
   ];
 
   services.xserver.displayManager.sddm = {
