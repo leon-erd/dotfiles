@@ -6,23 +6,23 @@
 
     bind = [
       # GENERAL
-      "ALT              , F4 , killactive           ,"
-      "$mainMod   , F   , togglefloating   ,"
-      "$mainMod   , M  , fullscreen          ,"
-      "$mainMod   , E   , exec                  , dolphin"
+      "ALT, F4 , killactive,"
+      "$mainMod, F, togglefloating,"
+      "$mainMod, M, fullscreen,"
+      "$mainMod, E, exec, dolphin"
 
       # SPECIAL KEYS
       ", XF86Calculator , exec, qalculate-qt"
 
       # WINDOWS
-      "$mainMod + SHIFT               , left       , movewindow   , mon:l"
-      "$mainMod + SHIFT               , right     , movewindow   , mon:r"
-      "$mainMod + SHIFT               , up        , movewindow    , u"
-      "$mainMod + SHIFT               , down    , movewindow   , d"
-      "$mainMod                             , RETURN, layoutmsg       , swapwithmaster"
-      "$mainMod + SHIFT               , RETURN, layoutmsg       , addmaster"
-      "$mainMod + SHIFT + CTRL  , RETURN, layoutmsg       , removemaster"
-      "ALT                                        , Tab       , cyclenext         ,"
+      "$mainMod + SHIFT, left, movewindow, mon:l"
+      "$mainMod + SHIFT, right, movewindow, mon:r"
+      "$mainMod + SHIFT, up, movewindow, u"
+      "$mainMod + SHIFT, down, movewindow, d"
+      "$mainMod, RETURN, layoutmsg, swapwithmaster"
+      "$mainMod + SHIFT, RETURN, layoutmsg, addmaster"
+      "$mainMod + SHIFT + CTRL, RETURN, layoutmsg, removemaster"
+      "ALT, Tab, cyclenext,"
 
       # WORKSPACES
       # Switch workspaces with mainMod + [0-9]
@@ -51,16 +51,16 @@
       "$mainMod SHIFT, 0, movetoworkspace, 10"
 
       # Scroll through existing workspaces with mainMod + scroll
-      "$mainMod, mouse_down , workspace, e+1"
-      "$mainMod, mouse_up     , workspace, e-1"
+      "$mainMod, mouse_down, workspace, e+1"
+      "$mainMod, mouse_up, workspace, e-1"
     ];
 
     binde = [
       # WINDOWS
-      "$mainMod, left     , resizeactive, -30 0"
-      "$mainMod, right   , resizeactive, 30 0"
-      "$mainMod, up      , resizeactive, 0 -30"
-      "$mainMod, down  , resizeactive, 0 30"
+      "$mainMod, left, resizeactive, -30 0"
+      "$mainMod, right, resizeactive, 30 0"
+      "$mainMod, up, resizeactive, 0 -30"
+      "$mainMod, down, resizeactive, 0 30"
     ];
 
     bindm = [
