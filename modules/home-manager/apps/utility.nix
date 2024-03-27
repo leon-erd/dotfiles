@@ -10,7 +10,6 @@
     brave
     meld
     nextcloud-client
-    system-config-printer
     wireguard-tools
   ];
 }
