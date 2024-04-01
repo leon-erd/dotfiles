@@ -19,6 +19,7 @@
     neofetch
     pandoc
     pciutils
+    ripgrep
     rsync
     tldr
     tmux
