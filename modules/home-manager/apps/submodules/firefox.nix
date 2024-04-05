@@ -20,6 +20,7 @@
         duckduckgo-privacy-essentials
         grammarly
         ublock-origin
+        videospeed
         vimium-c
       ];
       bookmarks = [
