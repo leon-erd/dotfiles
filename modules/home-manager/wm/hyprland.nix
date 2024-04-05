@@ -7,6 +7,7 @@
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
     ./submodules/hyprland_conf/hyprland_conf.nix
+    ./submodules/hyprland_plugins/hyprexpo.nix
     ./submodules/hyprlock.nix
     ./submodules/kanshi.nix
     ./submodules/kdeconnect.nix
