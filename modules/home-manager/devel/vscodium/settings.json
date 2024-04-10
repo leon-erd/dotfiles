@@ -2,6 +2,7 @@
     "editor.cursorBlinking": "expand",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.wordWrap": "on",
+    "explorer.autoReveal": false,
     "files.autoSave": "afterDelay",
     "grammarly.files.include": [
         "**/readme.md",
