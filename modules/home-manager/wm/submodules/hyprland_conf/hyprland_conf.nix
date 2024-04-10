@@ -8,6 +8,7 @@
     ./graphics.nix
     ./input.nix
     ./monitors.nix
+    ./scratchpads.nix
     ./windowrules.nix
     ./workspacerules.nix
   ];
