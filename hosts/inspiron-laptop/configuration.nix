@@ -8,8 +8,10 @@
     ../../modules/system/boot/grub.nix
     #../../modules/system/boot/plymouth.nix
     ../../modules/system/fonts/fonts.nix
+    ../../modules/system/hardware/accelerated_video_playback.nix
     ../../modules/system/hardware/automount.nix
     ../../modules/system/hardware/bluetooth.nix
+    ../../modules/system/hardware/intel.nix
     ../../modules/system/hardware/networking.nix
     ../../modules/system/hardware/pipewire.nix
     ../../modules/system/hardware/power.nix
