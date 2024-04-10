@@ -8,6 +8,7 @@
       # GENERAL
       "ALT, F4 , killactive,"
       "$mainMod, F, togglefloating,"
+      "$mainMod, G, togglegroup"
       "$mainMod, M, fullscreen,"
       "$mainMod, E, exec, dolphin"
 
@@ -15,14 +16,19 @@
       ", XF86Calculator , exec, qalculate-qt"
 
       # WINDOWS
-      "$mainMod + SHIFT, left, movewindow, mon:l"
-      "$mainMod + SHIFT, right, movewindow, mon:r"
-      "$mainMod + SHIFT, up, movewindow, u"
-      "$mainMod + SHIFT, down, movewindow, d"
+      "$mainMod + SHIFT, left, movewindoworgroup, l"
+      "$mainMod + SHIFT, right, movewindoworgroup, r"
+      "$mainMod + SHIFT, up, movewindoworgroup, u"
+      "$mainMod + SHIFT, down, movewindoworgroup, d"
+      "$mainMod + CTRL, left, movecurrentworkspacetomonitor, l"
+      "$mainMod + CTRL, right, movecurrentworkspacetomonitor, r"
+      "$mainMod + CTRL, up, movecurrentworkspacetomonitor, u"
+      "$mainMod + CTRL, down, movecurrentworkspacetomonitor, d"
       "$mainMod, RETURN, layoutmsg, swapwithmaster"
       "$mainMod + SHIFT, RETURN, layoutmsg, addmaster"
       "$mainMod + SHIFT + CTRL, RETURN, layoutmsg, removemaster"
       "ALT, Tab, cyclenext,"
+      "ALT + CTRL, Tab, changegroupactive"
 
       # WORKSPACES
       # Switch workspaces with mainMod + [0-9]

@@ -6,12 +6,20 @@
       gaps_in = 3;
       gaps_out = 3;
       border_size = 2;
-      "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-      "col.inactive_border" = "rgba(595959aa)";
+      "col.active_border" = "rgba(33ccffff) rgba(00ff99ff) 45deg";
+      "col.inactive_border" = "rgba(444444aa)";
 
       resize_on_border = true;
 
       layout = "master";
+    };
+    group = {
+      "col.border_inactive" = "rgba(444444aa)";
+      "col.border_active" = "rgba(8800ffff) rgba(aa0055ff) 45deg";
+      groupbar = {
+        "col.active" = "rgba(6600ccee)";
+        "col.inactive" = "rgba(6600cc99)";
+      };
     };
 
     bezier = [
