@@ -38,16 +38,6 @@
         "when": "editorTextFocus && !editorReadonly"
     },
     {
-        "key": "alt+enter",
-        "command": "-latex-workshop.onAltEnterKey",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$|^pweave$/"
-    },
-    {
-        "key": "alt+enter",
-        "command": "-latex-workshop.onAltEnterKey",
-        "when": "acceptSuggestionOnEnter && config.latex-workshop.bind.enter.key && editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$|^pweave$/"
-    },
-    {
         "key": "ctrl+alt+v",
         "command": "-editor.action.codeAction",
         "when": "editorTextFocus"
@@ -91,5 +81,25 @@
         "key": "ctrl+alt+enter",
         "command": "-notebook.cell.execute",
         "when": "notebookCellListFocused && notebookMissingKernelExtension && !notebookCellExecuting && notebookCellType == 'code' || notebookCellListFocused && !notebookCellExecuting && notebookCellType == 'code' && notebookKernelCount > 0 || notebookCellListFocused && !notebookCellExecuting && notebookCellType == 'code' && notebookKernelSourceCount > 0"
-    }
+    },
+    {
+        "key": "alt+enter",
+        "command": "-latex-workshop.onAltEnterKey",
+        "when": "acceptSuggestionOnEnter && config.latex-workshop.bind.enter.key && editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
+    },
+    {
+        "key": "alt+enter",
+        "command": "-latex-workshop.onAltEnterKey",
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
+    },
+    {
+        "key": "shift+tab",
+        "command": "editor.action.inlineSuggest.acceptNextWord",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "-editor.action.inlineSuggest.acceptNextWord",
+        "when": "inlineSuggestionVisible && !editorReadonly"
+    },
 ]
