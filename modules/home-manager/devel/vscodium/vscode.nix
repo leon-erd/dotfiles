@@ -3,8 +3,7 @@
 let
    # configure extensions
   vscode-extensions = inputs.nix-vscode-extensions.extensions.${systemSettings.system};
-  myPylance = pkgs.callPackage ./extensions/pylance.nix {};
-  vscodePackage = pkgs.vscodium-fhs;
+  vscodePackage = pkgs.vscode-fhs;
 in
 {
   programs.vscode = {
@@ -14,13 +13,13 @@ in
       aaron-bond.better-comments
       charliermarsh.ruff
       corker.vscode-micromamba
-      github.copilot
-#       github.copilot-chat # copilot-chat does not work with VSCodium :(((
+#       github.copilot # install copilot manually (will fetch correct version of copilot-chat)
+#       github.copilot-chat
       james-yu.latex-workshop
       jnoortheen.nix-ide
       k--kato.intellij-idea-keybindings
       ms-python.python
-      myPylance.ms-python.vscode-pylance
+      ms-python.vscode-pylance
 #       ms-toolsai.jupyter # you have to install jupyter manually for some reason
 #       ms-toolsai.jupyter-keymap
 #       ms-toolsai.jupyter-renderers
@@ -30,14 +29,14 @@ in
       njpwerner.autodocstring
       patbenatar.advanced-new-file
       pkief.material-icon-theme
-      znck.grammarly # https://github.com/znck/grammarly/issues/170
+      znck.grammarly
     ];
   };
 
   home.activation = {
     myVscodeFiles =
     let
-      vscodePath = "~/.config/VSCodium";
+      vscodePath = "~/.config/Code";
       targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscodium";
     in
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
