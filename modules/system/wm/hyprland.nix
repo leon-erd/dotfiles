@@ -16,8 +16,9 @@
   };
 
   # Optional, hint electron apps to use wayland:
-  # crashes vscode though when menu bar not enabled (see github issue)
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   # udev rules for swayosd
   services.udev.packages = [ pkgs.swayosd ];
