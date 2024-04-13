@@ -6,7 +6,7 @@
   ];
 
   home.packages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     brave
     meld
     nextcloud-client
