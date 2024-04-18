@@ -9,7 +9,8 @@
     ./submodules/hyprland_conf/hyprland_conf.nix
     ./submodules/hyprland_plugins/hyprexpo.nix
     ./submodules/hyprlock.nix
-    ./submodules/kanshi.nix
+    # ./submodules/kanshi.nix
+    ./submodules/myKanshiPlus/myKanshiPlus.nix
     ./submodules/kdeconnect.nix
     ./submodules/kdepolkit.nix
     ./submodules/media_controls.nix
