@@ -1,3 +1,7 @@
+{ config, ... }:
+
+{
+xdg.configFile."waybar/modules.json".text = ''
 {
     // Workspaces
     "hyprland/workspaces": {
@@ -11,7 +15,7 @@
             "default": ""
         },
         "persistent_workspaces": {
-            
+
         }
     },
     // Taskbar
@@ -209,8 +213,8 @@
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        // "exec": "${config.programs.waybar.package}/bin/waybar-mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "${config.programs.waybar.package}/bin/waybar-mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     //Custom notification
     "custom/notification": {
@@ -233,4 +237,6 @@
        "on-click-right": "swaync-client -d -sw",
        "escape": true
      },
+}
+'';
 }
