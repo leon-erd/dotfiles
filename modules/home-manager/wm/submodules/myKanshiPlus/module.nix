@@ -17,25 +17,31 @@ let
         type = str;
         default = "preferred";
         example = "1920x1080";
+        description = "resolution of the monitor or preferred for preferred resolution of the monitor";
       };
       position = mkOption {
         type = str;
         default = "0x0";
+        example = "auto";
+        description = "either <x>x<y> (from top-left corner) or auto (next to the previous monitor)";
       };
       scale = mkOption {
         type = oneOf [ int float (enum ["auto"]) ];
         default = 1;
         example = "auto";
+        description = "scale the monitor or let hyprland decide with auto";
       };
       mirror = mkOption {
         type = nullOr str;
         default = null;
         example = "LG Display 0x0637";
+        description = "description of the monitor to mirror";
       };
       transform = mkOption {
         type = nullOr int;
         default = null;
         example = 2;
+        description = "see https://wiki.hyprland.org/Configuring/Monitors/#rotating";
       };
     };
   };
@@ -52,6 +58,7 @@ let
             position = "1920x0";
           };
         };
+        description = "Attribute set of monitor configurations. The keys are the monitor descriptions and the values are attribute sets of the monitor configuration.";
       };
       workspaces = mkOption {
         type = attrsOf str;
@@ -60,6 +67,7 @@ let
           "5" = "monitor:desc:Acer Technologies CB271HU T85EE0018511, default:true, on-created-empty:firefox";
           "name:test" = "rounding:false, border:false";
         };
+        description = "Attribute set of workspace configurations. The keys are the workspace identifiers and the values are one (or more) rule(s) to apply to the workspace.";
       };
     };
   }; 
