@@ -4,8 +4,11 @@
   home.packages = with pkgs; [
     pamixer
     playerctl
-    swayosd
   ];
+
+  services.swayosd = {
+    enable = true;
+  };
 
   wayland.windowManager.hyprland.settings = {
     bindl = [
@@ -23,10 +26,6 @@
       ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
       ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
       ", XF86AudioLowerVolume, exec, pamixer --unmute; swayosd-client --output-volume lower"
-    ];
-
-    exec-once = [
-      "swayosd-server"
     ];
 
     layerrule = [
