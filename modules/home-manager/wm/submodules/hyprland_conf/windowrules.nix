@@ -16,5 +16,6 @@
       "workspace 9, class:^(WebCord)$"
       "workspace 9, class:^(whatsapp-for-linux)$"
     ];
+    misc.focus_on_activate = true;
   };
 }
