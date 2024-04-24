@@ -3,6 +3,7 @@
 {
   imports = [
     ./submodules/alacritty.nix
+    ./submodules/blueman-applet.nix
     ./submodules/cliphist.nix
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
@@ -14,6 +15,7 @@
     ./submodules/kdeconnect.nix
     ./submodules/kdepolkit.nix
     ./submodules/media_controls.nix
+    ./submodules/nm-applet.nix
     ./submodules/nwg-displays.nix
     ./submodules/tofi.nix
     ./submodules/screenshot.nix
