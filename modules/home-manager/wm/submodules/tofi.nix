@@ -9,7 +9,7 @@
       height = 36;
       horizontal = true;
       font-size = 14;
-      prompt-text = " run: ";
+      prompt-text = ''" run: "'';
       outline-width = 0;
       border-width = 0;
       background-color = "#00000099";
