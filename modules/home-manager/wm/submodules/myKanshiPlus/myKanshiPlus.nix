@@ -6,6 +6,7 @@
   programs.myKanshiPlus = {
     enable = true;
     profiles = {
+      default.monitors."LG Display 0x0637" = {};
       home_1.monitors = {
         "Dell Inc. DELL P2412H TTMDG2AQ15EU" = {};
         "LG Display 0x0637".position = "1920x0";
@@ -20,6 +21,7 @@
           "1" = "monitor:desc:Dell Inc. DELL P2412H TTMDG2AQ15EU, default:true";
           "2" = "monitor:desc:LG Electronics E2210      205NDMT1D051, default:true";
           "9" = "monitor:desc:LG Electronics E2210      205NDMT1D051";
+          "10" = "monitor:desc:LG Display 0x0637, default:true";
         };
       };
       office = {
