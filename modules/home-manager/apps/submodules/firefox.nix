@@ -37,6 +37,8 @@
              url = "https://10.10.10.100";}
             {name = "ChatGPT";
              url = "https://chat.openai.com";}
+            {name = "Python print cheat sheet";
+             url = "https://learnpython.com/blog/python-string-formatting/";}
           ];
         }
       ];
