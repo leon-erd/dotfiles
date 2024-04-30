@@ -14,7 +14,7 @@
     ../../modules/system/hardware/intel.nix
     ../../modules/system/hardware/networking.nix
     ../../modules/system/hardware/pipewire.nix
-    ../../modules/system/hardware/power.nix
+    #../../modules/system/hardware/power.nix
     ../../modules/system/hardware/printing.nix
     ../../modules/system/security/firewall.nix
     ../../modules/system/security/location_information.nix
