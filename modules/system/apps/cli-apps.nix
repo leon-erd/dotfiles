@@ -9,6 +9,7 @@
     curl
     efibootmgr
     eza
+    fastfetch
     ffmpeg
     fzf
     gnugrep
@@ -16,7 +17,6 @@
     htop
     killall
     libnotify
-    neofetch
     pandoc
     pciutils
     ripgrep
