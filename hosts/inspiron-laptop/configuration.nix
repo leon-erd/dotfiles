@@ -31,6 +31,14 @@
   console.keyMap = systemSettings.kblayout; # tty keyboard layout
   boot.kernelPackages = pkgs.linuxPackages_latest; # get latest stable kernel
   nix.optimise.automatic = true; # optimise nix store disk space by hard linking identical files
+  programs.nh = { # nix helper for basic nix commands with added functionality
+    enable = true;
+    clean = {
+      enable = true;
+      dates = "daily";
+      extraArgs = "--keep-since=7d --keep=5";
+    };
+  };
 
   # install home-manager
   environment.systemPackages = with pkgs; [

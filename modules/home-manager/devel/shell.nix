@@ -11,8 +11,8 @@ myAliases = {
   ll = "eza --icons --group-directories-first -al";
   tree = "eza --icons --tree --group-directories-first";
   conda = "micromamba";
-  homie = "home-manager switch --flake ${userSettings.flakeDirectory}/#user && echo '-------------------------\nnix profile diff-closures:\n...' && nix profile diff-closures --profile ~/.local/state/nix/profiles/home-manager | tail -n 50";
-  nixie = "sudo nixos-rebuild switch --flake ${userSettings.flakeDirectory}/#system && echo '-------------------------\nnix profile diff-closures:\n...' && nix profile diff-closures --profile /nix/var/nix/profiles/system | tail -n 50";
+  homie = "nh home switch --configuration user";
+  nixie = "nh os switch --hostname system";
   };
 in
 {
@@ -40,5 +40,9 @@ in
     options = [
       "--cmd cd"
     ];
+  };
+
+  home.sessionVariables = {
+    FLAKE = userSettings.flakeDirectory;
   };
 }
