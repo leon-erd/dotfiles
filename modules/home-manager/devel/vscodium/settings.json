@@ -14,16 +14,18 @@
     "latex-workshop.bibtex-format.sort.enabled": true,
     "latex-workshop.latex.outDir": "%DIR%/out",
     "latex-workshop.latex.recipe.default": "lastUsed",
-    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
     "latex-workshop.latexindent.args": [
         "-c",
         "%DIR%/out",
         "%TMPFILE%",
         "-y=defaultIndent: '%INDENT%'"
     ],
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.synctex.indicator": "circle",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
     "security.workspace.trust.enabled": false,
-    "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
     "window.menuBarVisibility": "hidden",
     "workbench.colorCustomizations": {
         "editor.background": "#000000",
