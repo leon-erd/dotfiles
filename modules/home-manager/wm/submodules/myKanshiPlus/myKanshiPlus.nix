@@ -20,7 +20,6 @@
         workspaces = {
           "1" = "monitor:desc:Dell Inc. DELL P2412H TTMDG2AQ15EU, default:true";
           "2" = "monitor:desc:LG Electronics E2210      205NDMT1D051, default:true";
-          "9" = "monitor:desc:LG Electronics E2210      205NDMT1D051";
           "10" = "monitor:desc:LG Display 0x0637, default:true";
         };
       };
@@ -31,6 +30,7 @@
         };
         workspaces = {
           "1" = "monitor:desc:LG Display 0x0637, default:true";
+          "2" = "monitor:desc:Acer Technologies CB271HU T85EE0018511";
           "5" = "monitor:desc:Acer Technologies CB271HU T85EE0018511, default:true";
           "9" = "monitor:desc:Acer Technologies CB271HU T85EE0018511";
         };
