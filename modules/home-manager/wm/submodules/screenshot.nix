@@ -10,11 +10,11 @@
   wayland.windowManager.hyprland.settings = {
     bind = [
       "CTRL + ALT, S, exec, wl-paste | swappy -f -"
-      ", Print, exec, grimblast --notify --cursor --freeze copy area"
+      ", Print, exec, grimblast --notify --freeze copy area"
     ];
     layerrule = [
-      "animation fade, hyprpicker"
-      "animation fade, selection"
+      "noanim, hyprpicker"
+      "noanim, selection"
     ];
   };
 }
