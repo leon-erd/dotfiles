@@ -4,7 +4,7 @@
   imports = [
     ./submodules/alacritty.nix
     ./submodules/blueman-applet.nix
-    ./submodules/cliphist.nix
+    ./submodules/cliphist/cliphist.nix
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
     ./submodules/hyprland_conf/hyprland_conf.nix
