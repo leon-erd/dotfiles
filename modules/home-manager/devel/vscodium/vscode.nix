@@ -15,6 +15,7 @@ in
       corker.vscode-micromamba
 #       github.copilot # install copilot manually (will fetch correct version of copilot-chat)
 #       github.copilot-chat
+      gruntfuggly.todo-tree
       james-yu.latex-workshop
       jnoortheen.nix-ide
       k--kato.intellij-idea-keybindings
