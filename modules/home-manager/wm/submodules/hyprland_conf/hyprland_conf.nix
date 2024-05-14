@@ -16,6 +16,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = ["--all"];
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.default;
   };
 }

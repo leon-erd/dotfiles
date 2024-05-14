@@ -5,21 +5,21 @@
   let
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
-      system = "x86_64-linux";        # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform)
-      hostname = "leon-inspiron";     # hostname
-      host = "inspiron-laptop";       # select a host defined in hosts directory
-      timezone = "Europe/Vienna";     # timezone
-      defaultLocale = "en_US.UTF-8";  # default locale
-      extraLocale = "de_AT.UTF-8";    # extra locale (for measurement, numeric, time, ...)
-      kblayout = "de";                # keyboard layout
+      system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform)
+      hostname = "leon-inspiron"; # hostname
+      host = "inspiron-laptop"; # select a host defined in hosts directory
+      timezone = "Europe/Vienna"; # timezone
+      defaultLocale = "en_US.UTF-8"; # default locale
+      extraLocale = "de_AT.UTF-8"; # extra locale (for measurement, numeric, time, ...)
+      kblayout = "de"; # keyboard layout
     };
 
     # ----- USER SETTINGS ----- #
-    userSettings = {
-      username = "leon";                      # username
-      name = "Leon";                          # name/identifier (used for certain configurations i.e. git)
-      email = "leon.erd@student.uibk.ac.at";  # email (used for certain configurations i.e. git)
-      flakeDirectory = "~/Nextcloud/dotfiles";
+    userSettings = rec {
+      username = "leon"; # username
+      name = "Leon"; # name/identifier (used for certain configurations i.e. git)
+      email = "leon.erd@student.uibk.ac.at"; # email (used for certain configurations i.e. git)
+      flakeDirectory = "/home/${username}/Nextcloud/dotfiles";
     };
 
     # configure packages
@@ -70,7 +70,7 @@
     nur.url = "github:nix-community/NUR";
 
     # Do not override Hyprland’s nixpkgs input. Doing so will make the cache useless, since you’re building from a different Nixpkgs commit.
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";

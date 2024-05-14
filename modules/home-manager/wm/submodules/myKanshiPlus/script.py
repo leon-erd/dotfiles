@@ -57,7 +57,7 @@ def main():
         config = json.load(f)
     apply_profile(config.copy())
 
-    sock_path = f"/tmp/hypr/{os.environ['HYPRLAND_INSTANCE_SIGNATURE']}/.socket2.sock"
+    sock_path = f"{os.environ['XDG_RUNTIME_DIR']}/hypr/{os.environ['HYPRLAND_INSTANCE_SIGNATURE']}/.socket2.sock"
     client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 
     try:
