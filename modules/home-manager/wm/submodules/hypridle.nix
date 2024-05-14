@@ -6,18 +6,19 @@
     package = inputs.hypridle.packages.${pkgs.system}.default;
     settings = {
       general = {
-        lockCmd = "hyprlock";
-        beforeSleepCmd = "hyprlock";
+        lock_cmd = "hyprlock";
+        before_sleep_cmd = "hyprlock";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
       listener = [
         {
           timeout = 300;
-          onTimeout = "hyprlock";
+          on-timeout = "hyprlock";
         }
         {
           timeout = 600;
-          onTimeout = "hyprctl dispatch dpms off";
-          onResume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
         }
       ];
     };
