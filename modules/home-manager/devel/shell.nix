@@ -20,13 +20,16 @@ in
     enable = true;
     autocd = true;
     autosuggestion.enable = true;
-    initExtra = "bindkey '^[[Z' autosuggest-accept";
+    initExtra = ''
+      bindkey '^[[Z' autosuggest-accept
+      zstyle ':omz:plugins:alias-finder' autoload yes
+    '';
     syntaxHighlighting.enable = true;
     shellAliases = myAliases;
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = ["git" "pip"];
+      plugins = ["alias-finder" "command-not-found" "dirhistory" "fzf" "git" "pip" "sudo"];
     };
   };
 
