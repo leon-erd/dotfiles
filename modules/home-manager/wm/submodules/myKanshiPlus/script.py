@@ -11,8 +11,9 @@ def handle_socket_data(line, config):
 
 
 def apply_profile(config):
+    hyprctl_monitors = get_hyprctl_monitors()
     for profile in config:
-        if set(config[profile]["monitors"].keys()) == get_hyprctl_monitors():
+        if set(config[profile]["monitors"].keys()) == hyprctl_monitors:
             print(f"Applying profile: {profile}")
             set_monitors(config[profile]["monitors"])
             set_workspaces(config[profile]["workspaces"])
