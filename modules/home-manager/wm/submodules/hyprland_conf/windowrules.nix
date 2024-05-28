@@ -16,7 +16,15 @@
       "workspace 9, class:^(Slack)$"
       "workspace 9, class:^(WebCord)$"
       "workspace 9, class:^(whatsapp-for-linux)$"
+      # KDE CONNECT Presentation Mode
+      "noblur, title:KDE Connect Daemon"
+      "noborder, title:KDE Connect Daemon"
+      "noshadow, title:KDE Connect Daemon"
+      "noanim, title:KDE Connect Daemon"
+      "nofocus, title:KDE Connect Daemon"
+      "suppressevent fullscreen, title:KDE Connect Daemon"
+      "float, title:KDE Connect Daemon"
+      "size 100% 100%, title:KDE Connect Daemon"
     ];
-    misc.focus_on_activate = true;
   };
 }

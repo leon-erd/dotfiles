@@ -7,6 +7,8 @@
     ./exec-once.nix
     ./graphics.nix
     ./input.nix
+    ./layouts.nix
+    ./misc.nix
     ./monitors.nix
     ./scratchpads.nix
     ./windowrules.nix
