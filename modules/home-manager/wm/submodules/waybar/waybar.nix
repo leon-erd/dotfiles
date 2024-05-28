@@ -24,7 +24,8 @@
     exec-once = [ "~/scripts/launch_waybar.sh" ];
     layerrule = [
       "blur, waybar"
-      "ignorezero, waybar"
+      "blurpopups, waybar"
+      "ignorealpha 0.1, waybar"
     ];
   };
 }
