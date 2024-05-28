@@ -2,8 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    texliveFull
+    ipe
     jabref
+    pympress
+    texliveFull
   ];
 }
 
