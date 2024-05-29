@@ -14,7 +14,7 @@ in
       };
       background = [
         {
-          path = "~/scripts/wallpaper/wallpaper.png";
+          path = "~/scripts/wallpaper/wallpaper.jpg";
 #         path = "screenshot";
           blur_size = 4;
           blur_passes = 4;
