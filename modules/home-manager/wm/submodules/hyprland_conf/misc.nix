@@ -8,6 +8,7 @@
       focus_on_activate = true;
       force_default_wallpaper = 0;
       initial_workspace_tracking = false;
+      new_window_takes_over_fullscreen = 2;
     };
   };
 }
