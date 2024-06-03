@@ -4,18 +4,25 @@
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
       "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
-      "opacity 0.85, initialTitle:^(Visual Studio Code)$"
-      "opacity 0.85, initialTitle:^(VSCodium)$"
-      "opacity 1, initialTitle:^(Visual Studio Code)$, title:.pdf"
+
       "tile, class:^(DesktopEditors)$"
-      "workspace 1, class:^(code-url-handler)$"
-      "workspace 1, class:^(codium-url-handler)$"
+
+      "tag +vscode, class:^(code-url-handler)$"
+      "tag +vscode, class:^(codium-url-handler)$"
+      "opacity 0.85, tag:vscode"
+      "opacity 1.00, tag:vscode, title:.pdf"
+      "workspace 1, tag:vscode"
+
       "workspace 5, class:^(firefox)$"
-      "workspace 9, class:^(org.telegram.desktop)$"
-      "workspace 9, class:^(Signal)$"
-      "workspace 9, class:^(Slack)$"
-      "workspace 9, class:^(WebCord)$"
-      "workspace 9, class:^(whatsapp-for-linux)$"
+
+      "tag +social, class:^(org.telegram.desktop)$"
+      "tag +social, class:^(Signal)$"
+      "tag +social, class:^(Slack)$"
+      "tag +social, class:^(thunderbird)$"
+      "tag +social, class:^(WebCord)$"
+      "tag +social, class:^(whatsapp-for-linux)$"
+      "workspace 9, tag:social"
+
       # KDE CONNECT Presentation Mode
       "noblur, title:KDE Connect Daemon"
       "noborder, title:KDE Connect Daemon"
