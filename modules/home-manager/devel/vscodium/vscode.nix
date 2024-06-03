@@ -30,7 +30,6 @@ in
       njpwerner.autodocstring
       patbenatar.advanced-new-file
       pkief.material-icon-theme
-      znck.grammarly
     ];
   };
 
@@ -42,7 +41,6 @@ in
     in
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p ${vscodePath}/User
-      run ln -sf ${targetDirectory}/product.json ${vscodePath}/product.json
       run ln -sf ${targetDirectory}/keybindings.json ${vscodePath}/User/keybindings.json
       run ln -sf ${targetDirectory}/settings.json ${vscodePath}/User/settings.json
     '';
