@@ -70,7 +70,11 @@
     nur.url = "github:nix-community/NUR";
 
     # Do not override Hyprland’s nixpkgs input. Doing so will make the cache useless, since you’re building from a different Nixpkgs commit.
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+    };
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
