@@ -1,4 +1,4 @@
-{ userSettings, ... }:
+{ pkgs, userSettings, ... }:
 
 let
 myAliases = {
