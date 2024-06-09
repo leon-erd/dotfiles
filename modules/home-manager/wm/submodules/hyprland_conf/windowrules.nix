@@ -24,14 +24,15 @@
       "workspace 9, tag:social"
 
       # KDE CONNECT Presentation Mode
-      "noblur, title:KDE Connect Daemon"
-      "noborder, title:KDE Connect Daemon"
-      "noshadow, title:KDE Connect Daemon"
-      "noanim, title:KDE Connect Daemon"
-      "nofocus, title:KDE Connect Daemon"
-      "suppressevent fullscreen, title:KDE Connect Daemon"
-      "float, title:KDE Connect Daemon"
-      "size 100% 100%, title:KDE Connect Daemon"
+      "noblur, class:^(org.kde.kdeconnect.daemon)$"
+      "noborder, class:^(org.kde.kdeconnect.daemon)$"
+      "noshadow, class:^(org.kde.kdeconnect.daemon)$"
+      "noanim, class:^(org.kde.kdeconnect.daemon)$"
+      "nofocus, class:^(org.kde.kdeconnect.daemon)$"
+      "suppressevent fullscreen, class:^(org.kde.kdeconnect.daemon)$"
+      "float, class:^(org.kde.kdeconnect.daemon)$"
+      "move 0 0, class:^(org.kde.kdeconnect.daemon)$"
+      "size 100% 100%, class:^(org.kde.kdeconnect.daemon)$"
     ];
   };
 }
