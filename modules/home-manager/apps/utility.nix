@@ -10,7 +10,6 @@
     brave
     meld
     nextcloud-client
-    wireguard-tools
   ];
 }
 

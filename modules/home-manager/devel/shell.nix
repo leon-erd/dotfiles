@@ -13,9 +13,18 @@ myAliases = {
   conda = "micromamba";
   homie = "nh home switch --configuration user";
   nixie = "nh os switch --hostname system";
+  vpn_uni = "sudo openconnect vpn.uibk.ac.at";
+  vpn_pi_on = "wg-quick up ~/Nextcloud/Computer_current/pi_vpn.conf";
+  vpn_pi_off = "wg-quick down ~/Nextcloud/Computer_current/pi_vpn.conf";
   };
 in
 {
+  # packages for vpn aliases
+  home.packages = with pkgs; [
+    openconnect
+    wireguard-tools
+  ];
+
   programs.zsh = {
     enable = true;
     autocd = true;
