@@ -29,12 +29,14 @@
           bookmarks = [
             {name = "Fast.com";
              url = "https://fast.com";}
+            {name = "Amy's Weinhaus";
+             url = "https://10.10.10.100";}
+            {name = "Pihole";
+             url = "http://10.10.10.100:8080/admin/";}
             {name = "Twitch";
              url = "https://twitch.tv/directory/following";}
             {name = "Youtube";
              url = "https://youtube.com";}
-            {name = "Amy's Weinhaus";
-             url = "https://10.10.10.100";}
             {name = "ChatGPT";
              url = "https://chat.openai.com";}
             {name = "Python print cheat sheet";
