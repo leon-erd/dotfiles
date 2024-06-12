@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, systemSettings, userSettings, ...}:
+{ lib, pkgs, inputs, userSettings, ...}:
 
 let
    # configure extensions

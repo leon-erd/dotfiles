@@ -1,8 +1,8 @@
-{ lib, pkgs, inputs, systemSettings, userSettings, ...}:
+{ lib, pkgs, inputs, userSettings, ...}:
 
 let
    # configure extensions
-  vscode-extensions = inputs.nix-vscode-extensions.extensions.${systemSettings.system};
+  vscode-extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
   myPylance = pkgs.callPackage ./extensions/pylance.nix {};
   vscodePackage = pkgs.vscodium-fhs;
 in

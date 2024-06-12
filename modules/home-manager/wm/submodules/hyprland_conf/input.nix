@@ -1,9 +1,9 @@
-{ systemSettings, ... }:
+{ userSettings, ... }:
 
 {
   wayland.windowManager.hyprland.settings = {
     input = {
-      kb_layout = systemSettings.kblayout;
+      kb_layout = userSettings.kblayout;
       numlock_by_default = true;
       touchpad = {
         natural_scroll = true;

@@ -1,8 +1,8 @@
-{ lib, pkgs, inputs, systemSettings, userSettings, ...}:
+{ lib, pkgs, inputs, userSettings, ...}:
 
 let
    # configure extensions
-  vscode-extensions = inputs.nix-vscode-extensions.extensions.${systemSettings.system};
+  vscode-extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
   vscodePackage = pkgs.vscode-fhs;
 in
 {

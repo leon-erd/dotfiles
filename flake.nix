@@ -3,66 +3,23 @@
 
   outputs = { self, ... }@inputs:
   let
-    # ---- SYSTEM SETTINGS ---- #
-    systemSettings = {
-      system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform)
-      hostname = "leon-inspiron"; # hostname
-      host = "inspiron-laptop"; # select a host defined in hosts directory
-      timezone = "Europe/Vienna"; # timezone
-      defaultLocale = "en_US.UTF-8"; # default locale
-      extraLocale = "de_AT.UTF-8"; # extra locale (for measurement, numeric, time, ...)
-      kblayout = "de"; # keyboard layout
-    };
-
-    # ----- USER SETTINGS ----- #
-    userSettings = rec {
-      username = "leon"; # username
-      name = "Leon"; # name/identifier (used for certain configurations i.e. git)
-      email = "leon.erd@student.uibk.ac.at"; # email (used for certain configurations i.e. git)
-      flakeDirectory = "/home/${username}/Nextcloud/dotfiles";
-    };
-
-    # configure packages
-    pkgs = import inputs.nixpkgs {
-      overlays = [
-        inputs.nur.overlay
-      ];
-      system = systemSettings.system;
-      config.allowUnfree = true;
-    };
-  in {
-    nixosConfigurations = {
-      system = inputs.nixpkgs.lib.nixosSystem {
-        system = systemSettings.system;
-        modules = [ (./. + "/hosts/${systemSettings.host}/configuration.nix") ]; # load configuration.nix from selected host
-        specialArgs = {
-          inherit pkgs;
-          inherit inputs;
-          inherit systemSettings;
-          inherit userSettings;
-        };
-      };
-    };
-    homeConfigurations = {
-      user = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ (./. + "/hosts/${systemSettings.host}/home.nix") ]; # load home.nix from selected host
-        extraSpecialArgs = {
-          # pass config variables from above
-          inherit inputs;
-          inherit systemSettings;
-          inherit userSettings;
-        };
-      };
-    };
+    inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
+  in
+ {
+    # insert other configurations by merging (need to be imported in let/in)
+    nixosConfigurations = inspiron-laptop; # // <someOtherHost>;
+    homeConfigurations = inspiron-laptop; # // <someOtherHost>;
   };
 
   inputs = {
-    #nixpkgs.url = "nixpkgs/nixos-23.11";
+    #nixpkgsStable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    #home-managerStable = {
+    #  url = "github:nix-community/home-manager/release-24.05";
+    #  inputs.nixpkgs.follows = "nixpkgsStable";
+    #};
     home-manager = {
-      #url = "github:nix-community/home-manager/release-23.11";
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };

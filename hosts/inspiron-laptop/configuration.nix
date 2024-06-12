@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, systemSettings, userSettings, ... }:
+{ config, pkgs, inputs, systemSettings, ... }:
 
 {
   imports = [
@@ -61,9 +61,9 @@
   };
 
   # create user
-  users.users.${userSettings.username} = {
+  users.users.${systemSettings.user1.username} = {
     isNormalUser = true;
-    description = userSettings.name;
+    description = systemSettings.user1.name;
     extraGroups = [ "networkmanager" "wheel" "video" "libvirtd"];
   };
 
