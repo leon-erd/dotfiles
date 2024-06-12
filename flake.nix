@@ -5,7 +5,7 @@
   let
     inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
   in
- {
+  {
     # insert other configurations by merging (need to be imported in let/in)
     nixosConfigurations = inspiron-laptop; # // <someOtherHost>;
     homeConfigurations = inspiron-laptop; # // <someOtherHost>;
