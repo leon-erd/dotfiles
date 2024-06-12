@@ -20,7 +20,7 @@ cd ~/dotfiles
 sudo nixos-generate-config --show-hardware-config > hosts/<host>/hardware-configuration.nix
 ```
 
-Make sure to update the `systemSettings` and `userSettings` at the top of the `flake.nix` to your needs:
+Make sure to update the `systemSettings` and `userSettings` in `hosts/<host>/flakeConfiguration.nix` to your needs:
 ```nix
 ...
 let
@@ -33,13 +33,14 @@ systemSettings = {
 ```
 
 Once the variables are set, switch into the system configuration by running:
-```nix
+```bash
 cd ~/dotfiles
-sudo nixos-rebuild switch --flake ./#system
+sudo nixos-rebuild switch --flake ./#<systemConfigurationName>
 ```
+where `systemConfigurationName` corresponds to the value set in `hosts/<host>/flakeConfiguration.nix`.
 
 The home-manager configuration can be installed with (might need to logout/login once before):
-```nix
+```bash
 cd ~/dotfiles
-home-manager switch --flake ./#user
+home-manager switch --flake ./#<userConfigurationName>
 ```
