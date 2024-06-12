@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
     ../../modules/system/apps/virtualisation.nix
     ../../modules/system/boot/grub.nix
@@ -24,41 +25,10 @@
     #../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
   ];
 
-  # set some important things
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
-  hardware.enableAllFirmware  = true; # Enable all firmware regardless of license
-  console.keyMap = systemSettings.kblayout; # tty keyboard layout
-  boot.kernelPackages = pkgs.linuxPackages_latest; # get latest stable kernel
-  nix.optimise.automatic = true; # optimise nix store disk space by hard linking identical files
-  programs.nh = { # nix helper for basic nix commands with added functionality
-    enable = true;
-    clean = {
-      enable = true;
-      dates = "daily";
-      extraArgs = "--keep-since=7d --keep=5";
-    };
-  };
-
   # install home-manager
   environment.systemPackages = with pkgs; [
     home-manager
   ];
-
-  # set locales
-  time.timeZone = systemSettings.timezone;
-  i18n.defaultLocale = systemSettings.defaultLocale;
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = systemSettings.extraLocale;
-    LC_IDENTIFICATION = systemSettings.extraLocale;
-    LC_MEASUREMENT = systemSettings.extraLocale;
-    LC_MONETARY = systemSettings.extraLocale;
-    LC_NAME = systemSettings.extraLocale;
-    LC_NUMERIC = systemSettings.extraLocale;
-    LC_PAPER = systemSettings.extraLocale;
-    LC_TELEPHONE = systemSettings.extraLocale;
-    LC_TIME = systemSettings.extraLocale;
-  };
 
   # create user
   users.users.${systemSettings.user1.username} = {
@@ -66,10 +36,6 @@
     description = systemSettings.user1.name;
     extraGroups = [ "networkmanager" "wheel" "video" "libvirtd"];
   };
-
-  # set zsh as default shell
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
