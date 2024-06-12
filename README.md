@@ -24,11 +24,10 @@ Make sure to update the `systemSettings` and `userSettings` in `hosts/<host>/fla
 ```nix
 ...
 let
-# ---- SYSTEM SETTINGS ---- #
-systemSettings = {
-    system = "x86_64-linux";
+  systemSettings = {
     hostname = "leon-inspiron";
-    host = "inspiron-laptop";
+    timezone = "Europe/Vienna";
+    defaultLocale = "en_US.UTF-8";
 ...
 ```
 
