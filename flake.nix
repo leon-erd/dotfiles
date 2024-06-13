@@ -12,6 +12,7 @@
   };
 
   inputs = {
+    #nixpkgsLocal.url = "git+file:///home/leon/Downloads/nixpkgs";
     #nixpkgsStable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
 

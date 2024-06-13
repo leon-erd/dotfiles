@@ -31,6 +31,11 @@ let
     system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform);
     config.allowUnfree = true;
   };
+
+  #pkgsLocal = import inputs.nixpkgsLocal {
+  #  system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform);
+  #  config.allowUnfree = true;
+  #};
 in
 
 {
@@ -51,6 +56,7 @@ in
       # pass config variables from above
       inherit inputs;
       userSettings = userSettings1;
+      #inherit pkgsLocal;
     };
   };
 }
