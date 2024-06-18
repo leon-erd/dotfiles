@@ -1,14 +1,5 @@
 { pkgs, ... }:
-let
-  toggleTofi = pkgs.writeShellScriptBin "toggleTofi" ''
-    if ${pkgs.procps}/bin/pgrep --exact tofi-drun > /dev/null
-    then
-      ${pkgs.procps}/bin/pkill --exact tofi-drun
-    else
-      tofi-drun --drun-launch=true
-    fi
-  '';
-in
+
 {
   programs.tofi = {
     enable = true;
@@ -33,7 +24,7 @@ in
   };
 
   wayland.windowManager.hyprland.settings = {
-    bindr = [ "$mainMod, $mainMod_L, exec, ${toggleTofi}/bin/toggleTofi" ];
+    bindr = [ "$mainMod, $mainMod_L, exec, pkill --exact tofi-drun || tofi-drun --drun-launch=true" ];
     exec-once = [ "rm ~/.cache/tofi-drun" ];
     layerrule = [
       "blur, launcher"
