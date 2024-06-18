@@ -8,11 +8,6 @@
       preserve_split = true; # you probably want this
       force_split = 2;
     };
-
-    master = {
-      # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-      new_is_master = false;
-    };
   };
 }
 
