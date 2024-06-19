@@ -9,14 +9,14 @@
         force = true;
       };
       settings = {
-        "browser.startup.page" = 3;
-        "signon.rememberSignons" = false;
-        "extensions.activeThemeID" = "firefox-compact-light@mozilla.org";
-        "extensions.autoDisableScopes" = 0;
-        "browser.toolbars.bookmarks.visibility" = "always";
-        "browser.download.always_ask_before_handling_new_types" = true;
-        "browser.download.start_downloads_in_tmp_dir" = true;
-        "browser.download.useDownloadDir" = false;
+        "browser.startup.page" = 3; # resume previous session
+        "signon.rememberSignons" = false; # don't ask to save passwords
+        "extensions.activeThemeID" = "firefox-compact-light@mozilla.org"; # light theme
+        "extensions.autoDisableScopes" = 0; # automatically enable extensions installed with home-manager
+        "browser.toolbars.bookmarks.visibility" = "always"; # toolbar always visible
+        "browser.download.always_ask_before_handling_new_types" = true; # ask whether to "open" or to "save"
+        "browser.download.start_downloads_in_tmp_dir" = true; # if "open" selected: save in tmp dir
+        "browser.download.useDownloadDir" = false; # if "save" selected: ask where to save
       };
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         betterttv
@@ -54,7 +54,7 @@
   };
 
   home.sessionVariables = {
-    MOZ_USE_XINPUT2 = 1;
+    MOZ_USE_XINPUT2 = 1; # better touch support
   };
 }
 
