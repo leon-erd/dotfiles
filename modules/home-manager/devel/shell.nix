@@ -16,6 +16,7 @@ myAliases = {
   vpn_uni = "sudo openconnect vpn.uibk.ac.at";
   vpn_pi_on = "wg-quick up ~/Nextcloud/Computer_current/pi_vpn.conf";
   vpn_pi_off = "wg-quick down ~/Nextcloud/Computer_current/pi_vpn.conf";
+  neofetch = "fastfetch --config examples/7.jsonc";
   };
 in
 {
