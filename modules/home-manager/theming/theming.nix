@@ -34,7 +34,7 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
+    style.name = "kvantum"; # this sets QT_STYLE_OVERRIDE=kvantum which fucks up plasma6. Disable this line if you want to use kde
   };
 
   xdg.configFile = {
