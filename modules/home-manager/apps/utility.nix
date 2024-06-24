@@ -10,6 +10,7 @@
     brave
     meld
     nextcloud-client
+    distrobox
   ];
 }
 
