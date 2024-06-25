@@ -4,7 +4,7 @@
   imports = [
     ./submodules/alacritty.nix
     ./submodules/blueman-applet.nix
-    ./submodules/cliphist/cliphist.nix
+    ./submodules/cliphist
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
     ./submodules/hyprland_conf
@@ -12,7 +12,7 @@
     # ./submodules/hyprlock.nix
     ./submodules/hyprlock_with_apps
     # ./submodules/kanshi.nix
-    ./submodules/myKanshiPlus/myKanshiPlus.nix
+    ./submodules/myKanshiPlus
     ./submodules/kdeconnect.nix
     ./submodules/kdepolkit.nix
     ./submodules/media_controls.nix
@@ -20,8 +20,8 @@
     ./submodules/nwg-displays.nix
     ./submodules/tofi.nix
     ./submodules/screenshot.nix
-    ./submodules/swaync/swaync.nix
+    ./submodules/swaync
     ./submodules/swww.nix
-    ./submodules/waybar/waybar.nix
+    ./submodules/waybar
   ];
 }
