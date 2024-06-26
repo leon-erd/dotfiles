@@ -16,7 +16,7 @@
       "workspace 5, class:^(firefox)$"
 
       "tag +social, class:^(org.telegram.desktop)$"
-      "tag +social, class:^(Signal)$"
+      "tag +social, class:^(signal)$"
       "tag +social, class:^(Slack)$"
       "tag +social, class:^(thunderbird)$"
       "tag +social, class:^(WebCord)$"
