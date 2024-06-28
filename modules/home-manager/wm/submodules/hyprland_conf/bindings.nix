@@ -77,6 +77,6 @@
     ];
 
     # Cycle workspaces with mainMod + Tab
-    binds.allow_workspace_cycles = "yes";
+    binds.allow_workspace_cycles = true;
   };
 }
