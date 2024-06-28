@@ -2,7 +2,7 @@
 
 let
   systemSettings = {
-    hostname = "leon-inspiron"; # hostname
+    hostname = "inspiron-laptop"; # hostname, unique identifier for building the flake
     timezone = "Europe/Vienna"; # timezone
     defaultLocale = "en_US.UTF-8"; # default locale
     extraLocale = "de_AT.UTF-8"; # extra locale (for measurement, numeric, time, ...)
@@ -11,7 +11,6 @@ let
       username = userSettings1.username; # username
       name = userSettings1.name;
     };
-    systemConfigurationName = "inspironSystem"; # unique identifier for building the flake
   };
 
   userSettings1 = rec {
@@ -20,8 +19,8 @@ let
     email = "leon.erd@student.uibk.ac.at"; # email (used for certain configurations i.e. git)
     flakeDirectory = "/home/${username}/Nextcloud/dotfiles";
     kblayout = "de";
-    systemConfigurationName = systemSettings.systemConfigurationName;
-    userConfigurationName = "inspironUser1";
+    systemConfigurationName = systemSettings.hostname;
+    userConfigurationName = "${username}@${systemConfigurationName}";
   };
 
   pkgs = import inputs.nixpkgs {
@@ -39,7 +38,7 @@ let
 in
 
 {
-  ${systemSettings.systemConfigurationName} = inputs.nixpkgs.lib.nixosSystem {
+  ${systemSettings.hostname} = inputs.nixpkgs.lib.nixosSystem {
     system = pkgs.system;
     modules = [ ./configuration.nix ];
     specialArgs = {
