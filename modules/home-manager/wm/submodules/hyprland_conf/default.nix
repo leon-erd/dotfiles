@@ -3,7 +3,6 @@
 {
   imports = [
     ./bindings.nix
-    ./env.nix
     ./exec-once.nix
     ./graphics.nix
     ./input.nix
