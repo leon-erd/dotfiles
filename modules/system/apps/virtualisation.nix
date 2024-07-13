@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  # https://nixos.wiki/wiki/Virt-manager
+  # https://wiki.nixos.org/wiki/Virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
@@ -20,6 +20,6 @@
     };
   };
 
-  # https://nixos.wiki/wiki/Flatpak
+  # https://wiki.nixos.org/wiki/Flatpak
   # services.flatpak.enable = true;
 }
