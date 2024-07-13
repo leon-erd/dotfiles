@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-# https://nixos.wiki/wiki/Accelerated_Video_Playback
+# https://wiki.nixos.org/wiki/Accelerated_Video_Playback
 {
   hardware.opengl = {
     extraPackages = with pkgs; [
