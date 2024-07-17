@@ -17,6 +17,13 @@
         "browser.download.always_ask_before_handling_new_types" = true; # ask whether to "open" or to "save"
         "browser.download.start_downloads_in_tmp_dir" = true; # if "open" selected: save in tmp dir
         "browser.download.useDownloadDir" = false; # if "save" selected: ask where to save
+        # Privacy
+        "app.shield.optoutstudies.enabled" = false;
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.globalprivacycontrol.enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "dom.private-attribution.submission.enabled" =false;
+        "datareporting.healthreport.uploadEnabled" = false;
       };
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         betterttv
