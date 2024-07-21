@@ -10,6 +10,9 @@
       initial_workspace_tracking = false;
       new_window_takes_over_fullscreen = 2;
     };
+    debug = {
+      disable_logs = false;
+    };
   };
 }
 
