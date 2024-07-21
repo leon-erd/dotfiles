@@ -91,6 +91,30 @@
         "type": "github"
       }
     },
+    "hypr-dynamic-cursors": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721285399,
+        "narHash": "sha256-FNu3iKINgYTPr+vXEHVHuyRsRf9/W7SUhrUz2NpjGGA=",
+        "owner": "VirtCode",
+        "repo": "hypr-dynamic-cursors",
+        "rev": "f0409be76564171a97a792deabab3bd0528fe40c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VirtCode",
+        "repo": "hypr-dynamic-cursors",
+        "type": "github"
+      }
+    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -475,6 +499,7 @@
       "inputs": {
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
+        "hypr-dynamic-cursors": "hypr-dynamic-cursors",
         "hypridle": "hypridle",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",

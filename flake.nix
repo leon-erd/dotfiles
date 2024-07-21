@@ -49,6 +49,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
     grub2-themes = {
       url = "github:vinceliuice/grub2-themes";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -8,6 +8,7 @@
     ./submodules/gammastep.nix
     ./submodules/hypridle.nix
     ./submodules/hyprland_conf
+    ./submodules/hyprland_plugins/hypr-dynamic-cursors.nix
     ./submodules/hyprland_plugins/hyprexpo.nix
     # ./submodules/hyprlock.nix
     ./submodules/hyprlock_with_apps
