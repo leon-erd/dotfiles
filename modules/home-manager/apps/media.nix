@@ -8,7 +8,7 @@ in
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    gnome.eog
+    eog
     mpv
     qpwgraph
 #     spotify
