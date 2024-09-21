@@ -17,6 +17,7 @@ myAliases = {
   vpn_pi_on = "wg-quick up ~/Nextcloud/Computer_current/pi_vpn.conf";
   vpn_pi_off = "wg-quick down ~/Nextcloud/Computer_current/pi_vpn.conf";
   neofetch = "fastfetch --config examples/7.jsonc";
+  fhs = "nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv { name = \"fhs\"; runScript = \"zsh\"; }).env'";
   };
 in
 {
