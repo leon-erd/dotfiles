@@ -106,10 +106,6 @@ in
       "special:hyprlock, border:false"
       "special:hyprlock, shadow:false"
     ];
-    windowrulev2 = [
-      "noblur, onworkspace:special:hyprlock"
-    ];
-    decoration.blur.special = true;
   };
 
   home.packages = with pkgs; [
