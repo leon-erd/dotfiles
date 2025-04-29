@@ -12,6 +12,7 @@
     ],
     "latex-workshop.bibtex-fields.sort.enabled": true,
     "latex-workshop.bibtex-format.sort.enabled": true,
+    "latex-workshop.latex.build.rootfileInStatus": true,
     "latex-workshop.latex.outDir": "%DIR%/out",
     "latex-workshop.latex.recipe.default": "lastUsed",
     "latex-workshop.latexindent.args": [
