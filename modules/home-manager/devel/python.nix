@@ -6,6 +6,6 @@
   ];
 
   programs.zsh = {
-    initExtra = "eval \"$(micromamba shell hook --shell zsh)\"";
+    initContent = "eval \"$(micromamba shell hook --shell zsh)\"";
   };
 }

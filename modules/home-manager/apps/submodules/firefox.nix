@@ -5,7 +5,7 @@
     enable = true;
     profiles.${userSettings.username} = {
       search = {
-        default = "DuckDuckGo";
+        default = "ddg"; # DuckDuckGo
         force = true;
       };
       settings = {
@@ -25,7 +25,7 @@
         "dom.private-attribution.submission.enabled" =false;
         "datareporting.healthreport.uploadEnabled" = false;
       };
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         betterttv
         bitwarden
         duckduckgo-privacy-essentials
@@ -34,29 +34,34 @@
         videospeed
         vimium-c
       ];
-      bookmarks = [
-        {
-          toolbar = true;
-          bookmarks = [
-            {name = "Fast.com";
-             url = "https://fast.com";}
-            {name = "Amy's Weinhaus";
-             url = "https://10.10.10.100";}
-            {name = "Pihole";
-             url = "http://10.10.10.100:8080/admin/";}
-            {name = "Github";
-             url = "https://github.com/";}
-            {name = "Twitch";
-             url = "https://twitch.tv/directory/following";}
-            {name = "Youtube";
-             url = "https://youtube.com";}
-            {name = "ChatGPT";
-             url = "https://chat.openai.com";}
-            {name = "Python print cheat sheet";
-             url = "https://learnpython.com/blog/python-string-formatting/";}
-          ];
-        }
-      ];
+      bookmarks = {
+        force = true;
+        settings = [
+          {
+            toolbar = true;
+            bookmarks = [
+              {name = "Fast.com";
+              url = "https://fast.com";}
+              {name = "Amy's Weinhaus";
+              url = "https://10.10.10.100";}
+              {name = "Pihole";
+              url = "http://10.10.10.100:8080/admin/";}
+              {name = "Github";
+              url = "https://github.com/";}
+              {name = "Twitch";
+              url = "https://twitch.tv/directory/following";}
+              {name = "Youtube";
+              url = "https://youtube.com";}
+              {name = "ChatGPT";
+              url = "https://chat.openai.com";}
+              {name = "Python print cheat sheet";
+              url = "https://learnpython.com/blog/python-string-formatting/";}
+              {name = "Noogle";
+              url = "https://noogle.dev/";}
+            ];
+          }
+        ];
+      };
     };
   };
 

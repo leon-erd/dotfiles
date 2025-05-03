@@ -2,7 +2,7 @@
 
 {
   wayland.windowManager.hyprland.settings = {
-    windowrulev2 = [
+    windowrule = [
       "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
 
       "tile, class:^(DesktopEditors)$"

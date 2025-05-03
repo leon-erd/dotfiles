@@ -5,7 +5,7 @@
     enable = true;
     clean = {
       enable = true;
-      dates = "daily";
+      dates = "weekly";
       extraArgs = "--keep-since=7d --keep=5";
     };
   };

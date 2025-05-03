@@ -1,15 +1,13 @@
 { lib, pkgs, inputs, userSettings, ...}:
 
 let
-   # configure extensions
-  vscode-extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
   vscodePackage = pkgs.vscode-fhs;
 in
 {
   programs.vscode = {
     enable = true;
     package = vscodePackage;
-    extensions = with (vscode-extensions.forVSCodeVersion vscodePackage.version).vscode-marketplace; [
+    profiles.default.extensions = with (pkgs.forVSCodeVersion vscodePackage.version).vscode-marketplace; [
       aaron-bond.better-comments
       charliermarsh.ruff
       corker.vscode-micromamba

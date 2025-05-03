@@ -27,7 +27,7 @@
       "$mainMod, RETURN, layoutmsg, swapwithmaster"
       "$mainMod + SHIFT, RETURN, layoutmsg, addmaster"
       "$mainMod + SHIFT + CTRL, RETURN, layoutmsg, removemaster"
-      "ALT, Tab, cyclenext,"
+      "ALT, Tab, layoutmsg, cyclenext"
       "ALT + CTRL, Tab, changegroupactive"
 
       # WORKSPACES

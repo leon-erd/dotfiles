@@ -23,9 +23,10 @@ let
     userConfigurationName = "${username}@${systemConfigurationName}";
   };
 
-  pkgs = import inputs.nixpkgs {
+  myPkgs = import inputs.nixpkgs {
     overlays = [
-      inputs.nur.overlay
+      inputs.nur.overlays.default
+      inputs.nix-vscode-extensions.overlays.default
     ];
     system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform);
     config.allowUnfree = true;
@@ -39,17 +40,16 @@ in
 
 {
   ${systemSettings.hostname} = inputs.nixpkgs.lib.nixosSystem {
-    system = pkgs.system;
     modules = [ ./configuration.nix ];
     specialArgs = {
-      inherit pkgs;
       inherit inputs;
+      inherit myPkgs;
       inherit systemSettings;
     };
   };
 
   ${userSettings1.userConfigurationName} = inputs.home-manager.lib.homeManagerConfiguration {
-    inherit pkgs;
+    pkgs = myPkgs;
     modules = [ ./home.nix ];
     extraSpecialArgs = {
       # pass config variables from above

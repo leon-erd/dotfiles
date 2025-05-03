@@ -24,7 +24,6 @@
       name = "Tela";
     };
     font = {
-      package = pkgs.nerdfonts;
       name = "NotoSansNerdFont";
       size = 11;
     };

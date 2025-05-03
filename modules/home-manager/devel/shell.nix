@@ -13,7 +13,6 @@ myAliases = {
   conda = "micromamba";
   homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
   nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
-  vpn_uni = "sudo openconnect vpn.uibk.ac.at";
   vpn_pi_on = "wg-quick up ~/Nextcloud/Computer_current/pi_vpn.conf";
   vpn_pi_off = "wg-quick down ~/Nextcloud/Computer_current/pi_vpn.conf";
   neofetch = "fastfetch --config examples/7.jsonc";
@@ -23,7 +22,6 @@ in
 {
   # packages for vpn aliases
   home.packages = with pkgs; [
-    openconnect
     wireguard-tools
   ];
 
@@ -31,7 +29,7 @@ in
     enable = true;
     autocd = true;
     autosuggestion.enable = true;
-    initExtra = ''
+    initContent = ''
       bindkey '^[[Z' autosuggest-accept
       zstyle ':omz:plugins:alias-finder' autoload yes
     '';
@@ -58,5 +56,6 @@ in
 
   home.sessionVariables = {
     FLAKE = userSettings.flakeDirectory;
+    NH_FLAKE = userSettings.flakeDirectory;
   };
 }
