@@ -2,6 +2,11 @@
 
 {
   wayland.windowManager.hyprland.settings = {
+    general = {
+      snap.enabled = true;
+      resize_on_border = true;
+      layout = "master";
+    };
     misc = {
       animate_manual_resizes = true;
       animate_mouse_windowdragging = true;

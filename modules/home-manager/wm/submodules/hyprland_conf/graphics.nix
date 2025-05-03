@@ -8,10 +8,6 @@
       border_size = 2;
       "col.active_border" = "rgba(33ccffff) rgba(00ff99ff) 45deg";
       "col.inactive_border" = "rgba(444444aa)";
-
-      resize_on_border = true;
-
-      layout = "master";
     };
     group = {
       "col.border_inactive" = "rgba(444444aa)";
