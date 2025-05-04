@@ -19,7 +19,7 @@
     ../../modules/system/hardware/printing.nix
     ../../modules/system/security/firewall.nix
     ../../modules/system/security/remote.nix
-    #../../modules/system/security/location_information.nix # https://github.com/NixOS/nixpkgs/issues/321121
+    ../../modules/system/security/location_information.nix
     ../../modules/system/security/run_binaries.nix
     ../../modules/system/wm/sddm.nix
     ../../modules/system/wm/hyprland.nix
