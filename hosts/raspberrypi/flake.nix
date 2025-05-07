@@ -34,7 +34,7 @@
     in
 
     {
-      ${systemSettings.hostname} = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${systemSettings.hostname} = inputs.nixpkgs.lib.nixosSystem {
         modules = [ ./configuration.nix ];
         specialArgs = {
           inherit inputs;
@@ -43,7 +43,7 @@
         };
       };
 
-      ${userSettings1.userConfigurationName} = inputs.home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${userSettings1.userConfigurationName} = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = myPkgs;
         modules = [ ./home.nix ];
         extraSpecialArgs = {

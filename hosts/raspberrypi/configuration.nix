@@ -11,7 +11,7 @@
     ./hardware-configuration.nix
     ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
-    ../../modules/system/fonts/fonts.nix
+    ../../modules/system/fonts/fontsStable.nix
     ../../modules/system/security/firewall.nix
   ];
 
@@ -28,7 +28,11 @@
       "networkmanager"
       "wheel"
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuv6vNZSzXfzD5NwqJbvOn1kJlN1IUSFulqsANyUv+pYzkZGQo6ug75ZLhH/eZQlGlweX5C0NBfWZQ0b3Qnc7ZRjD5Tnp0UMXnuSvgw9Av/g3fvdZlY94RiIhxviqecFmkrdX7nAqQrwc7tc8ny7tZDS45t1VbtZuRxAPEMaMDrTYWKhVCUVF4QosT8VAGgQr8SzjPOe6UDjxJh0isgiFqJOY8d/Gzg4XaXXFI8LiqI/p0vyvc3Aw+UOtxqVuun6+sxW2BWO6OTjHUJZKrs7Of0J5HnbJPlt7Jgse+mmjEVj+gADgsaa90g+kJ5xCdPuZD7XzmM19NmvWIrhZBFPy6pk14BBrpDLIChpjtJyMVwCxANw3RIRTMEFbeZD9bb3r9ghp0sSWO4Mgl6AHD41cMGbNGo6z0+bOqFXCKoUS6Jfkv9La/9Ytc8iqq/vEjDllh/CeN029gWWlcs9onXqWtU9BnSYTV8X/ti3fAWCLz+WH8c11wh1gzMFFP3ft0aHM= leon@leon-inspiron"
+    ];
   };
+  services.openssh.enable = true;
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
@@ -37,11 +41,6 @@
 
   networking.hostName = systemSettings.hostname;
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-
-  services.openssh.enable = true;
-  users.users.leon.openssh.authorizedKeys.keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuv6vNZSzXfzD5NwqJbvOn1kJlN1IUSFulqsANyUv+pYzkZGQo6ug75ZLhH/eZQlGlweX5C0NBfWZQ0b3Qnc7ZRjD5Tnp0UMXnuSvgw9Av/g3fvdZlY94RiIhxviqecFmkrdX7nAqQrwc7tc8ny7tZDS45t1VbtZuRxAPEMaMDrTYWKhVCUVF4QosT8VAGgQr8SzjPOe6UDjxJh0isgiFqJOY8d/Gzg4XaXXFI8LiqI/p0vyvc3Aw+UOtxqVuun6+sxW2BWO6OTjHUJZKrs7Of0J5HnbJPlt7Jgse+mmjEVj+gADgsaa90g+kJ5xCdPuZD7XzmM19NmvWIrhZBFPy6pk14BBrpDLIChpjtJyMVwCxANw3RIRTMEFbeZD9bb3r9ghp0sSWO4Mgl6AHD41cMGbNGo6z0+bOqFXCKoUS6Jfkv9La/9Ytc8iqq/vEjDllh/CeN029gWWlcs9onXqWtU9BnSYTV8X/ti3fAWCLz+WH8c11wh1gzMFFP3ft0aHM= leon@leon-inspiron"
-  ];
 
   swapDevices = [
     {
