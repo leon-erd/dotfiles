@@ -16,7 +16,7 @@ let
   userSettings1 = rec {
     username = "leon"; # username
     name = "Leon"; # name/identifier (used for certain configurations i.e. git)
-    email = "leon.erd@student.uibk.ac.at"; # email (used for certain configurations i.e. git)
+    email = "leonvincenterd@web.de"; # email (used for certain configurations i.e. git)
     flakeDirectory = "/home/${username}/Nextcloud/dotfiles";
     kblayout = "de";
     systemConfigurationName = systemSettings.hostname;
