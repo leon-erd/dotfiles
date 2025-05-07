@@ -1,13 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    libsForQt5.breeze-gtk
-    libsForQt5.qtstyleplugin-kvantum
-    layan-gtk-theme
-  ];
-
-
   gtk = {
     enable = true;
     theme = {
