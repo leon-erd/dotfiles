@@ -2,15 +2,6 @@
 
 {
   home.packages = [
-#     (pkgs.swaynotificationcenter.overrideAttrs (previousAttrs:  rec {
-#       nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
-#         pkgs.sassc
-#       ];
-#       buildInputs = previousAttrs.buildInputs ++ [
-#         pkgs.gvfs
-#         pkgs.pantheon.granite
-#       ];
-#     }))
     pkgs.swaynotificationcenter
   ];
 
