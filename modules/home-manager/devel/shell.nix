@@ -4,7 +4,6 @@ let
 myAliases = {
   pi = "ssh ubuntu@10.10.10.100";
   get_temp = "paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'";
-  gall = "git pull && git add --all && git commit -v && git push";
   venv = "source venv/bin/activate";
   clearswap = "sudo swapoff -a; sudo swapon -a";
   ls = "eza --icons --group-directories-first";
