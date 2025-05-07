@@ -7,6 +7,7 @@
     bat
     btop
     curl
+    delta
     efibootmgr
     eza
     fastfetch
