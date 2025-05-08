@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  inputs,
   systemSettings,
   ...
 }:
@@ -11,7 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
-    ../../modules/system/fonts/fontsStable.nix
+    # ../../modules/system/fonts/fontsStable.nix
     ../../modules/system/security/firewall.nix
   ];
 
