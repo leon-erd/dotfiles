@@ -10,7 +10,7 @@
     slack
     telegram-desktop
     webcord
-    whatsapp-for-linux
+    wasistlos # whatsapp-for-linux
   ];
 }
 

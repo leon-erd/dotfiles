@@ -20,7 +20,7 @@
       "tag +social, class:^(Slack)$"
       "tag +social, class:^(thunderbird)$"
       "tag +social, class:^(WebCord)$"
-      "tag +social, class:^(whatsapp-for-linux)$"
+      "tag +social, class:^(wasistlos)$"
       "workspace 9, tag:social"
 
       # KDE CONNECT Presentation Mode
