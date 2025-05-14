@@ -7,7 +7,10 @@
   ];
 
   wayland.windowManager.hyprland.settings = {
-    source = [ "./monitors.conf" "./workspaces.conf" ];
+    source = [
+      "./monitors.conf"
+      "./workspaces.conf"
+    ];
     bind = [ "$mainMod, P, exec, nwg-displays" ];
   };
 
@@ -16,4 +19,3 @@
     run [ -f ~/.config/hypr/workspaces.conf ] || touch ~/.config/hypr/workspaces.conf
   '';
 }
-

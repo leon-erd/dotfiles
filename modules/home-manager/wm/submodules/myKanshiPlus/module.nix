@@ -1,13 +1,27 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   myKanshiPlus = pkgs.writers.writePython3Bin "myKanshiPlus" {
-    libraries = [];
+    libraries = [ ];
     flakeIgnore = [ "E501" ];
   } ./script.py;
 
   cfg = config.programs.myKanshiPlus;
-  inherit (lib.types) attrsOf enum float int nullOr oneOf submodule str;
+  inherit (lib.types)
+    attrsOf
+    enum
+    float
+    int
+    nullOr
+    oneOf
+    submodule
+    str
+    ;
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.modules) mkIf;
 
@@ -26,7 +40,11 @@ let
         description = "either <x>x<y> (from top-left corner) or auto (next to the previous monitor)";
       };
       scale = mkOption {
-        type = oneOf [ int float (enum ["auto"]) ];
+        type = oneOf [
+          int
+          float
+          (enum [ "auto" ])
+        ];
         default = 1;
         example = "auto";
         description = "scale the monitor or let hyprland decide with auto";
@@ -50,9 +68,9 @@ let
     options = {
       monitors = mkOption {
         type = attrsOf monitor;
-        default = {};
+        default = { };
         example = {
-          "Dell Inc. DELL P2412H TTMDG2AQ15EU" = {};
+          "Dell Inc. DELL P2412H TTMDG2AQ15EU" = { };
           "LG Electronics E2210      205NDMT1D051" = {
             resolution = "1680x1050";
             position = "1920x0";
@@ -62,7 +80,7 @@ let
       };
       workspaces = mkOption {
         type = attrsOf str;
-        default = {};
+        default = { };
         example = {
           "5" = "monitor:desc:Acer Technologies CB271HU T85EE0018511, default:true, on-created-empty:firefox";
           "name:test" = "rounding:false, border:false";
@@ -70,7 +88,7 @@ let
         description = "Attribute set of workspace configurations. The keys are the workspace identifiers and the values are one (or more) rule(s) to apply to the workspace.";
       };
     };
-  }; 
+  };
 in
 
 {
@@ -79,10 +97,9 @@ in
     profiles = mkOption {
       description = "Attribute set of monitor profiles";
       type = attrsOf profile;
-      default = {};
+      default = { };
     };
   };
-
 
   config = mkIf cfg.enable {
     home.packages = [ myKanshiPlus ];
@@ -107,7 +124,10 @@ in
     };
 
     wayland.windowManager.hyprland.settings = {
-      source = [ "./monitors.conf" "./workspaces.conf" ];
+      source = [
+        "./monitors.conf"
+        "./workspaces.conf"
+      ];
     };
 
     home.activation.myKanshiPlus = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

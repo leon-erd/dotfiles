@@ -43,16 +43,18 @@
         };
       };
 
-      homeConfigurations.${userSettings1.userConfigurationName} = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = myPkgs;
-        modules = [ ./home.nix ];
-        extraSpecialArgs = {
-          # pass config variables from above
-          inherit inputs;
-          userSettings = userSettings1;
-          #inherit pkgsLocal;
-        };
-      };
+      homeConfigurations.${userSettings1.userConfigurationName} =
+        inputs.home-manager.lib.homeManagerConfiguration
+          {
+            pkgs = myPkgs;
+            modules = [ ./home.nix ];
+            extraSpecialArgs = {
+              # pass config variables from above
+              inherit inputs;
+              userSettings = userSettings1;
+              #inherit pkgsLocal;
+            };
+          };
     };
 
   inputs = {

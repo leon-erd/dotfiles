@@ -6,4 +6,3 @@
     theme = "solar";
   };
 }
-

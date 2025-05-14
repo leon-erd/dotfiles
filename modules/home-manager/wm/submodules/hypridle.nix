@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   # hyprlockCmd = "pgrep hyprlock || hyprlock";
   hyprlockCmd = "pgrep hyprlock || ${./hyprlock_with_apps/hyprlock.sh}";
@@ -27,4 +33,3 @@ in
     };
   };
 }
-

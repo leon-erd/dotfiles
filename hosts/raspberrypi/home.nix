@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, userSettings, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  userSettings,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should

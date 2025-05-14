@@ -11,7 +11,7 @@ in
     eog
     mpv
     qpwgraph
-#     spotify
+    # spotify
     vlc
   ];
 
@@ -23,8 +23,8 @@ in
     colorScheme = "rosepine";
 
     # Comfy
-#     theme = spicePkgs.themes.comfy;
-#     colorScheme = "catppuccin-mocha";
+    # theme = spicePkgs.themes.comfy;
+    # colorScheme = "catppuccin-mocha";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay

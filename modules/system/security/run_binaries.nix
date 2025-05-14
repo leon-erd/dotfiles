@@ -5,9 +5,10 @@
 {
   programs.nix-ld = {
     enable = true;
-    libraries = options.programs.nix-ld.libraries.default
-    ++ (with pkgs; [
-      # Add any missing dynamic libraries for unpackaged programs here, NOT in environment.systemPackages
-    ]);
+    libraries =
+      options.programs.nix-ld.libraries.default
+      ++ (with pkgs; [
+        # Add any missing dynamic libraries for unpackaged programs here, NOT in environment.systemPackages
+      ]);
   };
 }

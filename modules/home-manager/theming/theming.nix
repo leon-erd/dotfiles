@@ -22,7 +22,6 @@
     };
   };
 
-
   qt = {
     enable = true;
     platformTheme.name = "qtct";
@@ -42,7 +41,6 @@
       style=kvantum
     '';
   };
-
 
   wayland.windowManager.hyprland.settings = {
     env = [

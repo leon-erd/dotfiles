@@ -1,7 +1,8 @@
 { ... }:
 
 {
-  programs.nh = { # nix helper for basic nix commands with added functionality
+  programs.nh = {
+    # nix helper for basic nix commands with added functionality
     enable = true;
     clean = {
       enable = true;

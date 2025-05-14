@@ -9,7 +9,7 @@
     spacing = 4; # Gaps between modules (4px)
 
     # Load modules
-    include = ["~/.config/waybar/modules.json"];
+    include = [ "~/.config/waybar/modules.json" ];
     # include = ["~/.config/waybar/modules.json.orig"];
 
     # Choose the order of the modules
@@ -18,7 +18,7 @@
       "hyprland/window"
       "custom/media"
     ];
-    modules-center = ["hyprland/workspaces"];
+    modules-center = [ "hyprland/workspaces" ];
     modules-right = [
       "tray"
       "idle_inhibitor"

@@ -15,7 +15,7 @@ in
       background = [
         {
           path = "~/scripts/wallpaper/wallpaper.jpg";
-#         path = "screenshot";
+          # path = "screenshot";
           blur_size = 4;
           blur_passes = 4;
         }
@@ -86,4 +86,3 @@ in
     bindr = [ "$mainMod, L, exec, hyprlock --immediate" ];
   };
 }
-

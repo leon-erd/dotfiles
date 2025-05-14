@@ -13,9 +13,11 @@
 
   programs.waybar = {
     enable = true;
-    package = (pkgs.waybar.override {
-      withMediaPlayer = true;
-    });
+    package = (
+      pkgs.waybar.override {
+        withMediaPlayer = true;
+      }
+    );
     style = ./style.css;
   };
 
@@ -29,4 +31,3 @@
     ];
   };
 }
-

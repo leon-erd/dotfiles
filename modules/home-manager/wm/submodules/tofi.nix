@@ -14,16 +14,16 @@
       result-spacing = 15;
 
       # Dmenu
-#       anchor = "top";
-#       width = "100%";
-#       height = 36;
-#       horizontal = true;
-#       outline-width = 0;
-#       border-width = 0;
-#       padding-top = 5;
-#       padding-bottom = 0;
-#       padding-left = 0;
-#       padding-right = 0;
+      # anchor = "top";
+      # width = "100%";
+      # height = 36;
+      # horizontal = true;
+      # outline-width = 0;
+      # border-width = 0;
+      # padding-top = 5;
+      # padding-bottom = 0;
+      # padding-left = 0;
+      # padding-right = 0;
 
       # Rofi
       width = "50%";

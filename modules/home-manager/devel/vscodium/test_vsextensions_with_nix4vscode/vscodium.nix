@@ -1,9 +1,15 @@
-{ lib, pkgs, inputs, userSettings, ...}:
+{
+  lib,
+  pkgs,
+  inputs,
+  userSettings,
+  ...
+}:
 
 let
-   # configure extensions
-  myExtensions = pkgs.callPackage ./extensions/extensions.nix {};
-  myPylance = pkgs.callPackage ./extensions/pylance.nix {};
+  # configure extensions
+  myExtensions = pkgs.callPackage ./extensions/extensions.nix { };
+  myPylance = pkgs.callPackage ./extensions/pylance.nix { };
   vscodePackage = pkgs.vscodium-fhs;
 in
 {
@@ -36,15 +42,15 @@ in
 
   home.activation = {
     myVscodeFiles =
-    let
-      vscodePath = "~/.config/VSCodium";
-      targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscodium";
-    in
-    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run mkdir -p ${vscodePath}/User
-      run ln -sf ${targetDirectory}/product.json ${vscodePath}/product.json
-      run ln -sf ${targetDirectory}/keybindings.json ${vscodePath}/User/keybindings.json
-      run ln -sf ${targetDirectory}/settings.json ${vscodePath}/User/settings.json
-    '';
+      let
+        vscodePath = "~/.config/VSCodium";
+        targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscodium";
+      in
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        run mkdir -p ${vscodePath}/User
+        run ln -sf ${targetDirectory}/product.json ${vscodePath}/product.json
+        run ln -sf ${targetDirectory}/keybindings.json ${vscodePath}/User/keybindings.json
+        run ln -sf ${targetDirectory}/settings.json ${vscodePath}/User/settings.json
+      '';
   };
 }

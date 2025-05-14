@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, userSettings, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  userSettings,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,7 +27,7 @@
     ../../modules/home-manager/devel/shell.nix
     ../../modules/home-manager/devel/python.nix
     ../../modules/home-manager/devel/vscodium/vscode.nix
-#     ../../modules/home-manager/devel/vscodium/vscodium.nix
+    #     ../../modules/home-manager/devel/vscodium/vscodium.nix
     ../../modules/home-manager/theming/theming.nix
     ../../modules/home-manager/wm/hyprland.nix # needs hyprland.nix import in configuration.nix
   ];

@@ -57,7 +57,7 @@
           criteria = "eDP-1";
           mode = "1920x1080";
           scale = 1.0;
-          position =  "0,0";
+          position = "0,0";
         }
         {
           criteria = "Acer Technologies CB271HU T85EE0018511";

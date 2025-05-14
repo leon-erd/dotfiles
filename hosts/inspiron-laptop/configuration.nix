@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, systemSettings, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  systemSettings,
+  ...
+}:
 
 {
   imports = [
@@ -35,7 +41,12 @@
   users.users.${systemSettings.user1.username} = {
     isNormalUser = true;
     description = systemSettings.user1.name;
-    extraGroups = [ "networkmanager" "wheel" "video" "libvirtd"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "libvirtd"
+    ];
   };
 
   # This value determines the NixOS release from which the default

@@ -1,15 +1,16 @@
 {
   description = "Leons Flake for NixOS and Home Manager configuration";
 
-  outputs = { self, ... }@inputs:
-  let
-    inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
-  in
-  {
-    # insert other configurations by merging (need to be imported in let/in)
-    nixosConfigurations = inspiron-laptop; # // <someOtherHost>;
-    homeConfigurations = inspiron-laptop; # // <someOtherHost>;
-  };
+  outputs =
+    { self, ... }@inputs:
+    let
+      inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
+    in
+    {
+      # insert other configurations by merging (need to be imported in let/in)
+      nixosConfigurations = inspiron-laptop; # // <someOtherHost>;
+      homeConfigurations = inspiron-laptop; # // <someOtherHost>;
+    };
 
   inputs = {
     #nixpkgsLocal.url = "git+file:///home/leon/Downloads/nixpkgs";
@@ -71,4 +72,3 @@
     };
   };
 }
-

@@ -30,10 +30,10 @@
     decoration = {
       rounding = 5;
       blur = {
-          size = 4;
-          passes = 4;
-          ignore_opacity = true;
-          popups = true;
+        size = 4;
+        passes = 4;
+        ignore_opacity = true;
+        popups = true;
       };
     };
   };

@@ -13,4 +13,3 @@
     wasistlos # whatsapp-for-linux
   ];
 }
-
