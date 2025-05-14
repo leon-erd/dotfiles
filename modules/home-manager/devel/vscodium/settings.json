@@ -23,6 +23,8 @@
     "terminal.integrated.cursorStyle": "line",
     "todo-tree.regex.regex": "(%|//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
     "window.menuBarVisibility": "hidden",
+    "window.titleBarStyle": "native",
+    "window.customTitleBarVisibility": "never",
     "workbench.colorCustomizations": {
         "editor.background": "#000000",
         "activityBar.background": "#000000",
