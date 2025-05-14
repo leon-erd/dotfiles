@@ -39,6 +39,7 @@
     "workbench.iconTheme": "material-icon-theme",
 
     // Specific settings for vscode (not VSCodium) -> disable telemetry etc
+    "extensions.autoUpdate": false,
     "telemetry.telemetryLevel": "off",
     "update.mode": "none",
     "workbench.enableExperiments": false,
