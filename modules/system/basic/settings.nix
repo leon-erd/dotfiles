@@ -4,6 +4,7 @@
   # set some important things
   nixpkgs.pkgs = myPkgs;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.channel.enable = false;
   hardware.enableAllFirmware  = true; # Enable all firmware regardless of license
   nix.optimise.automatic = true; # optimise nix store disk space by hard linking identical files
 
