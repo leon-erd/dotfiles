@@ -18,6 +18,26 @@
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.synctex.indicator": "circle",
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "nixpkgs": {
+                "expr": "import (builtins.getFlake \"github:leon-erd/dotfiles\").inputs.nixpkgs {}"
+            },
+            "formatting": {
+                "command": ["nixfmt"]
+            },
+            "options": {
+                "nixos": {
+                    "expr": "(builtins.getFlake \"github:leon-erd/dotfiles\").nixosConfigurations.inspiron-laptop.options"
+                },
+                "home-manager": {
+                    "expr": "(builtins.getFlake \"github:leon-erd/dotfiles\").homeConfigurations.\"leon@inspiron-laptop\".options"
+                }
+            },
+        }
+    },
     "security.workspace.trust.enabled": false,
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",

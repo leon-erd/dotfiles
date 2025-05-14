@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, userSettings, ...}:
+{ lib, pkgs, userSettings, ...}:
 
 let
   vscodePackage = pkgs.vscode-fhs;
@@ -30,6 +30,11 @@ in
       pkief.material-icon-theme
     ];
   };
+
+  home.packages = with pkgs; [
+    nixd # language server
+    nixfmt-rfc-style # formatter
+  ];
 
   home.activation = {
     myVscodeFiles =
