@@ -4,12 +4,6 @@
     "editor.wordWrap": "on",
     "explorer.autoReveal": false,
     "files.autoSave": "afterDelay",
-    "grammarly.files.include": [
-        "**/readme.md",
-        "**/README.md",
-        "**/*.txt",
-        "**/*.tex"
-    ],
     "latex-workshop.bibtex-fields.sort.enabled": true,
     "latex-workshop.bibtex-format.sort.enabled": true,
     "latex-workshop.latex.build.rootfileInStatus": true,
