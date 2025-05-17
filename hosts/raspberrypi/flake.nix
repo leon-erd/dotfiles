@@ -15,6 +15,10 @@
           username = userSettings1.username; # username
           name = userSettings1.name;
         };
+        nextcloudDrives = {
+          mainDrive = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
+          backupDrive = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
+        };
       };
 
       userSettings1 = rec {
@@ -62,6 +66,11 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

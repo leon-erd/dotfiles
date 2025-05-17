@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   systemSettings,
   ...
 }:
@@ -7,10 +8,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
-    # ../../modules/system/fonts/fontsStable.nix
+    ../../modules/system/basic
     ../../modules/system/security/firewall.nix
+    ../../modules/system/server/nextcloud.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   # install home-manager
@@ -46,6 +48,10 @@
       size = 4096; # size in MB
     }
   ];
+
+  sops.age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
 
   system.stateVersion = "24.11"; # Do not modify
 }
