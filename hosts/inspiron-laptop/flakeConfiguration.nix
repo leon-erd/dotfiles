@@ -17,7 +17,7 @@ let
     username = "leon"; # username
     name = "Leon"; # name/identifier (used for certain configurations i.e. git)
     email = "leonvincenterd@web.de"; # email (used for certain configurations i.e. git)
-    flakeDirectory = "/home/${username}/Nextcloud/dotfiles";
+    flakeDirectory = "/home/${username}/dotfiles";
     kblayout = "de";
     systemConfigurationName = systemSettings.hostname;
     userConfigurationName = "${username}@${systemConfigurationName}";
