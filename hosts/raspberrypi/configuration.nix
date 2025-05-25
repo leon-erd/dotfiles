@@ -33,6 +33,7 @@
     ];
   };
   services.openssh.enable = true;
+  nix.settings.trusted-users = [ systemSettings.user1.username ];
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
@@ -40,7 +41,7 @@
   boot.loader.generic-extlinux-compatible.enable = true;
 
   networking.hostName = systemSettings.hostname;
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
   swapDevices = [
     {
