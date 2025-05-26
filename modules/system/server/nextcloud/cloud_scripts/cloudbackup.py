@@ -11,9 +11,9 @@ from .send_telegram_message import send_telegram_message
 from .stdout_assert import stdout_assert
 
 # Cloud variables
-CLOUD_DATA = Path("/media/nextcloud/main_drive/data/Leon/files/Howto/")
+CLOUD_DATA = Path("/media/nextcloud/main_drive/data")
 BACKUP_REPO = Path("/media/nextcloud/backup_drive/borg")
-LOGFILE = Path("/home/leon/backup.log")
+LOGFILE = Path("/var/lib/nextcloud/cloudbackup.log")
 SQL_TMP = Path(f"/tmp/cloud_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql")
 DBNAME = "nextcloud"
 OCC = "/run/current-system/sw/bin/nextcloud-occ"
@@ -78,8 +78,8 @@ def run_cmd(
         assert p.returncode == 0, f"Command failed with return code {p.returncode}"
         if expect_stdout is not None:
             stdout_assert(p.stdout, expect_stdout)
-        if p.stderr.strip():
-            raise RuntimeError("Stderr output detected in command execution!")
+        if p.stderr is not None and p.stderr.strip():
+            logger.warning(f"Stderr output detected in command execution!\n{p.stderr}")
         return p
     except Exception as e:
         logger.error("The following error(s) occurred in the backup script:")
@@ -91,7 +91,7 @@ def run_cmd(
 
 def main():
     start_time = time.perf_counter()
-    logger.info("Starting cloud backup script...")
+    logger.debug("Starting cloud backup script...")
 
     if not check_mounted_correctly():
         logger.error("The hard drives are not correctly mounted!")
@@ -129,7 +129,7 @@ def main():
             f"{SQL_TMP}",
         ],
     )
-    logger.info(p.stdout)
+    logger.debug(p.stdout)
 
     p = run_cmd(
         [

@@ -63,7 +63,7 @@ in
         "10.10.10.100"
       ];
       overwriteprotocol = "https";
-      maintenance_window_start = 3; # run non time-sensitive tasks at 3:00am for up to 4 hours
+      maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
     };
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
@@ -122,17 +122,48 @@ in
     wantedBy = [ "timers.target" ];
     after = [ "nextcloud-setup.service" ];
     timerConfig = {
-      OnCalendar = "daily";
+      OnCalendar = "*-*-* 00:00:00";
       Persistent = true;
     };
   };
-
   systemd.services."nextcloud-preview-generator" = {
     after = [ "nextcloud-setup.service" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/nextcloud-occ preview:pre-generate";
+      ExecStart = "/run/current-system/sw/bin/my_nextcloud_preview_generator";
       User = "nextcloud";
+    };
+  };
+
+  systemd.timers."nextcloud-cloudbackup" = {
+    wantedBy = [ "timers.target" ];
+    after = [ "nextcloud-setup.service" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 04:00:00";
+      Persistent = true;
+    };
+  };
+  systemd.services."nextcloud-cloudbackup" = {
+    after = [ "nextcloud-setup.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/run/current-system/sw/bin/my_nextcloud_cloudbackup";
+      User = "nextcloud";
+    };
+  };
+
+  systemd.timers."nextcloud-scheduled-reboot" = {
+    wantedBy = [ "timers.target" ];
+    after = [ "nextcloud-setup.service" ];
+    timerConfig = {
+      OnCalendar = "Mon *-*-* 12:00:00";
+    };
+  };
+  systemd.services."nextcloud-scheduled-reboot" = {
+    after = [ "nextcloud-setup.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/run/current-system/sw/bin/reboot";
     };
   };
 }
