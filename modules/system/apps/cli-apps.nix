@@ -24,6 +24,7 @@
     rsync
     tldr
     tmux
+    sops
     unzip
     usbutils
     wget
