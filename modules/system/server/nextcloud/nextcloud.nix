@@ -35,7 +35,7 @@ in
   };
 
   fileSystems."${mainDriveMountPoint}" = {
-    device = "/dev/disk/by-id/${systemSettings.nextcloudDrives.mainDrive}";
+    device = "/dev/disk/by-id/${systemSettings.nextcloud.drives.main}";
     fsType = "ext4";
     options = [
       # "defaults"
@@ -44,7 +44,7 @@ in
     ];
   };
   fileSystems."${backupDriveMountPoint}" = {
-    device = "/dev/disk/by-id/${systemSettings.nextcloudDrives.backupDrive}";
+    device = "/dev/disk/by-id/${systemSettings.nextcloud.drives.backup}";
     fsType = "ext4";
     options = [
       # "defaults"
@@ -59,9 +59,7 @@ in
     datadir = mainDriveMountPoint;
     settings = {
       log_type = "syslog";
-      trusted_domains = [
-        "10.10.10.100"
-      ];
+      trusted_domains = systemSettings.nextcloud.trusted_domains;
       overwriteprotocol = "https";
       maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
     };
@@ -102,14 +100,14 @@ in
     };
     enableImagemagick = true;
     notify_push.enable = false;
-    hostName = "amysweinhaus.ddnss.de";
+    hostName = systemSettings.nextcloud.hostName;
     home = "/var/lib/nextcloud";
     package = pkgs.nextcloud31;
     enable = true;
   };
 
   security.acme.acceptTerms = true;
-  security.acme.defaults.email = "leonvincenterd@web.de";
+  security.acme.defaults.email = systemSettings.acmeEmail;
 
   services.nginx.recommendedTlsSettings = true;
   services.nginx.recommendedOptimisation = true;

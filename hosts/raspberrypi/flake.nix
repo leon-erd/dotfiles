@@ -15,10 +15,17 @@
           username = userSettings1.username; # username
           name = userSettings1.name;
         };
-        nextcloudDrives = {
-          mainDrive = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
-          backupDrive = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
+        nextcloud = {
+          drives = {
+            main = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
+            backup = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
+          };
+          hostName = "amysweinhaus.ddnss.de";
+          trusted_domains = [
+            "10.10.10.100"
+          ];
         };
+        acmeEmail = "leonvincenterd@web.de";
       };
 
       userSettings1 = rec {
