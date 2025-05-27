@@ -8,6 +8,7 @@
 
 {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
@@ -48,6 +49,15 @@
       "libvirtd"
     ];
   };
+  sops.secrets."ssh/private_keys/${systemSettings.user1.username}@${systemSettings.hostname}" = {
+    owner = systemSettings.user1.username;
+    mode = "600";
+    path = "/home/${systemSettings.user1.username}/.ssh/id_ed25519";
+  };
+
+  sops.age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
 
   # for compiling through emulated system for raspberrypi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

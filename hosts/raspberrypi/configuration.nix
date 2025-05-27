@@ -7,12 +7,12 @@
 
 {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ../../modules/system/apps/cli-apps.nix
     ../../modules/system/basic
     ../../modules/system/security/firewall.nix
     ../../modules/system/server/nextcloud/nextcloud.nix
-    inputs.sops-nix.nixosModules.sops
   ];
 
   # install home-manager
@@ -33,6 +33,11 @@
     ];
   };
   services.openssh.enable = true;
+  sops.secrets."ssh/private_keys/${systemSettings.user1.username}@${systemSettings.hostname}" = {
+    owner = systemSettings.user1.username;
+    mode = "600";
+    path = "/home/${systemSettings.user1.username}/.ssh/id_ed25519";
+  };
   nix.settings.trusted-users = [ systemSettings.user1.username ];
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
