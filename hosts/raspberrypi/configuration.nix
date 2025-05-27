@@ -13,6 +13,7 @@
     ../../modules/system/basic
     ../../modules/system/security/firewall.nix
     ../../modules/system/server/nextcloud/nextcloud.nix
+    ../../modules/system/server/wireguard.nix
   ];
 
   # install home-manager
@@ -55,9 +56,11 @@
     }
   ];
 
-  sops.age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
-  sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
+  sops = {
+    age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
 
   system.stateVersion = "24.11"; # Do not modify
 }

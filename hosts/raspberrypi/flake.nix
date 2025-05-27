@@ -26,6 +26,21 @@
           ];
         };
         acmeEmail = "leonvincenterd@web.de";
+        wireguard = {
+          externalInterface = "enu1u1u1"; # use "ip a"
+          clientPeers = [
+            {
+              name = "inspiron-laptop";
+              publicKey = "dLHb13EIwUM1HJoEPojOskp18c87Ciu/ZYUZmIkQMBA=";
+              allowedIPs = [ "10.100.0.2/32" ];
+            }
+            {
+              name = "leon-handy";
+              publicKey = "ahgGz2HSN6L0SaA85tEUccSogdu/6XCOJKsS0XyI238=";
+              allowedIPs = [ "10.100.0.3/32" ];
+            }
+          ];
+        };
       };
 
       userSettings1 = rec {
