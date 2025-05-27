@@ -4,6 +4,9 @@ Just my personal dotfiles :)
 
 ## Install instructions
 
+> ⚠️ **Important** \
+> Before beginning the installation make sure to copy your age key to `~/.config/sops/age/keys.txt`. This is needed in order to decrypt the secrets which are used in the system and the home configuration.
+
 To get this running on a NixOS system, start by going into a shell with `git` installed:
 ```bash
 nix-shell -p git
