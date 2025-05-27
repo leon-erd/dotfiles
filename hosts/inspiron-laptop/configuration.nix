@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   systemSettings,
@@ -55,19 +54,14 @@
     path = "/home/${systemSettings.user1.username}/.ssh/id_ed25519";
   };
 
-  sops.age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
-  sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
+  sops = {
+    age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
 
   # for compiling through emulated system for raspberrypi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "23.11"; # Do not modify
 }

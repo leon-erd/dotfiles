@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   inputs,
   userSettings,
   ...
@@ -18,6 +17,7 @@
   programs.home-manager.enable = true;
 
   imports = [
+    inputs.sops-nix.homeManagerModules.sops
     ../../modules/home-manager/apps/media.nix
     ../../modules/home-manager/apps/office.nix
     ../../modules/home-manager/apps/qt-apps.nix
@@ -39,12 +39,11 @@
     '';
   };
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  sops = {
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+  };
+
+  home.stateVersion = "23.11"; # Do not modify
 }
