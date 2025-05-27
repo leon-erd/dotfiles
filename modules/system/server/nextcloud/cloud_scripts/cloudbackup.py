@@ -10,13 +10,16 @@ from typing import Optional
 from .send_telegram_message import send_telegram_message
 from .stdout_assert import stdout_assert
 
-# Cloud variables
-CLOUD_DATA = Path("/media/nextcloud/main_drive/data")
-BACKUP_REPO = Path("/media/nextcloud/backup_drive/borg")
+# Variables
+CLOUD_DATA_PATH = Path("/media/nextcloud/main_drive/data")
+BACKUP_REPO_PATH = Path("/media/nextcloud/backup_drive/borg")
 LOGFILE = Path("/var/lib/nextcloud/cloudbackup.log")
-SQL_TMP = Path(f"/tmp/cloud_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql")
+SQL_TMP_FILE = Path(f"/tmp/cloud_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql")
 DBNAME = "nextcloud"
-OCC = "/run/current-system/sw/bin/nextcloud-occ"
+OCC_CMD = "/run/current-system/sw/bin/nextcloud-occ"
+BORG_CMD = "/run/current-system/sw/bin/borg"
+MYSQLDUMP_CMD = "/run/current-system/sw/bin/mysqldump"
+RM_CMD = "/run/current-system/sw/bin/rm"
 
 
 class TelegramHandler(logging.Handler):
@@ -53,7 +56,7 @@ def check_mounted_correctly():
     -------
     bool
     """
-    paths = [CLOUD_DATA.parent, BACKUP_REPO.parent]
+    paths = [CLOUD_DATA_PATH.parent, BACKUP_REPO_PATH.parent]
     # Trigger automount by accessing the directory
     for path in paths:
         try:
@@ -97,12 +100,12 @@ def main():
         logger.error("The hard drives are not correctly mounted!")
         sys.exit(1)
 
-    p = run_cmd(["borg", "info", f"{BACKUP_REPO}"])
+    p = run_cmd([BORG_CMD, "info", f"{BACKUP_REPO_PATH}"])
     logger.debug(p.stdout)
 
     p = run_cmd(
         [
-            OCC,
+            OCC_CMD,
             "maintenance:mode",
             "--on",
         ],
@@ -110,9 +113,9 @@ def main():
     )
     logger.debug(p.stdout)
 
-    with open(SQL_TMP, "w") as f:
+    with open(SQL_TMP_FILE, "w") as f:
         run_cmd(
-            ["mysqldump", "--single-transaction", DBNAME],
+            [MYSQLDUMP_CMD, "--single-transaction", DBNAME],
             capture_output=False,
             text=False,
             stdout=f,
@@ -120,24 +123,24 @@ def main():
 
     p = run_cmd(
         [
-            "borg",
+            BORG_CMD,
             "create",
             "--stats",
             "--compression=none",
-            f"{BACKUP_REPO}::nextcloud-{datetime.now().strftime('%Y-%m-%d_%H-%M')}",
-            f"{CLOUD_DATA}",
-            f"{SQL_TMP}",
+            f"{BACKUP_REPO_PATH}::nextcloud-{datetime.now().strftime('%Y-%m-%d_%H-%M')}",
+            f"{CLOUD_DATA_PATH}",
+            f"{SQL_TMP_FILE}",
         ],
     )
     logger.debug(p.stdout)
 
     p = run_cmd(
         [
-            "borg",
+            BORG_CMD,
             "prune",
             "-v",
             "--list",
-            f"{BACKUP_REPO}",
+            f"{BACKUP_REPO_PATH}",
             "--keep-daily=1",
             "--keep-weekly=1",
             "--keep-monthly=1",
@@ -147,7 +150,7 @@ def main():
 
     p = run_cmd(
         [
-            OCC,
+            OCC_CMD,
             "maintenance:mode",
             "--off",
         ],
@@ -155,7 +158,7 @@ def main():
     )
     logger.debug(p.stdout)
 
-    run_cmd(["rm", f"{SQL_TMP}"], expect_stdout="")
+    run_cmd([RM_CMD, f"{SQL_TMP_FILE}"], expect_stdout="")
 
     total_time = time.perf_counter() - start_time
     minutes = f"{total_time // 60:.0f}"
