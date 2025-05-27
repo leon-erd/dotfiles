@@ -1,11 +1,21 @@
 {
   config,
+  lib,
   pkgs,
   userSettings,
   ...
 }:
 
 let
+  wireguardConfigPath = ../../../secrets/files/wireguard_clients/${userSettings.systemConfigurationName}.conf;
+
+  hasWireguardConfig = builtins.pathExists wireguardConfigPath;
+
+  vpnPiAliases = lib.optionalAttrs hasWireguardConfig {
+    vpn_pi_on = "wg-quick up ${config.sops.secrets."wireguard.conf".path}";
+    vpn_pi_off = "wg-quick down ${config.sops.secrets."wireguard.conf".path}";
+  };
+
   myAliases = {
     clearswap = "sudo swapoff -a; sudo swapon -a";
     conda = "micromamba";
@@ -19,14 +29,14 @@ let
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
     root_shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
-    vpn_pi_on = "wg-quick up ${config.sops.secrets."wireguard.conf".path}";
-    vpn_pi_off = "wg-quick down ${config.sops.secrets."wireguard.conf".path}";
-  };
+  } // vpnPiAliases;
 in
 {
-  sops.secrets."wireguard.conf" = {
-    format = "binary";
-    sopsFile = ../../../secrets/files/wireguard_clients/${userSettings.systemConfigurationName}.conf;
+  sops.secrets = lib.optionalAttrs hasWireguardConfig {
+    "wireguard.conf" = {
+      format = "binary";
+      sopsFile = wireguardConfigPath;
+    };
   };
 
   # packages for vpn aliases
