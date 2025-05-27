@@ -1,4 +1,9 @@
-{ pkgs, userSettings, ... }:
+{
+  config,
+  pkgs,
+  userSettings,
+  ...
+}:
 
 let
   myAliases = {
@@ -9,14 +14,21 @@ let
     homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
     nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
     ls = "eza --icons --group-directories-first";
-    ll = "eza --icons --group-directories-first --all --long";
+    ll = "eza --icons --group-directories-first --all --long --group";
     tree = "eza --icons --group-directories-first --tree";
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
     root_shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
+    vpn_pi_on = "wg-quick up ${config.sops.secrets."wireguard.conf".path}";
+    vpn_pi_off = "wg-quick down ${config.sops.secrets."wireguard.conf".path}";
   };
 in
 {
+  sops.secrets."wireguard.conf" = {
+    format = "binary";
+    sopsFile = ../../../secrets/files/wireguard_clients/${userSettings.systemConfigurationName}.conf;
+  };
+
   # packages for vpn aliases
   home.packages = with pkgs; [
     wireguard-tools
