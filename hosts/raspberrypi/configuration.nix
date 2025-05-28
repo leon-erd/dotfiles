@@ -32,7 +32,13 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM22vgwjJ9HTFLvJTyQcyq4sgEFzI6jAS2FX6aB7AXVK leon@inspiron-laptop"
     ];
   };
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      AllowUsers = [ systemSettings.user1.username] ;
+    };
+  };
   sops.secrets."ssh/private_keys/${systemSettings.user1.username}@${systemSettings.hostname}" = {
     owner = systemSettings.user1.username;
     mode = "600";
