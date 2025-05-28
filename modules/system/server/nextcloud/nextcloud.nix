@@ -116,6 +116,11 @@ in
     enableACME = true;
   };
 
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
+
   systemd.timers."nextcloud-preview-generator" = {
     wantedBy = [ "timers.target" ];
     after = [ "nextcloud-setup.service" ];

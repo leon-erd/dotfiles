@@ -11,7 +11,6 @@
     ./hardware-configuration.nix
     ../../modules/system/apps/cli-apps.nix
     ../../modules/system/basic
-    ../../modules/system/security/firewall.nix
     ../../modules/system/server/nextcloud/nextcloud.nix
     ../../modules/system/server/wireguard.nix
   ];
