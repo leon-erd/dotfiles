@@ -13,14 +13,14 @@
     profiles = {
       default.monitors."LG Display 0x0637" = { };
       home_1.monitors = {
-        "Dell Inc. DELL P2412H TTMDG2AQ15EU" = { };
-        "LG Display 0x0637".position = "1920x0";
+        "LG Display 0x0637" = { };
+        "Dell Inc. DELL P2412H TTMDG2AQ15EU".position = "1920x0";
       };
       home_2 = {
         monitors = {
-          "Dell Inc. DELL P2412H TTMDG2AQ15EU" = { };
-          "LG Electronics E2210      205NDMT1D051".position = "1920x0";
-          "LG Display 0x0637".position = "3600x0";
+          "LG Display 0x0637" = { };
+          "Dell Inc. DELL P2412H TTMDG2AQ15EU".position = "1920x0";
+          "LG Electronics E2210      205NDMT1D051".position = "3840x0";
         };
         workspaces = {
           "1" = "monitor:desc:Dell Inc. DELL P2412H TTMDG2AQ15EU, default:true";

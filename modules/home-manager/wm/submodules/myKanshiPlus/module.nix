@@ -37,7 +37,7 @@ let
         type = str;
         default = "0x0";
         example = "auto";
-        description = "either <x>x<y> (from top-left corner) or auto (next to the previous monitor)";
+        description = "either <x_coord>x<y_coord> (from top-left corner) or auto (next to the previous monitor)";
       };
       scale = mkOption {
         type = oneOf [
