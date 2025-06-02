@@ -12,6 +12,7 @@ from .stdout_assert import stdout_assert
 
 # Variables
 CLOUD_DATA_PATH = Path("/media/nextcloud/main_drive/data")
+CLOUD_CONFIG_PATH = Path("/media/nextcloud/main_drive/config")
 BACKUP_REPO_PATH = Path("/media/nextcloud/backup_drive/borg")
 LOGFILE = Path("/var/lib/nextcloud/cloudbackup.log")
 SQL_TMP_FILE = Path(f"/tmp/cloud_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql")
@@ -129,6 +130,7 @@ def main():
             "--compression=none",
             f"{BACKUP_REPO_PATH}::nextcloud-{datetime.now().strftime('%Y-%m-%d_%H-%M')}",
             f"{CLOUD_DATA_PATH}",
+            f"{CLOUD_CONFIG_PATH}",
             f"{SQL_TMP_FILE}",
         ],
     )
