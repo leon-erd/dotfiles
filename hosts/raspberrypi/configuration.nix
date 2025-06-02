@@ -13,6 +13,7 @@
     ../../modules/system/basic
     ../../modules/system/server/nextcloud/nextcloud.nix
     ../../modules/system/server/wireguard.nix
+    ../../modules/system/server/fail2ban.nix
   ];
 
   # install home-manager
