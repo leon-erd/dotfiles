@@ -36,7 +36,8 @@
     enable = true;
     settings = {
       PermitRootLogin = "no";
-      AllowUsers = [ systemSettings.user1.username] ;
+      AllowUsers = [ systemSettings.user1.username ];
+      PasswordAuthentication = false;
     };
   };
   sops.secrets."ssh/private_keys/${systemSettings.user1.username}@${systemSettings.hostname}" = {
