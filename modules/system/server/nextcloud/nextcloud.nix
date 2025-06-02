@@ -5,6 +5,9 @@
   ...
 }:
 
+# IMPORTANT:
+# When updating the Nextcloud package, also update the preview generator app
+
 let
   mainDriveMountPoint = "/media/nextcloud/main_drive";
   backupDriveMountPoint = "/media/nextcloud/backup_drive";
@@ -62,6 +65,9 @@ in
       trusted_domains = systemSettings.nextcloud.trusted_domains;
       overwriteprotocol = "https";
       maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
+      preview_max_x = 2048;
+      preview_max_y = 2048;
+      jpeg_quality = 60;
     };
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
