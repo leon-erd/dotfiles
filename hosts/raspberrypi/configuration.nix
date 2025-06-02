@@ -70,6 +70,10 @@
     address = "192.168.179.1";
     interface = "enu1u1u1";
   };
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
 
   swapDevices = [
     {
