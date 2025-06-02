@@ -56,6 +56,21 @@
   networking.hostName = systemSettings.hostname;
   networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
+  # static IP configuration
+  networking.interfaces.enu1u1u1 = {
+    useDHCP = false;
+    ipv4.addresses = [
+      {
+        address = "192.168.179.200";
+        prefixLength = 24;
+      }
+    ];
+  };
+  networking.defaultGateway = {
+    address = "192.168.179.1";
+    interface = "enu1u1u1";
+  };
+
   swapDevices = [
     {
       device = "/swapfile";

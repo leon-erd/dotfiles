@@ -22,7 +22,7 @@
           };
           hostName = "amysweinhaus.ddnss.de";
           trusted_domains = [
-            "10.10.10.100"
+            "192.168.179.200"
           ];
         };
         acmeEmail = "leonvincenterd@web.de";
