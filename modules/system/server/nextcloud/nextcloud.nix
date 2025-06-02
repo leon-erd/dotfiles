@@ -61,7 +61,7 @@ in
     https = true;
     datadir = mainDriveMountPoint;
     settings = {
-      log_type = "syslog";
+      log_type = "file";
       trusted_domains = systemSettings.nextcloud.trusted_domains;
       overwriteprotocol = "https";
       maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
@@ -181,5 +181,15 @@ in
       Type = "oneshot";
       ExecStart = "/run/current-system/sw/bin/reboot";
     };
+  };
+
+  services.logrotate.settings."${mainDriveMountPoint}/data/nextcloud.log" = {
+    dateext = true;
+    compress = false;
+    missingok = true;
+    notifempty = true;
+    frequency = "weekly";
+    rotate = 4;
+    create = "0640 nextcloud nextcloud";
   };
 }
