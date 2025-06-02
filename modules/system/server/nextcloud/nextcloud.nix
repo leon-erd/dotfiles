@@ -183,6 +183,33 @@ in
     };
   };
 
+  # https://docs.nextcloud.com/server/latest/admin_manual/installation/harden_server.html#fail2ban-introduction
+  environment.etc = {
+    "fail2ban/filter.d/nextcloud.conf".text = ''
+      [Definition]
+      _groupsre = (?:(?:,?\s*"\w+":(?:"[^"]+"|\w+))*)
+      failregex = ^\{%(_groupsre)s,?\s*"remoteAddr":"<HOST>"%(_groupsre)s,?\s*"message":"Login failed:
+                  ^\{%(_groupsre)s,?\s*"remoteAddr":"<HOST>"%(_groupsre)s,?\s*"message":"Two-factor challenge failed:
+                  ^\{%(_groupsre)s,?\s*"remoteAddr":"<HOST>"%(_groupsre)s,?\s*"message":"Trusted domain error.
+      datepattern = ,?\s*"time"\s*:\s*"%%Y-%%m-%%d[T ]%%H:%%M:%%S(%%z)?"
+    '';
+  };
+  services.fail2ban.jails = {
+    nextcloud.settings = {
+      backend = "auto";
+      enabled = true;
+      port = "80,443";
+      protocol = "tcp";
+      filter = "nextcloud";
+      maxretry = 5;
+      bantime = "30m";
+      findtime = "10m";
+      logpath = "${mainDriveMountPoint}/data/nextcloud.log";
+    };
+    nginx-bad-request.settings.enabled = true;
+    nginx-botsearch.settings.enabled = true;
+  };
+
   services.logrotate.settings."${mainDriveMountPoint}/data/nextcloud.log" = {
     dateext = true;
     compress = false;
