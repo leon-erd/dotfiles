@@ -72,6 +72,13 @@ in
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
     };
+    # PHP-FPM settings (reduce overhead for small installations)
+    poolSettings = {
+      pm = "ondemand";
+      "pm.max_children" = 12;
+      "pm.process_idle_timeout" = "1m";
+      "pm.max_requests" = 500;
+    };
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps)
         calendar
