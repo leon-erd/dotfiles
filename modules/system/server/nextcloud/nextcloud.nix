@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   systemSettings,
   ...
 }:
@@ -138,7 +139,10 @@ in
     ### php.ini settings ###
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
+      # we allow uploads of up to 8GB (it seems that this is only neccessary for WebDAV uploads (e.g. FolderSync); large file uploads from the web interface or nextcloud client also work with low limits) but we do not want the PHP memory limit to be that high for low resource setups (the nixos module sets it to maxUploadSize by default)
+      "memory_limit" = lib.mkForce "512M";
     };
+    maxUploadSize = "8G";
 
     ### php-fpm.conf settings (reduce overhead for low resource setups) ###
     poolSettings = {
