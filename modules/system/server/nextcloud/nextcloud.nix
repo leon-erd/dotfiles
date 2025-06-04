@@ -19,12 +19,14 @@ let
       propagatedBuildInputs = [ requests ];
     };
 in
+
 {
   environment.systemPackages = with pkgs; [
     myCloudScripts
     borgbackup
   ];
 
+  ### load needed secrets ###
   sops.secrets = {
     "nextcloud/adminpass" = {
       owner = "nextcloud";
@@ -37,6 +39,7 @@ in
     };
   };
 
+  ### mount main and backup drives ###
   fileSystems."${mainDriveMountPoint}" = {
     device = "/dev/disk/by-id/${systemSettings.nextcloud.drives.main}";
     fsType = "ext4";
@@ -57,17 +60,57 @@ in
     ];
   };
 
+  ### CONFIGURE NEXTCLOUD ###
   services.nextcloud = {
-    https = true;
+    enable = true;
+
+    ### package setup ###
+    # remember you can only upgrade Nextcloud to the next major version
+    # if you want to upgrade to a newer version, change the nextcloud package (and customcss package) here
+    package = pkgs.nextcloud31;
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps)
+        calendar
+        contacts
+        notes
+        previewgenerator
+        tasks
+        ;
+      theming_customcss = pkgs.fetchNextcloudApp {
+        url = "https://github.com/nextcloud/theming_customcss/archive/refs/tags/v1.18.0.tar.gz";
+        sha256 = "sha256-HfUHvT9O5vo+pm7Qwr0ZwXKTbe2K/KFeAtp/K92oqR8=";
+        license = "agpl3Plus";
+      };
+    };
+    appstoreEnable = false;
+    autoUpdateApps = {
+      enable = true;
+      startAt = "07:00:00";
+    };
+
+    ### main settings ###
+    hostName = systemSettings.nextcloud.hostName;
+    home = "/var/lib/nextcloud";
     datadir = mainDriveMountPoint;
+    config = {
+      dbuser = "nextcloud";
+      dbtype = "mysql";
+      dbname = "nextcloud";
+      adminuser = "admin";
+      adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
+    };
+    database.createLocally = true;
+
+    ### use Redis for all caching except local memcache ###
+    caching = {
+      apcu = true;
+      redis = true;
+    };
+    configureRedis = true;
+
+    ### config.php settings ###
+    enableImagemagick = true;
     settings = {
-      log_type = "file";
-      trusted_domains = systemSettings.nextcloud.trusted_domains;
-      overwriteprotocol = "https";
-      maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
-      preview_max_x = 2048;
-      preview_max_y = 2048;
-      jpeg_quality = 60;
       enabledPreviewProviders = [
         # default providers
         "OC\\Preview\\BMP"
@@ -83,60 +126,38 @@ in
         # additional providers
         "OC\\Preview\\HEIC"
       ];
+      log_type = "file";
+      maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
+      trusted_domains = systemSettings.nextcloud.trusted_domains;
+      overwriteprotocol = "https";
+      preview_max_x = 2048;
+      preview_max_y = 2048;
+      jpeg_quality = 60;
     };
+
+    ### php.ini settings ###
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
     };
-    # PHP-FPM settings (reduce overhead for small installations)
+
+    ### php-fpm.conf settings (reduce overhead for low resource setups) ###
     poolSettings = {
       pm = "ondemand";
       "pm.max_children" = 12;
       "pm.process_idle_timeout" = "1m";
       "pm.max_requests" = 500;
     };
-    extraApps = {
-      inherit (config.services.nextcloud.package.packages.apps)
-        calendar
-        contacts
-        notes
-        previewgenerator
-        tasks
-        ;
-      theming_customcss = pkgs.fetchNextcloudApp {
-        url = "https://github.com/nextcloud/theming_customcss/archive/refs/tags/v1.18.0.tar.gz";
-        sha256 = "sha256-HfUHvT9O5vo+pm7Qwr0ZwXKTbe2K/KFeAtp/K92oqR8=";
-        license = "agpl3Plus";
-      };
-    };
-    caching = {
-      apcu = true;
-      redis = true;
-    };
-    configureRedis = true;
-    config = {
-      dbuser = "nextcloud";
-      dbtype = "mysql";
-      dbname = "nextcloud";
-      adminuser = "admin";
-      adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
-    };
-    database.createLocally = true;
-    appstoreEnable = false;
-    autoUpdateApps = {
-      enable = true;
-      startAt = "07:00:00";
-    };
-    enableImagemagick = true;
+
+    ### Use HTTPS for generated links ###
+    https = true;
+
+    ### notify push settings ###
     notify_push.enable = false;
-    hostName = systemSettings.nextcloud.hostName;
-    home = "/var/lib/nextcloud";
-    package = pkgs.nextcloud31;
-    enable = true;
   };
 
+  ### CONFIGURE NGINX and ACME ###
   security.acme.acceptTerms = true;
   security.acme.defaults.email = systemSettings.acmeEmail;
-
   services.nginx.recommendedTlsSettings = true;
   services.nginx.recommendedOptimisation = true;
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
@@ -144,11 +165,24 @@ in
     enableACME = true;
   };
 
+  ### open ports in firewall ###
   networking.firewall.allowedTCPPorts = [
     80
     443
   ];
 
+  ### CONFIGURE LOGROTATE ###
+  services.logrotate.settings."${mainDriveMountPoint}/data/nextcloud.log" = {
+    dateext = true;
+    compress = false;
+    missingok = true;
+    notifempty = true;
+    frequency = "weekly";
+    rotate = 4;
+    create = "0640 nextcloud nextcloud";
+  };
+
+  ### CONFIGURE SYSTEMD SERVICES AND TIMERS ###
   systemd.timers."nextcloud-preview-generator" = {
     wantedBy = [ "timers.target" ];
     after = [ "nextcloud-setup.service" ];
@@ -198,6 +232,7 @@ in
     };
   };
 
+  ### CONFIGURE FAIL2BAN ###
   # https://docs.nextcloud.com/server/latest/admin_manual/installation/harden_server.html#fail2ban-introduction
   environment.etc = {
     "fail2ban/filter.d/nextcloud.conf".text = ''
@@ -223,15 +258,5 @@ in
     };
     nginx-bad-request.settings.enabled = true;
     nginx-botsearch.settings.enabled = true;
-  };
-
-  services.logrotate.settings."${mainDriveMountPoint}/data/nextcloud.log" = {
-    dateext = true;
-    compress = false;
-    missingok = true;
-    notifempty = true;
-    frequency = "weekly";
-    rotate = 4;
-    create = "0640 nextcloud nextcloud";
   };
 }
