@@ -1,6 +1,13 @@
 Some things cannot be configured declaratively and therefore have to be set manually. The following things have to be set after the first installation and are then stored in the database. Thus, when restoring a backup of a previously configured nextcloud instance (including data, config, and database) it should already be set.
 - disable annoying apps: dashboard, first run wizard, recommendations, weather status
 - update/insert customcss
+    1. go into settings -> Theming and find custom CSS section
+    2. add and save:
+```css
+.editor__content{
+  max-width:80% !important;
+}
+```
 - add logo/background
 - setup users, groups, update notifications, email server
 - setup previewgenerator:
