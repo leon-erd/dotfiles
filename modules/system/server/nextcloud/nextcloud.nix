@@ -251,9 +251,6 @@ in
       port = "80,443";
       protocol = "tcp";
       filter = "nextcloud";
-      maxretry = 5;
-      bantime = "30m";
-      findtime = "10m";
       logpath = "${mainDriveMountPoint}/data/nextcloud.log";
     };
     nginx-bad-request.settings.enabled = true;
