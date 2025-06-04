@@ -68,6 +68,21 @@ in
       preview_max_x = 2048;
       preview_max_y = 2048;
       jpeg_quality = 60;
+      enabledPreviewProviders = [
+        # default providers
+        "OC\\Preview\\BMP"
+        "OC\\Preview\\GIF"
+        "OC\\Preview\\JPEG"
+        "OC\\Preview\\Krita"
+        "OC\\Preview\\MarkDown"
+        "OC\\Preview\\MP3"
+        "OC\\Preview\\OpenDocument"
+        "OC\\Preview\\PNG"
+        "OC\\Preview\\TXT"
+        "OC\\Preview\\XBitmap"
+        # additional providers
+        "OC\\Preview\\HEIC"
+      ];
     };
     phpOptions = {
       "opcache.interned_strings_buffer" = 16;
