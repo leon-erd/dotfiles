@@ -5,12 +5,10 @@
     windowrule = [
       "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
 
-      "tile, class:^(DesktopEditors)$"
-
-      "tag +vscode, class:^(code-url-handler)$"
-      "tag +vscode, class:^(codium-url-handler)$"
+      "tag +vscode, class:^(code)$"
+      "tag +vscode, class:^(codium)$"
       "opacity 0.85, tag:vscode"
-      "opacity 1.00, tag:vscode, title:.pdf"
+      "opacity 1.00, tag:vscode, title:.*\.pdf.*"
       "workspace 1, tag:vscode"
 
       "workspace 5, class:^(firefox)$"
