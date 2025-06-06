@@ -16,6 +16,7 @@
     gnugrep
     gnused
     htop
+    imagemagick
     killall
     libnotify
     pandoc
