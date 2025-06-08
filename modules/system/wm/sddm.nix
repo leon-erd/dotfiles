@@ -26,9 +26,10 @@
 
   services.displayManager.sddm = {
     enable = true;
-    package = pkgs.kdePackages.sddm.overrideAttrs (prevAttrs: {
-      buildInputs = [ pkgs.kdePackages.qtmultimedia ] ++ prevAttrs.buildInputs;
-    });
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [
+      kdePackages.qtmultimedia
+    ];
     # to find theme name check out /etc/sddm.conf for "ThemeDir"
     # and then "ls <ThemeDir>"
     # probably "ls /run/current-system/sw/share/sddm/themes"
