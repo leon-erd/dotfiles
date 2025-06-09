@@ -17,6 +17,7 @@
     gnused
     htop
     imagemagick
+    jq
     killall
     libnotify
     pandoc

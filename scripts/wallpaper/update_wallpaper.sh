@@ -36,11 +36,13 @@ done
 ffmpeg -y -i "$random_image" $script_directory/wallpaper.jpg
 
 # Get cursor pos
-cursor_pos=$(hyprctl cursorpos)
-read -r x_coord y_coord <<< "$cursor_pos"
+cursor_pos=$(hyprctl cursorpos -j)
+x_coord=$(echo "$cursor_pos" | jq '.x')
+y_coord=$(echo "$cursor_pos" | jq '.y')
+x_coord=$((x_coord % 1920))
 
 # Set wallpaper
-swww img --transition-type grow --transition-pos "${x_coord}${y_coord}" --invert-y --transition-duration 1.5 --transition-fps 200 $script_directory/wallpaper.jpg
+swww img --transition-type grow --transition-pos "${x_coord}, ${y_coord}" --invert-y --transition-duration 1.5 --transition-fps 200 $script_directory/wallpaper.jpg
 
 # Update waybar
 $parent_directory/launch_waybar.sh
