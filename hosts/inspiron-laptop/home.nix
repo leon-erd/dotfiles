@@ -22,7 +22,7 @@
     ../../modules/home-manager/apps/office.nix
     ../../modules/home-manager/apps/qt-apps.nix
     ../../modules/home-manager/apps/social.nix
-    ../../modules/home-manager/apps/utility.nix
+    ../../modules/home-manager/apps/misc.nix
     ../../modules/home-manager/devel/git.nix
     ../../modules/home-manager/devel/latex.nix
     ../../modules/home-manager/devel/shell.nix
@@ -30,7 +30,7 @@
     ../../modules/home-manager/devel/vscodium/vscode.nix
     #     ../../modules/home-manager/devel/vscodium/vscodium.nix
     ../../modules/home-manager/theming/theming.nix
-    ../../modules/home-manager/wm/hyprland.nix # needs hyprland.nix import in configuration.nix
+    ../../modules/home-manager/wm/hyprland # needs hyprland.nix import in configuration.nix
   ];
 
   home.activation = {

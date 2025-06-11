@@ -11,7 +11,6 @@ in
     gthumb
     mpv
     qpwgraph
-    # spotify
     vlc
   ];
 
