@@ -60,6 +60,9 @@ in
       custom = "$XDG_CONFIG_HOME/oh-my-zsh/custom";
       plugins = [
         "alias-finder"
+        # https://github.com/NixOS/nixpkgs/issues/171054
+        # https://blog.nobbz.dev/blog/2023-02-27-nixos-flakes-command-not-found/
+        # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos && sudo nix-channel --update
         "command-not-found"
         "dirhistory"
         "fzf"
