@@ -77,7 +77,7 @@
               }
               {
                 name = "Amy's Weinhaus";
-                url = "https://10.10.10.100";
+                url = "https://amysweinhaus.ddnss.de";
               }
               {
                 name = "Pihole";
@@ -98,10 +98,6 @@
               {
                 name = "ChatGPT";
                 url = "https://chat.openai.com";
-              }
-              {
-                name = "Python print cheat sheet";
-                url = "https://learnpython.com/blog/python-string-formatting/";
               }
               {
                 name = "Noogle";
