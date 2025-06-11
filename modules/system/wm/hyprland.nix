@@ -20,7 +20,7 @@
 
   xdg.portal = {
     extraPortals = [
-      (pkgs.xdg-desktop-portal-wlr.overrideAttrs (previousAttrs: rec {
+      (pkgs.xdg-desktop-portal-wlr.overrideAttrs (previousAttrs: {
         src = pkgs.fetchFromGitHub {
           owner = "leon-erd";
           repo = "xdg-desktop-portal-wlr";
