@@ -7,9 +7,17 @@ let
     defaultLocale = "en_US.UTF-8"; # default locale
     extraLocale = "de_AT.UTF-8"; # extra locale (for measurement, numeric, time, ...)
     kblayout = "de"; # keyboard layout
-    user1 = {
-      username = userSettings1.username; # username
-      name = userSettings1.name;
+    users = {
+      "1" = {
+        username = userSettings1.username; # username
+        name = userSettings1.name;
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "video"
+          "libvirtd"
+        ];
+      };
     };
   };
 

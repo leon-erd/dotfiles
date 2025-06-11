@@ -1,4 +1,4 @@
-{ inputs, systemSettings, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -25,29 +25,6 @@
     ../../modules/system/wm/hyprland.nix
     #../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
   ];
-
-  # create user
-  users.users.${systemSettings.user1.username} = {
-    isNormalUser = true;
-    description = systemSettings.user1.name;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "libvirtd"
-    ];
-  };
-  sops.secrets."ssh/private_keys/${systemSettings.user1.username}@${systemSettings.hostname}" = {
-    owner = systemSettings.user1.username;
-    mode = "600";
-    path = "/home/${systemSettings.user1.username}/.ssh/id_ed25519";
-  };
-
-  sops = {
-    age.keyFile = "/home/${systemSettings.user1.username}/.config/sops/age/keys.txt";
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-  };
 
   # for compiling through emulated system for raspberrypi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
