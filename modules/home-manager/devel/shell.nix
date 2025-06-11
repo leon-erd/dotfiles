@@ -7,9 +7,7 @@
 }:
 
 let
-  wireguardConfigPath = ../../../secrets/files/wireguard_clients/${userSettings.systemConfigurationName}.conf;
-
-  hasWireguardConfig = builtins.pathExists wireguardConfigPath;
+  hasWireguardConfig = userSettings ? wireguardConfig;
 
   vpnPiAliases = lib.optionalAttrs hasWireguardConfig {
     vpn_pi_on = "wg-quick up ${config.sops.secrets."wireguard.conf".path}";
@@ -20,14 +18,19 @@ let
     clearswap = "sudo swapoff -a; sudo swapon -a";
     conda = "micromamba";
     fhs = "nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv { name = \"fhs\"; runScript = \"zsh\"; }).env'";
-    get_temp = "paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'\t' -t | sed 's/\(.\)..$/.\1°C/'";
+    get-temp = ''
+      paste <(cat /sys/class/thermal/thermal_zone*/type) \
+            <(cat /sys/class/thermal/thermal_zone*/temp) | \
+            awk -F'\t' '{printf "%s\t%.1f°C\n", $1, $2/1000}' | \
+            column -s $'\t' -t
+    '';
     homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
     nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
     ls = "eza --icons --group-directories-first";
     ll = "eza --icons --group-directories-first --all --long --group";
     tree = "eza --icons --group-directories-first --tree";
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
-    root_shell = "sudo env \"HOME=/home/$USER\" zsh --login";
+    root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
   } // vpnPiAliases;
 in
@@ -35,7 +38,7 @@ in
   sops.secrets = lib.optionalAttrs hasWireguardConfig {
     "wireguard.conf" = {
       format = "binary";
-      sopsFile = wireguardConfigPath;
+      sopsFile = userSettings.wireguardConfig;
     };
   };
 

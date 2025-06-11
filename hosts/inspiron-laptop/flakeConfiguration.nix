@@ -21,6 +21,7 @@ let
     kblayout = "de";
     systemConfigurationName = systemSettings.hostname;
     userConfigurationName = "${username}@${systemConfigurationName}";
+    wireguardConfig = ../../secrets/files/wireguard_clients/inspiron-laptop.conf;
   };
 
   myPkgs = import inputs.nixpkgs {
