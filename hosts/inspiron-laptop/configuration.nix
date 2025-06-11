@@ -23,7 +23,6 @@
     ../../modules/system/hardware/pipewire.nix
     #../../modules/system/hardware/power.nix
     ../../modules/system/hardware/printing.nix
-    ../../modules/system/security/firewall.nix
     ../../modules/system/security/remote.nix
     ../../modules/system/security/location_information.nix
     ../../modules/system/security/run_binaries.nix
