@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  systemSettings,
-  ...
-}:
+{ inputs, systemSettings, ... }:
 
 {
   imports = [
@@ -15,11 +10,6 @@
     ../../modules/system/server/pihole.nix
     ../../modules/system/server/wireguard.nix
     ../../modules/system/server/fail2ban.nix
-  ];
-
-  # install home-manager
-  environment.systemPackages = with pkgs; [
-    home-manager
   ];
 
   # create user

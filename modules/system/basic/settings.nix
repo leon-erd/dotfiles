@@ -15,4 +15,9 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   environment.pathsToLink = [ "/share/zsh" ]; # needed for completion for system packages
+
+  # install home-manager
+  environment.systemPackages = with pkgs; [
+    home-manager
+  ];
 }

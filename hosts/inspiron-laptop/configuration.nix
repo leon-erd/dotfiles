@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  systemSettings,
-  ...
-}:
+{ inputs, systemSettings, ... }:
 
 {
   imports = [
@@ -29,11 +24,6 @@
     ../../modules/system/wm/sddm.nix
     ../../modules/system/wm/hyprland.nix
     #../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
-  ];
-
-  # install home-manager
-  environment.systemPackages = with pkgs; [
-    home-manager
   ];
 
   # create user
