@@ -27,8 +27,7 @@
     ../../modules/home-manager/devel/latex.nix
     ../../modules/home-manager/devel/shell.nix
     ../../modules/home-manager/devel/python.nix
-    ../../modules/home-manager/devel/vscodium/vscode.nix
-    #     ../../modules/home-manager/devel/vscodium/vscodium.nix
+    ../../modules/home-manager/devel/vscode
     ../../modules/home-manager/theming/theming.nix
     ../../modules/home-manager/wm/hyprland # needs hyprland.nix import in configuration.nix
   ];

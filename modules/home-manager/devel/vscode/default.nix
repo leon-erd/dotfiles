@@ -46,7 +46,7 @@ in
     myVscodeFiles =
       let
         vscodePath = "~/.config/Code";
-        targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscodium";
+        targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscode";
       in
       lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         run mkdir -p ${vscodePath}/User
