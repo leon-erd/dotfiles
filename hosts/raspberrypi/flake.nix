@@ -5,7 +5,7 @@
     { self, ... }@inputs:
 
     let
-      systemSettings = {
+      systemSettings = rec {
         hostname = "raspberrypi"; # hostname, unique identifier for building the flake
         timezone = "Europe/Vienna"; # timezone
         defaultLocale = "en_US.UTF-8"; # default locale
@@ -15,6 +15,7 @@
           username = userSettings1.username; # username
           name = userSettings1.name;
         };
+        localIp = "192.168.179.200";
         nextcloud = {
           drives = {
             main = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
@@ -22,10 +23,13 @@
           };
           hostName = "amysweinhaus.ddnss.de";
           trusted_domains = [
-            "192.168.179.200"
+            localIp
           ];
         };
         acmeEmail = "leonvincenterd@web.de";
+        pihole.hosts = [
+          "${localIp} ${nextcloud.hostName}"
+        ];
         wireguard = {
           externalInterface = "enu1u1u1"; # use "ip a"
           clientPeers = [
@@ -84,10 +88,10 @@
     };
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

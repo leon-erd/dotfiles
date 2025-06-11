@@ -12,6 +12,7 @@
     ../../modules/system/apps/cli-apps.nix
     ../../modules/system/basic
     ../../modules/system/server/nextcloud/nextcloud.nix
+    ../../modules/system/server/pihole.nix
     ../../modules/system/server/wireguard.nix
     ../../modules/system/server/fail2ban.nix
   ];
@@ -61,7 +62,7 @@
     useDHCP = false;
     ipv4.addresses = [
       {
-        address = "192.168.179.200";
+        address = systemSettings.localIp;
         prefixLength = 24;
       }
     ];
