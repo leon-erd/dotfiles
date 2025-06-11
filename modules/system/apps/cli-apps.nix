@@ -31,6 +31,4 @@
     usbutils
     wget
   ];
-
-  programs.dconf.enable = true;
 }
