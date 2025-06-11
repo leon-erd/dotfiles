@@ -25,15 +25,46 @@
         "dom.private-attribution.submission.enabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
       };
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        betterttv
-        bitwarden
-        duckduckgo-privacy-essentials
-        grammarly
-        ublock-origin
-        videospeed
-        vimium-c
-      ];
+      extensions = {
+        force = true;
+        packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          betterttv
+          bitwarden
+          duckduckgo-privacy-essentials
+          grammarly
+          ublock-origin
+          videospeed
+          vimium-c
+        ];
+        # to find the settings in firefox:
+        # 1. make desired changes to the extension
+        # 2. go to
+        # about:debugging#/runtime/this-firefox
+        # 3. find the Extension ID and inspect the extension
+        # 4. try the following commands in the console:
+        # await browser.storage.sync.get(null);
+        # await browser.storage.local.get(null);
+        settings = {
+          "vimium-c@gdh1995.cn" = {
+            settings = {
+              exclusionRules = [
+                {
+                  passKeys = "";
+                  pattern = "^https?://[^/]*twitch.tv/";
+                }
+                {
+                  passKeys = "";
+                  pattern = "^https?://[^/]*kick.com/";
+                }
+                {
+                  passKeys = "";
+                  pattern = "^https?://[^/]*youtube.com/watch";
+                }
+              ];
+            };
+          };
+        };
+      };
       bookmarks = {
         force = true;
         settings = [
