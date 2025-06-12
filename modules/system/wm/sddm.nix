@@ -34,6 +34,9 @@
     # and then "ls <ThemeDir>"
     # probably "ls /run/current-system/sw/share/sddm/themes"
     theme = "sddm-astronaut-theme";
-    wayland.enable = true; # This is still experimental
+    wayland = {
+      enable = true; # This is still experimental
+      compositor = "kwin";
+    };
   };
 }
