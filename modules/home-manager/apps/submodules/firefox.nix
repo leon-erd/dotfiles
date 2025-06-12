@@ -81,7 +81,7 @@
               }
               {
                 name = "Pihole";
-                url = "http://10.10.10.100:8080/admin/";
+                url = "https://pi.hole:8443";
               }
               {
                 name = "Github";
