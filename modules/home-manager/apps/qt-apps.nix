@@ -5,14 +5,19 @@
   ...
 }:
 
+# adding this to kdeglobals enables the icons for plasma6 apps:
+# [Icons]
+# Theme=Tela
+
 {
   home.packages = with pkgs; [
-    libsForQt5.ark
+    kdePackages.ark
+    kdePackages.filelight
+    kdePackages.kate
+    kdePackages.okular
+    # Alternating colors in details view is fucked up. Cannot find a fix for plasma6 (previous fix of setting alt.base color in kvantum theme to transparent does not work anymore)
     libsForQt5.dolphin
-    libsForQt5.filelight
-    libsForQt5.kate
     libsForQt5.kio-extras # mtp support for dolphin
-    libsForQt5.okular
     qalculate-qt
   ];
 
