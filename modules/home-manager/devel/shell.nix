@@ -92,7 +92,11 @@ in
         style = "bold purple";
         format = "([\\($all_status$ahead_behind\\)]($style) )";
       };
-      hostname.ssh_symbol = "🌐";
+      hostname = {
+        ssh_symbol = "🌐";
+        style = "bold blue";
+      };
+      username.style_user = "bold blue";
     };
   };
 
