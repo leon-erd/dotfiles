@@ -59,7 +59,7 @@ in
     shellAliases = myAliases;
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = ""; # "robbyrussell"; # use custom starship theme below
       custom = "$XDG_CONFIG_HOME/oh-my-zsh/custom";
       plugins = [
         "alias-finder"
@@ -76,17 +76,25 @@ in
     };
   };
 
-  xdg.configFile."oh-my-zsh/custom/themes/robbyrussell.zsh-theme".text = ''
-    # custom robbyrussell theme
-    PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%~%{$reset_color%}"
-    PROMPT+=' $(git_prompt_info)'
-    RPROMPT="%{$fg_bold[magenta]%}[%n@%M]%{$reset_color%}"
-
-    ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-    ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-    ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}%1{✗%}"
-    ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
-  '';
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      format = "$all";
+      character = {
+        success_symbol = "[➜](fg:green)";
+        error_symbol = "[➜](fg:red)";
+      };
+      conda.disabled = true; # conda has its own prompt modifier, you could also disable that instead with `conda config --set changeps1 False`
+      line_break.disabled = true;
+      directory.format = "[$path]($style) [$read_only]($read_only_style)";
+      git_status = {
+        style = "bold purple";
+        format = "([\\($all_status$ahead_behind\\)]($style) )";
+      };
+      hostname.ssh_symbol = "🌐";
+    };
+  };
 
   programs.bash = {
     enable = true;
