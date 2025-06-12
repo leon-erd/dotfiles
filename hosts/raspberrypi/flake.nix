@@ -30,6 +30,7 @@
         };
         acmeEmail = "leonvincenterd@web.de";
         pihole.hosts = [
+          "${localIp} raspberry.pi"
           "${localIp} ${nextcloud.hostName}"
         ];
         wireguard = {
