@@ -175,17 +175,6 @@ in
     443
   ];
 
-  ### CONFIGURE LOGROTATE ###
-  services.logrotate.settings."${mainDriveMountPoint}/data/nextcloud.log" = {
-    dateext = true;
-    compress = false;
-    missingok = true;
-    notifempty = true;
-    frequency = "weekly";
-    rotate = 4;
-    create = "0640 nextcloud nextcloud";
-  };
-
   ### CONFIGURE SYSTEMD SERVICES AND TIMERS ###
   systemd.timers."nextcloud-preview-generator" = {
     wantedBy = [ "timers.target" ];
