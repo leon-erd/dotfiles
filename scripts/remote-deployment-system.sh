@@ -29,6 +29,6 @@ flake_target="${flakedir}#${configname}"
 
 echo -e "${COLOR}Building system configuration '${configname}'${NC}"
 
-nixos-rebuild switch --flake "${flake_target}" --target-host "${remote_host}" --use-remote-sudo
+nixos-rebuild switch --flake "${flake_target}" --target-host "${remote_host}" --ask-sudo-password
 
 echo -e "${COLOR}✅ Deployment to ${remote_host} successful!${NC}"
