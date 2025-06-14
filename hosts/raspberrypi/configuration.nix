@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/system/apps/cli-apps.nix
     ../../modules/system/basic
-    ../../modules/system/server/nextcloud/nextcloud.nix
+    ../../modules/system/server/nextcloud
     ../../modules/system/server/pihole.nix
     ../../modules/system/server/wireguard.nix
     ../../modules/system/server/fail2ban.nix
