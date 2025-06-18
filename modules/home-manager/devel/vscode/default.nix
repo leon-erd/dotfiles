@@ -34,6 +34,7 @@ in
         njpwerner.autodocstring
         patbenatar.advanced-new-file
         pkief.material-icon-theme
+        # valentjn.vscode-ltex # install ltex manually (it wants to download the language server but fails when attempting to write to read-only /nix/store)
       ];
   };
 
