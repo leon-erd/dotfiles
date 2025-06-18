@@ -25,10 +25,17 @@
     ripgrep
     rsync
     tldr
-    tmux
     sops
     unzip
     usbutils
     wget
   ];
+
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    extraConfig = ''
+      set -g mouse on
+    '';
+  };
 }
