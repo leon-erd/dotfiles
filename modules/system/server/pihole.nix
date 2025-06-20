@@ -36,9 +36,6 @@
         hosts = lib.mkIf (systemSettings ? pihole.hosts) systemSettings.pihole.hosts;
       };
       webserver = {
-        tls = lib.mkForce {
-          cert = "/var/lib/pihole/tls.pem";
-        };
         paths = {
           webroot = lib.mkForce "${pkgs.runCommand "pihole-web-under-admin" { } ''
             mkdir -p $out
