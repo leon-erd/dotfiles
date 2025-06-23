@@ -54,7 +54,15 @@ in
     initContent = ''
       bindkey '^[[Z' autosuggest-accept
       zstyle ':omz:plugins:alias-finder' autoload yes
-    '';
+
+      # https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#configure
+      zstyle ':completion:*:git-checkout:*' sort false
+      zstyle ':completion:*:descriptions' format '[%d]' 
+      zstyle ':completion:*' menu no
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+      zstyle ':fzf-tab:*' fzf-flags --bind=tab:accept
+      zstyle ':fzf-tab:*' switch-group '<' '>'
+    '' + "zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}";
     syntaxHighlighting.enable = true;
     shellAliases = myAliases;
     oh-my-zsh = {
@@ -74,6 +82,12 @@ in
         "sudo"
       ];
     };
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      }
+    ];
   };
 
   programs.starship = {
