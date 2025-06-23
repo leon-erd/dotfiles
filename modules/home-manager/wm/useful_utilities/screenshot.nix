@@ -16,5 +16,9 @@
       "noanim, hyprpicker"
       "noanim, selection"
     ];
+    permission = [
+      "${pkgs.grim}/bin/grim, screencopy, allow"
+      "${pkgs.hyprpicker}/bin/hyprpicker, screencopy, allow" # required for freezing the screen when selecting area
+    ];
   };
 }

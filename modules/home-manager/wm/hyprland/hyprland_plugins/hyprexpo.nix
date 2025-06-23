@@ -1,9 +1,12 @@
 { inputs, pkgs, ... }:
 
+let
+  inherit (inputs.hyprland-plugins.packages.${pkgs.system}) hyprexpo;
+in
 {
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      hyprexpo
     ];
     settings = {
       plugin.hyprexpo = {
@@ -16,6 +19,9 @@
         gesture_positive = false; # positive = swipe down. Negative = swipe up.
       };
       bind = [ "$mainMod, W, hyprexpo:expo, toggle" ];
+      permission = [
+        "${hyprexpo}/lib/libhyprexpo.so, plugin, allow"
+      ];
     };
   };
 }

@@ -18,5 +18,6 @@
     debug = {
       disable_logs = false;
     };
+    ecosystem.enforce_permissions = true;
   };
 }
