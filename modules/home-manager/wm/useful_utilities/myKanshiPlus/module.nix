@@ -109,17 +109,18 @@ in
     systemd.user.services.myKanshiPlus = {
       Unit = {
         Description = "Dynamic display configuration";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-        Requires = [ "graphical-session.target" ];
+        After = [ config.wayland.systemd.target ];
+        PartOf = [ config.wayland.systemd.target ];
+        Requires = [ config.wayland.systemd.target ];
       };
       Service = {
-        ExecStart = "${myKanshiPlus}/bin/myKanshiPlus";
+        ExecStart = "${lib.getExe myKanshiPlus}";
         Restart = "always";
         RestartSec = 10;
+        Environment = "PYTHONUNBUFFERED=1"; # print statements will go to journalctl immediately
       };
       Install = {
-        WantedBy = [ "graphical-session.target" ];
+        WantedBy = [ config.wayland.systemd.target ];
       };
     };
 
