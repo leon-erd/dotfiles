@@ -11,6 +11,8 @@
         embeddedTheme = "pixel_sakura";
         themeConfig = {
           Background = "Backgrounds/my_background.mp4";
+          HideVirtualKeyboard = false;
+          HideSystemButtons = false;
         };
       }).overrideAttrs
       (prevAttrs: {
