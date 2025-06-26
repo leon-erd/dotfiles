@@ -1,4 +1,10 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 let
   #walColor = (builtins.fromJSON (builtins.readFile ./colors-rgb.json)).colors.color1;
   labelColor = "rgba(255, 255, 255, 1)";
@@ -105,6 +111,9 @@ in
       "special:hyprlock, decorate:false"
       "special:hyprlock, border:false"
       "special:hyprlock, shadow:false"
+    ];
+    permission = [
+      "${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
     ];
   };
 

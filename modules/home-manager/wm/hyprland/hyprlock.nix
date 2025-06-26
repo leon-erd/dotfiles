@@ -1,4 +1,10 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
 let
   #walColor = (builtins.fromJSON (builtins.readFile ./colors-rgb.json)).colors.color1;
   labelColor = "rgba(255, 255, 255, 1)";
@@ -84,5 +90,8 @@ in
 
   wayland.windowManager.hyprland.settings = {
     bindr = [ "$mainMod, L, exec, hyprlock --immediate" ];
+    permission = [
+      "${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
+    ];
   };
 }
