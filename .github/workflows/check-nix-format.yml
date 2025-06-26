@@ -1,0 +1,26 @@
+name: "Check Nix formatting"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  fmt:
+    name: Check `.nix` files are formatted
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        # this action bootstraps Nix on Ubuntu
+        uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Run nixfmt in check-only mode
+        run: |
+          nix-shell -p nixfmt-tree --run "treefmt --ci"
