@@ -1,24 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
-    cliphist
-    rofi-wayland
     wl-clipboard
-    wtype
   ];
+
+  services.cliphist.enable = true;
 
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "$mainMod, V, exec, cliphist list | rofi -dmenu -theme ${./spotlight-dark.rasi} | cliphist decode | wl-copy && wtype -M ctrl v -m ctrl"
+      # "$mainMod, V, exec, cliphist list | ${lib.getExe pkgs.rofi-wayland} -dmenu -theme ${./spotlight-dark.rasi} | cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy && ${lib.getExe pkgs.wtype} -M ctrl v -m ctrl"
+      "$mainMod, V, exec, [float; size 60% 60%; center; animation slide; dimaround] ${lib.getExe pkgs.alacritty} -e ${pkgs.cliphist}/bin/cliphist-fzf && ${lib.getExe pkgs.wtype} -M ctrl v -m ctrl"
     ];
-    exec-once = [
-      "wl-paste --type text --watch cliphist store"
-      "wl-paste --type image --watch cliphist store"
-    ];
-    layerrule = [
-      "animation slide, rofi"
-      "blur, rofi"
-    ];
+    # layerrule = [
+    #   "animation slide, rofi"
+    #   "blur, rofi"
+    # ];
   };
 }
