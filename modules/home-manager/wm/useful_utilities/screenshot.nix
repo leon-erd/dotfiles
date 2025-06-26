@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -17,8 +17,8 @@
       "noanim, selection"
     ];
     permission = [
-      "${pkgs.grim}/bin/grim, screencopy, allow"
-      "${pkgs.hyprpicker}/bin/hyprpicker, screencopy, allow" # required for freezing the screen when selecting area
+      "${lib.getExe pkgs.grim}, screencopy, allow"
+      "${lib.getExe pkgs.hyprpicker}, screencopy, allow" # required for freezing the screen when selecting area
     ];
   };
 }
