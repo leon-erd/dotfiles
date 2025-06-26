@@ -2,6 +2,7 @@
   lib,
   pkgs,
   userSettings,
+  config,
   ...
 }:
 
@@ -24,14 +25,14 @@
   home.activation = {
     myQtRcFiles =
       let
-        rcPath = "~/.config";
-        targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/apps/rc_files";
+        symlinkDir = config.xdg.configHome;
+        targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/apps/config_files";
       in
       lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        run ln -sf ${targetDirectory}/dolphinrc ${rcPath}/dolphinrc
-        run ln -sf ${targetDirectory}/katerc ${rcPath}/katerc
-        run ln -sf ${targetDirectory}/kwriterc ${rcPath}/kwriterc
-        run ln -sf ${targetDirectory}/okularrc ${rcPath}/okularrc
+        run ln -sf ${targetDirectory}/dolphinrc ${symlinkDir}/dolphinrc
+        run ln -sf ${targetDirectory}/katerc ${symlinkDir}/katerc
+        run ln -sf ${targetDirectory}/kwriterc ${symlinkDir}/kwriterc
+        run ln -sf ${targetDirectory}/okularrc ${symlinkDir}/okularrc
       '';
   };
 }
