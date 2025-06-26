@@ -1,3 +1,5 @@
+import argparse
+import os
 import dbus
 from dbus.bus import BusConnection
 import time
@@ -50,11 +52,11 @@ class GeoClueClient:
         return lat, lon
 
 
-def calculate_temp_from_elevation(elev, day_temp=6000, night_temp=3000):
+def calculate_temp_from_elevation(elev, day_temp, night_temp):
     # Between 0° and –18° sun elevation the brightness falls off roughly exponentially
     # A rule-of-thumb is “one 10th of illuminance per 6°”
     s = min(0.0, elev)
-    r = 10 ** (s / 6.0)
+    r = 10 ** (s / 6.0) if s > -18 else 0.0
     return int(night_temp + r * (day_temp - night_temp))
 
 
@@ -65,6 +67,45 @@ def set_temp(temp):
 
 
 def main():
+    day_temp_default = 6000
+    night_temp_default = 3000
+    interval_default = 60
+
+    parser = argparse.ArgumentParser(
+        description="Set hyprsunset temperature based on sun elevation."
+    )
+    parser.add_argument(
+        "--interval",
+        type=int,
+        default=interval_default,
+        help=f"Sleep interval in seconds between checks (default: {interval_default})",
+    )
+    parser.add_argument(
+        "--day-temp",
+        type=int,
+        default=None,
+        help=f"Day temperature (overrides HYPRSUNSET_DAY_TEMP env var, default: {day_temp_default})",
+    )
+    parser.add_argument(
+        "--night-temp",
+        type=int,
+        default=None,
+        help=f"Night temperature (overrides HYPRSUNSET_NIGHT_TEMP env var, default: {night_temp_default})",
+    )
+    args = parser.parse_args()
+
+    # Read from env vars if not provided as CLI args
+    day_temp = (
+        args.day_temp
+        if args.day_temp is not None
+        else int(os.environ.get("HYPRSUNSET_DAY_TEMP", day_temp_default))
+    )
+    night_temp = (
+        args.night_temp
+        if args.night_temp is not None
+        else int(os.environ.get("HYPRSUNSET_NIGHT_TEMP", night_temp_default))
+    )
+
     time_zone = ZoneInfo(get_localzone_name())
     geoclue_client = GeoClueClient()
     lat, lon = geoclue_client.get_location()
@@ -75,14 +116,14 @@ def main():
     while True:
         now = datetime.now(tz=time_zone)
         elev = sun_elevation(observer, now)
-        temp = calculate_temp_from_elevation(elev)
+        temp = calculate_temp_from_elevation(elev, day_temp, night_temp)
         if temp != last_temp:
             print(
                 f"Time: {now.time()}, Sun elevation: {elev:.2f}° → Temperature: {temp}"
             )
             set_temp(temp)
             last_temp = temp
-        time.sleep(300)
+        time.sleep(args.interval)
 
 
 if __name__ == "__main__":

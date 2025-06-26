@@ -39,4 +39,9 @@ in
       };
     };
   };
+
+  home.sessionVariables = {
+    HYPRSUNSET_DAY_TEMP = "6000";
+    HYPRSUNSET_NIGHT_TEMP = "3000";
+  };
 }
