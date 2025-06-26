@@ -8,7 +8,15 @@
   home.packages = with pkgs; [
     bitwarden-desktop
     meld
-    nextcloud-client
-    distrobox
   ];
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
+
+  programs.distrobox = {
+    enable = true;
+    containers = { };
+  };
 }

@@ -1,12 +1,6 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  home.packages = with pkgs; [
-    kanshi
-  ];
-
-  #wayland.windowManager.hyprland.settings.exec-once = [ "kanshi" ];
-
   services.kanshi = {
     enable = true;
     systemdTarget = "graphical-session.target";

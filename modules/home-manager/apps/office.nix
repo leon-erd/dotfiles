@@ -8,10 +8,11 @@
 
 {
   home.packages = with pkgs; [
-    onlyoffice-bin
     qalculate-gtk
     xournalpp
   ];
+
+  programs.onlyoffice.enable = true;
 
   home.activation = {
     myXorunalppSettings =

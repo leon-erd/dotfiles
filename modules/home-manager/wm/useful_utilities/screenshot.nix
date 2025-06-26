@@ -1,16 +1,10 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
-    grimblast
-    swappy
-    wl-clipboard
-  ];
-
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "CTRL + ALT, S, exec, wl-paste | swappy -f -"
-      ", Print, exec, grimblast --notify --freeze copy area"
+      "CTRL + ALT, S, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${lib.getExe pkgs.swappy} -f -"
+      ", Print, exec, ${lib.getExe pkgs.grimblast} --notify --freeze copy area"
     ];
     layerrule = [
       "noanim, hyprpicker"
