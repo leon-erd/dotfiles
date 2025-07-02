@@ -12,6 +12,7 @@
     eza
     fastfetch
     ffmpeg
+    file
     fzf
     gnugrep
     gnused
