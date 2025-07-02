@@ -33,6 +33,22 @@ let
     root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
   } // vpnPiAliases;
+
+  myLessfilter = pkgs.writeShellApplication {
+    name = "my-lessfilter";
+
+    runtimeInputs = with pkgs; [
+      bat
+      chafa
+      eza
+      file
+      gnused
+      hr
+      poppler-utils
+    ];
+
+    text = builtins.readFile ./lessfilter;
+  };
 in
 {
   sops.secrets = lib.optionalAttrs hasWireguardConfig {
@@ -51,20 +67,6 @@ in
     enable = true;
     autocd = true;
     autosuggestion.enable = true;
-    initContent =
-      ''
-        bindkey '^[[Z' autosuggest-accept
-        zstyle ':omz:plugins:alias-finder' autoload yes
-
-        # https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#configure
-        zstyle ':completion:*:git-checkout:*' sort false
-        zstyle ':completion:*:descriptions' format '[%d]' 
-        zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-        zstyle ':fzf-tab:*' fzf-flags --bind=tab:accept
-        zstyle ':fzf-tab:*' switch-group '<' '>'
-      ''
-      + "zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}";
     syntaxHighlighting.enable = true;
     shellAliases = myAliases;
     oh-my-zsh = {
@@ -90,7 +92,37 @@ in
         src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
     ];
+    initContent = ''
+      # shift-tab to accept autosuggestions
+      bindkey '^[[Z' autosuggest-accept
+
+      # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/alias-finder
+      zstyle ':omz:plugins:alias-finder' autoload yes
+
+      # https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#configure
+      zstyle ':completion:*:git-checkout:*' sort false
+      zstyle ':completion:*:descriptions' format '[%d]' 
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':completion:*' menu no
+      zstyle ':fzf-tab:*' fzf-flags --bind=tab:accept --style=full --height=20 #--height=-2
+      zstyle ':fzf-tab:*' switch-group '<' '>'
+
+      # https://github.com/Aloxaf/fzf-tab/wiki/Preview
+      # preview for systemctl
+      zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+      # preview for env vars
+      zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ''${(P)word}'
+      # disable preview for command options and subcommands
+      zstyle ':fzf-tab:complete:*:options' fzf-preview
+      zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
+      # use less with custom lessfilter for anything else
+      zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ''${(Q)realpath}'
+      export LESSOPEN='|${lib.getExe myLessfilter} %s'
+    '';
   };
+
+  # https://github.com/NixOS/nixpkgs/pull/416425
+  programs.command-not-found.enable = true;
 
   programs.starship = {
     enable = true;
