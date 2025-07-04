@@ -26,9 +26,6 @@ let
     '';
     homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
     nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
-    ls = "eza --icons --group-directories-first";
-    ll = "eza --icons --group-directories-first --all --long --group";
-    tree = "eza --icons --group-directories-first --tree";
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
     root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
@@ -80,9 +77,11 @@ in
         # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos && sudo nix-channel --update
         "command-not-found"
         "dirhistory"
+        "eza"
         "fzf"
         "git"
         "pip"
+        "rsync"
         "sudo"
       ];
     };
@@ -157,6 +156,18 @@ in
     enable = true;
     options = [
       "--cmd cd"
+    ];
+  };
+
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+    extraOptions = [
+      "--color-scale=all"
+      "--group"
+      "--group-directories-first"
+      "--header"
+      "--hyperlink"
     ];
   };
 
