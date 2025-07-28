@@ -115,6 +115,7 @@ in
     permission = [
       "${lib.escapeRegex (lib.getExe config.programs.hyprlock.package)}, screencopy, allow"
     ];
+    misc.session_lock_xray = true;
   };
 
   home.packages = with pkgs; [

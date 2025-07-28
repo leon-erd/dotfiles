@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 
@@ -15,9 +16,26 @@ let
   } ./script.py;
 in
 {
-  services.hyprsunset.enable = true;
-
   systemd.user.services = {
+    hyprsunset = {
+      Install = {
+        WantedBy = [ config.wayland.systemd.target ];
+      };
+
+      Unit = {
+        ConditionEnvironment = "WAYLAND_DISPLAY";
+        Description = "hyprsunset - Hyprland's blue-light filter";
+        After = [ config.wayland.systemd.target ];
+        PartOf = [ config.wayland.systemd.target ];
+      };
+
+      Service = {
+        ExecStart = "${lib.getExe pkgs.hyprsunset}";
+        Restart = "always";
+        RestartSec = "10";
+      };
+    };
+
     myHyprsunsetTemperature = {
       Install = {
         WantedBy = [ "hyprsunset.service" ];
