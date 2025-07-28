@@ -18,14 +18,18 @@
     };
     font = {
       name = "NotoSansNerdFont";
-      size = 11;
+      size = 10;
     };
   };
 
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum"; # this sets QT_STYLE_OVERRIDE=kvantum which fucks up plasma6. Disable this line if you want to use kde
+    # style.name = "kvantum"; # this sets QT_STYLE_OVERRIDE=kvantum which fucks up plasma6. Disable this line if you want to use kde *)
+    style.package = with pkgs; [
+      libsForQt5.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
+    ];
   };
 
   xdg.configFile = {
@@ -46,6 +50,7 @@
     env = [
       "XCURSOR_THEME, breeze_cursors"
       "XCURSOR_SIZE, 24"
+      "QT_STYLE_OVERRIDE, kvantum" # *) set QT_STYLE_OVERRIDE for hyprland only
     ];
   };
 }
