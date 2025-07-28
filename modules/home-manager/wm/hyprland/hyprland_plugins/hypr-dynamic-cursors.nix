@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  inherit (inputs.hypr-dynamic-cursors.packages.${pkgs.system}) hypr-dynamic-cursors;
+  inherit (pkgs.hyprlandPlugins) hypr-dynamic-cursors;
 in
 {
   wayland.windowManager.hyprland = {

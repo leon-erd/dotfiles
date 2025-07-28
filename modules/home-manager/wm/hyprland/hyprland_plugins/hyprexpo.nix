@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  inherit (inputs.hyprland-plugins.packages.${pkgs.system}) hyprexpo;
+  inherit (pkgs.hyprlandPlugins) hyprexpo;
 in
 {
   wayland.windowManager.hyprland = {
