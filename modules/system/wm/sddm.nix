@@ -28,7 +28,7 @@
 
   services.displayManager.sddm = {
     enable = true;
-    package = pkgs.kdePackages.sddm;
+    # package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
       kdePackages.qtmultimedia
     ];

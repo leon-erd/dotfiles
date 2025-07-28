@@ -23,7 +23,7 @@
     ../../modules/system/security/run_binaries.nix
     ../../modules/system/wm/sddm.nix
     ../../modules/system/wm/hyprland.nix
-    #../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
+    ../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
   ];
 
   # for compiling through emulated system for raspberrypi
