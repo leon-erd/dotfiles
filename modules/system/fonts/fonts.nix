@@ -13,7 +13,8 @@ in
 {
   fonts.packages = [
 
-  ] ++ customNerdFontsDerivations;
+  ]
+  ++ customNerdFontsDerivations;
 
   fonts.fontDir.enable = true;
 }

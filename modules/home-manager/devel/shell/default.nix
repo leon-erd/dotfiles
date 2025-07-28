@@ -29,7 +29,8 @@ let
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
     root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     venv = "source venv/bin/activate";
-  } // vpnPiAliases;
+  }
+  // vpnPiAliases;
 
   myLessfilter = pkgs.writeShellApplication {
     name = "my-lessfilter";

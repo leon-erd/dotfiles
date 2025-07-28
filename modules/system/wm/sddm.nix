@@ -16,12 +16,10 @@
         };
       }).overrideAttrs
       (prevAttrs: {
-        installPhase =
-          prevAttrs.installPhase
-          + ''
-            chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
-            cp ${../../../scripts/wallpaper/animated/mountains-in-clouds.1920x1080.mp4} $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/my_background.mp4
-          '';
+        installPhase = prevAttrs.installPhase + ''
+          chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
+          cp ${../../../scripts/wallpaper/animated/mountains-in-clouds.1920x1080.mp4} $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/my_background.mp4
+        '';
       })
     )
   ];
