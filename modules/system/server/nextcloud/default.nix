@@ -18,6 +18,8 @@ let
       name = "my-cloud-scripts";
       src = ./.;
       propagatedBuildInputs = [ requests ];
+      pyproject = true;
+      build-system = [ setuptools ];
     };
 in
 
