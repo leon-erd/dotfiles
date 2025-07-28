@@ -35,9 +35,9 @@
           "9" = "monitor:desc:Acer Technologies CB271HU T85EE0018511";
         };
       };
-      beamer.monitors = {
+      tv.monitors = {
         "LG Display 0x0637" = { };
-        "MS Telematica MStar Demo 0x00000001" = {
+        "Samsung Electric Company SAMSUNG" = {
           position = "auto";
           mirror = "LG Display 0x0637";
         };
