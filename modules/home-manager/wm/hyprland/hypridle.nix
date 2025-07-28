@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ ... }:
 let
   # hyprlockCmd = "pgrep hyprlock || hyprlock";
   hyprlockCmd = "pgrep hyprlock || ${./hyprlock_with_apps/hyprlock.sh}";
@@ -6,7 +6,6 @@ in
 {
   services.hypridle = {
     enable = true;
-    package = inputs.hypridle.packages.${pkgs.system}.default;
     settings = {
       general = {
         lock_cmd = hyprlockCmd;
