@@ -12,12 +12,12 @@
 
 {
   home.packages = with pkgs; [
-    kdePackages.ark
     kdePackages.filelight
     kdePackages.kate
     kdePackages.okular
     # Alternating colors in details view is fucked up. Cannot find a fix for plasma6 (previous fix of setting alt.base color in kvantum theme to transparent does not work anymore)
     libsForQt5.dolphin
+    libsForQt5.ark # need plasma5 ark for integration into dolphin
     libsForQt5.kio-extras # mtp support for dolphin
     qalculate-qt
   ];
