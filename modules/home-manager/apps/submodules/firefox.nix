@@ -63,6 +63,17 @@
               ];
             };
           };
+          "uBlock0@raymondhill.net" = {
+            settings = {
+              # https://raw.githubusercontent.com/pixeltris/TwitchAdSolutions/master/video-swap-new/video-swap-new-ublock-origin.js
+              #
+              # If block doesn't work, try manually unsetting userResourcesLocation and setting it back to the URL
+              "user-filters" = "twitch.tv##+js(twitch-videoad)";
+              hiddenSettings = {
+                userResourcesLocation = "https://raw.githubusercontent.com/pixeltris/TwitchAdSolutions/master/video-swap-new/video-swap-new-ublock-origin.js";
+              };
+            };
+          };
         };
       };
       bookmarks = {
@@ -98,6 +109,10 @@
               {
                 name = "ChatGPT";
                 url = "https://chat.openai.com";
+              }
+              {
+                name = "T3 Chat";
+                url = "https://t3.chat/";
               }
               {
                 name = "Noogle";
