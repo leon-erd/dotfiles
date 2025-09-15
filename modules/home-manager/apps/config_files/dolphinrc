@@ -22,3 +22,9 @@ ToolBarsMovable=Disabled
 
 [PreviewSettings]
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
+
+[UiSettings]
+ColorScheme=LayanDark
+
+[Icons]
+Theme=Tela

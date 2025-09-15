@@ -21,4 +21,7 @@ Name2[$e]=pastedImage.png
 Name3[$e]=README.md
 
 [UiSettings]
-ColorScheme=Kvantum
+ColorScheme=LayanDark
+
+[Icons]
+Theme=Tela

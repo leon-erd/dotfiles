@@ -125,4 +125,7 @@ Word Completion Remove Tail=true
 3 screens: Window-Maximized=true
 
 [UiSettings]
-ColorScheme=Kvantum
+ColorScheme=LayanDark
+
+[Icons]
+Theme=Tela

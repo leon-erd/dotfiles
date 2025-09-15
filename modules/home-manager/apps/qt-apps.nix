@@ -6,21 +6,30 @@
   ...
 }:
 
-# adding this to kdeglobals enables the icons for plasma6 apps:
+# you can also set the following in ~/.config/kdeglobals instead of the individual rc files:
+# [UiSettings]
+# ColorScheme=LayanDark
+
 # [Icons]
 # Theme=Tela
 
 {
   home.packages = with pkgs; [
+    kdePackages.ark
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.kio-extras # mtp support for dolphin
     kdePackages.filelight
     kdePackages.kate
     kdePackages.okular
-    # Alternating colors in details view is fucked up. Cannot find a fix for plasma6 (previous fix of setting alt.base color in kvantum theme to transparent does not work anymore)
-    libsForQt5.dolphin
-    libsForQt5.ark # need plasma5 ark for integration into dolphin
-    libsForQt5.kio-extras # mtp support for dolphin
     qalculate-qt
   ];
+
+  # https://github.com/NixOS/nixpkgs/issues/409986
+  # https://discourse.nixos.org/t/dolphin-does-not-have-mime-associations/48985/7
+  # if not working, try clearing cache
+  xdg.configFile."menus/applications.menu".source =
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
   home.activation = {
     myQtRcFiles =
