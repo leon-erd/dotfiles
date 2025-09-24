@@ -8,7 +8,7 @@
       name = "Layan-Dark";
     };
     cursorTheme = {
-      package = pkgs.libsForQt5.breeze-gtk;
+      package = pkgs.kdePackages.breeze-gtk;
       name = "breeze_cursors";
       size = 24;
     };

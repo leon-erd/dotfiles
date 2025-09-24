@@ -16,8 +16,12 @@
       output = "eDP-1";
     };
 
+    gesture = [
+      "3, horizontal, workspace"
+      "3, vertical, scale:1.5, fullscreen"
+      "4, swipe, resize"
+    ];
     gestures = {
-      workspace_swipe = true;
       workspace_swipe_forever = true;
       workspace_swipe_touch = true;
     };
