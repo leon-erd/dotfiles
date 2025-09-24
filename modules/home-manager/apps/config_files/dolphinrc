@@ -2,12 +2,18 @@
 DirectorySizeCount=false
 
 [DetailsMode]
-PreviewSize=22
+PreviewSize=16
 
 [General]
 RememberOpenedTabs=false
+ShowFullPath=true
+ShowStatusBar=FullWidth
+ShowZoomSlider=true
 Version=202
 ViewPropsTimestamp=2024,2,9,14,5,44.461
+
+[Icons]
+Theme=Tela
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
@@ -18,7 +24,6 @@ Places Icons Static Size=22
 
 [MainWindow]
 MenuBar=Disabled
-ToolBarsMovable=Disabled
 
 [PreviewSettings]
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
@@ -26,5 +31,5 @@ Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthu
 [UiSettings]
 ColorScheme=LayanDark
 
-[Icons]
-Theme=Tela
+[VersionControl]
+enabledPlugins=Git
