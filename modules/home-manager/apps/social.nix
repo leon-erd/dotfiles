@@ -9,7 +9,7 @@
     signal-desktop
     slack
     telegram-desktop
-    webcord
+    discord
     wasistlos # whatsapp-for-linux
   ];
 }
