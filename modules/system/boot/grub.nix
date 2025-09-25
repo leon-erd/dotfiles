@@ -19,7 +19,7 @@
       enable = true;
       theme = "tela";
       icon = "color";
-      splashImage = ../../../scripts/wallpaper/wallpaper_blurred.jpg;
+      splashImage = ../../../scripts/wallpaper/animated/mountains-in-clouds.jpg;
     };
   };
 }
