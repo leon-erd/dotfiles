@@ -3,10 +3,12 @@
 {
   home.packages = [ pkgs.swww ];
   wayland.windowManager.hyprland.settings = {
-    bind = [ "CTRL + ALT, W, exec, ~/scripts/wallpaper/update_wallpaper.sh" ];
+    bind = [
+      "CTRL + ALT, W, exec, ~/scripts/wallpaper/select_image.sh && ~/scripts/wallpaper/update_wallpaper_swww.sh && ~/scripts/launch_waybar.sh"
+    ];
     exec-once = [
       "sleep 1 && swww-daemon"
-      "sleep 2 && swww img --transition-type grow ~/scripts/wallpaper/wallpaper.jpg"
+      "sleep 2 && ~/scripts/wallpaper/update_wallpaper_swww.sh"
     ];
   };
 }
