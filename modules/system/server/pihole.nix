@@ -8,6 +8,7 @@
 {
   services.pihole-ftl = {
     enable = true;
+    openFirewallDNS = true;
     openFirewallDHCP = true;
     openFirewallWebserver = true;
     lists = [
