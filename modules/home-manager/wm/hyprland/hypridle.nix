@@ -1,7 +1,8 @@
 { ... }:
 let
   # hyprlockCmd = "pgrep hyprlock || hyprlock";
-  hyprlockCmd = "pgrep hyprlock || ${./hyprlock_with_apps/hyprlock.sh}";
+  # hyprlockCmd = "pgrep hyprlock || ${./hyprlock_with_apps/hyprlock.sh}";
+  hyprlockCmd = "caelestia shell lock lock";
 in
 {
   services.hypridle = {
