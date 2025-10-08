@@ -10,6 +10,8 @@
 
   programs.caelestia = {
     enable = true;
+    # https://github.com/caelestia-dots/shell/issues/390
+    systemd.environment = [ "QT_QPA_PLATFORMTHEME=gtk3" ];
     cli = {
       enable = true;
       settings = {
@@ -117,7 +119,7 @@
       };
       launcher = {
         showOnHover = false;
-        actionPrefix = " ";
+        actionPrefix = "/";
       };
       osd.enableMicrophone = true;
     };
@@ -134,7 +136,8 @@
       "$mainMod, D, exec, caelestia shell drawers toggle dashboard"
       ", Print, exec, caelestia screenshot --region --freeze"
       "CTRL + ALT, S, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${lib.getExe pkgs.swappy} -f -"
-      "CTRL + ALT, B, exec, caelestia shell -k; caelestia shell -d"
+      # https://github.com/caelestia-dots/shell/issues/390
+      "CTRL + ALT, B, exec, caelestia shell -k; QT_QPA_PLATFORMTHEME=gtk3 caelestia shell -d"
       "CTRL + ALT, W, exec, ~/scripts/wallpaper/select_image.sh && ~/scripts/wallpaper/update_wallpaper_caelestia.sh"
     ];
 
