@@ -10,7 +10,7 @@
       };
       selection.save_to_clipboard = true;
       window.opacity = 0.75;
-      font.normal.family = "HackNerdFontMono";
+      font.normal.family = "Hack Nerd Font Mono";
     };
   };
 
