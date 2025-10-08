@@ -5,17 +5,23 @@
     { self, ... }@inputs:
     let
       inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
+      zollsoft-mac = import ./hosts/zollsoft-mac/flakeConfiguration.nix inputs;
     in
     {
       # insert other configurations by merging (need to be imported in let/in)
       nixosConfigurations = inspiron-laptop; # // <someOtherHost>;
-      homeConfigurations = inspiron-laptop; # // <someOtherHost>;
+      darwinConfigurations = zollsoft-mac; # // <someOtherHost>;
+      homeConfigurations = inspiron-laptop // zollsoft-mac; # // <someOtherHost>;
     };
 
   inputs = {
     #nixpkgsLocal.url = "git+file:///home/leon/Downloads/nixpkgs";
     #nixpkgsStable.url = "nixpkgs/nixos-24.05";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #home-managerStable = {
     #  url = "github:nix-community/home-manager/release-24.05";

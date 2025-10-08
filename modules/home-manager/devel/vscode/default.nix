@@ -6,7 +6,7 @@
 }:
 
 let
-  vscodePackage = pkgs.vscode-fhs;
+  vscodePackage = if userSettings.isLinux then pkgs.vscode-fhs else pkgs.vscode;
 in
 {
   programs.vscode = {
@@ -46,7 +46,8 @@ in
   home.activation = {
     myVscodeFiles =
       let
-        vscodePath = "~/.config/Code";
+        vscodePath =
+          if userSettings.isLinux then "~/.config/Code" else "~/Library/Application\\ Support/Code";
         targetDirectory = "${userSettings.flakeDirectory}/modules/home-manager/devel/vscode";
       in
       lib.hm.dag.entryAfter [ "writeBoundary" ] ''

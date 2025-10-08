@@ -50,13 +50,6 @@ let
   };
 in
 {
-  sops.secrets = lib.optionalAttrs hasWireguardConfig {
-    "wireguard.conf" = {
-      format = "binary";
-      sopsFile = userSettings.wireguardConfig;
-    };
-  };
-
   # packages for vpn aliases
   home.packages = with pkgs; [
     wireguard-tools
@@ -176,5 +169,13 @@ in
   home.sessionVariables = {
     FLAKE = userSettings.flakeDirectory;
     NH_FLAKE = userSettings.flakeDirectory;
+  };
+}
+// lib.optionalAttrs hasWireguardConfig {
+  sops.secrets = {
+    "wireguard.conf" = {
+      format = "binary";
+      sopsFile = userSettings.wireguardConfig;
+    };
   };
 }
