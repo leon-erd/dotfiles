@@ -26,6 +26,7 @@ let
       killall
       libnotify
       nano
+      nh
       pandoc
       pciutils
       ripgrep
