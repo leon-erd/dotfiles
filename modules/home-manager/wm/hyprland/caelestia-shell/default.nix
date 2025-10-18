@@ -40,7 +40,7 @@
         };
       };
       general = {
-        apps.terminal = [ "alacritty" ];
+        apps.terminal = [ "${lib.getExe pkgs.alacritty}" ];
         idle.timeouts = [
           # {
           #   timeout = 180;

@@ -29,11 +29,13 @@ in
     ../../modules/home-manager/apps/qt-apps.nix
     ../../modules/home-manager/apps/social.nix
     ../../modules/home-manager/apps/misc.nix
+    ../../modules/home-manager/devel/alacritty.nix
     ../../modules/home-manager/devel/shell
     ../../modules/home-manager/devel/git.nix
     ../../modules/home-manager/devel/latex.nix
     ../../modules/home-manager/devel/python.nix
     ../../modules/home-manager/devel/vscode
+    ../../modules/home-manager/devel/wezterm.nix
     ../../modules/home-manager/theming/theming.nix
     ../../modules/home-manager/wm/hyprland # needs hyprland.nix import in configuration.nix
   ];

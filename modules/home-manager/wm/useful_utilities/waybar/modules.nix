@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   xdg.configFile."waybar/modules.json".text = ''
@@ -78,17 +83,6 @@
             "on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
             "tooltip": false
         },
-        // Updates Count
-        "custom/updates": {
-            "format": "  {}",
-            "tooltip-format": "{}",
-            "escape": true,
-            "return-type": "json",
-            "exec": "~/.config/waybar/check_updates.sh",
-            "restart-interval": 60,
-            "on-click": "alacritty --hold --command pamac upgrade",
-            "on-click-right": "pamac-manager",
-        },
         // Keyboard State
         "keyboard-state": {
             "numlock": true,
@@ -113,20 +107,20 @@
         "cpu": {
             "interval": 1,
             "format": "C {usage}% / ",
-            "on-click": "alacritty -e htop"
+            "on-click": "${lib.getExe pkgs.alacritty} -e htop"
         },
         // Memory
         "memory": {
             "interval": 1,
             "format": "M {percentage}% / ",
-            "on-click": "alacritty -e htop"
+            "on-click": "${lib.getExe pkgs.alacritty} -e htop"
         },
         // Temperature
         "temperature": {
             "thermal-zone": 6,
             "format": "T {temperatureC}°C",
             "interval": 1,
-            "on-click": "alacritty -e htop"
+            "on-click": "${lib.getExe pkgs.alacritty} -e htop"
         },
         // Group hardware
         "group/hardware": {

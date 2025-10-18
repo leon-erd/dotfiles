@@ -11,6 +11,7 @@
       "$mainMod, G, togglegroup"
       "$mainMod, M, fullscreen,"
       "$mainMod, E, exec, dolphin"
+      "CTRL + ALT, T, exec, wezterm"
 
       # SPECIAL KEYS
       ", XF86Calculator , exec, qalculate-qt"

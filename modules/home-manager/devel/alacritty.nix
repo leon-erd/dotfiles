@@ -13,8 +13,4 @@
       font.normal.family = "Hack Nerd Font Mono";
     };
   };
-
-  wayland.windowManager.hyprland.settings = {
-    bind = [ "CTRL + ALT, T, exec, alacritty" ];
-  };
 }
