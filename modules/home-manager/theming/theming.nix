@@ -46,6 +46,12 @@
     '';
   };
 
+  # [Colors:View] BackgroundAlternate overridden for dolphin
+  xdg.dataFile = {
+    "color-schemes/Layan.colors".source = ./configs/color-schemes/Layan.colors;
+    "color-schemes/LayanLight.colors".source = ./configs/color-schemes/LayanLight.colors;
+  };
+
   wayland.windowManager.hyprland.settings = {
     env = [
       "XCURSOR_THEME, breeze_cursors"

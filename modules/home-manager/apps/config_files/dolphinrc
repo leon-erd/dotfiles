@@ -29,7 +29,7 @@ MenuBar=Disabled
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
 
 [UiSettings]
-ColorScheme=LayanDark
+ColorScheme=Layan
 
 [VersionControl]
 enabledPlugins=Git
