@@ -38,6 +38,7 @@ in
     ../../modules/home-manager/devel/wezterm.nix
     ../../modules/home-manager/theming/theming.nix
     ../../modules/home-manager/wm/hyprland # needs hyprland.nix import in configuration.nix
+    ../../modules/home-manager/wm/kde
   ];
 
   home.sessionVariables = {
