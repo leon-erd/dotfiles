@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/system/basic
     ../../modules/system/apps/cli-apps.nix
-    ../../modules/system/apps/steam.nix
+    # ../../modules/system/apps/steam.nix
     ../../modules/system/apps/virtualisation.nix
     ../../modules/system/boot/grub.nix
     #../../modules/system/boot/plymouth.nix
