@@ -26,6 +26,7 @@ let
     '';
     homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
     nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
+    darwie = "nh darwin switch --hostname ${userSettings.systemConfigurationName}";
     neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
     root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
     tree = "eza --tree";
