@@ -22,8 +22,11 @@
   };
 
   wayland.windowManager.hyprland.settings = {
-    bind = [ "CTRL + ALT, B, exec, ~/scripts/launch_waybar.sh" ];
-    exec-once = [ "sleep 2 && ~/scripts/launch_waybar.sh" ];
+    bind = [
+      "CTRL + ALT, B, exec, ${./launch_waybar.sh}"
+      "CTRL + ALT, W, exec, ${./launch_waybar.sh}"
+    ];
+    exec-once = [ "sleep 2 && ${./launch_waybar.sh}" ];
     layerrule = [
       "blur, waybar"
       "blurpopups, waybar"
