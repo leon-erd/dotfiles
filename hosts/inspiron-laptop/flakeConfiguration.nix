@@ -37,6 +37,7 @@ let
     overlays = [
       inputs.nur.overlays.default
       inputs.nix-vscode-extensions.overlays.default
+      (import ../../overlays)
     ];
     system = "x86_64-linux"; # system arch (checkout hardware-configuration.nix -> nixpkgs.hostPlatform);
     config.allowUnfree = true;

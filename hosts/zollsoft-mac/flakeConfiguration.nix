@@ -5,6 +5,7 @@ let
     overlays = [
       inputs.nur.overlays.default
       inputs.nix-vscode-extensions.overlays.default
+      (import ../../overlays)
     ];
     system = "aarch64-darwin";
     config.allowUnfree = true;
