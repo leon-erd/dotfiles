@@ -4,24 +4,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "cmd-L to lock screen",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": ["control"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "q",
-                                        "modifiers": ["command", "control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "cmd-left/right to prev/next track",
                         "manipulators": [
                             {
@@ -29,15 +11,9 @@
                                     "key_code": "left_arrow",
                                     "modifiers": { "mandatory": ["command"] }
                                 },
-                                "to": [{ "consumer_key_code": "scan_previous_track" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_arrow",
-                                    "modifiers": { "mandatory": ["command"] }
-                                },
-                                "to": [{ "consumer_key_code": "scan_next_track" }],
+                                "to": [
+                                    { "consumer_key_code": "scan_previous_track" }
+                                ],
                                 "type": "basic"
                             }
                         ]
