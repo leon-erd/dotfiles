@@ -15,6 +15,7 @@
     # ../../modules/home-manager/devel/python.nix
     ../../modules/home-manager/devel/vscode
     ../../modules/home-manager/devel/wezterm.nix
+    ../../modules/home-manager/wm/aerospace
     ../../modules/home-manager/wm/useful_utilities/autoraise.nix
     ../../modules/home-manager/wm/useful_utilities/karabiner
   ];
