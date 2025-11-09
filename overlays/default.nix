@@ -26,12 +26,12 @@ final: prev: {
   };
 
   nix-output-monitor = prev.nix-output-monitor.overrideAttrs {
-    version = "2.1.6-unstable-2025-10-15";
+    version = "2.1.8-unstable-2025-11-09";
     src = prev.fetchFromGitHub {
       owner = "maralorn";
       repo = "nix-output-monitor";
-      rev = "583eb44c7126dc86077464f8ed16b3eb5aa09d35";
-      hash = "sha256-hbzcaRDmqFC6k16QpibqCqcaZo/XQRFd4Dbim/myfpM=";
+      rev = "698e6f3afdc9d68dd65d84df7b030499dbfaf84b";
+      hash = "sha256-QwEVaUxvXEdx5icIZZYQQjvJO5j0+GeWtJvCJ/LZwpA=";
     };
   };
 }
