@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     ipe
-    jabref
+    # jabref
     pympress
   ];
 
