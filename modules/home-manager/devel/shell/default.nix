@@ -88,7 +88,7 @@ in
       }
     ];
     initContent = ''
-      # clear screen with ctrl-l (instead of zsh's default behavior of just moving the prompt to the top)
+      # clear screen with ctrl-k (instead of zsh's default behavior of just moving the prompt to the top)
       bindkey -s '^K' 'clear\n'
 
       # shift-tab to accept autosuggestions
