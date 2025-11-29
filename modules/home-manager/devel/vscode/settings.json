@@ -5,6 +5,7 @@
     "editor.wordWrap": "on",
     "explorer.autoReveal": false,
     "files.autoSave": "afterDelay",
+    "git.autofetch": true,
     "latex-workshop.bibtex-fields.sort.enabled": true,
     "latex-workshop.bibtex-format.sort.enabled": true,
     "latex-workshop.latex.build.rootfileInStatus": true,
