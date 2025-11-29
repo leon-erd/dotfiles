@@ -4,7 +4,7 @@
   programs.aerospace = {
     enable = true;
     launchd.enable = true;
-    userSettings = {
+    settings = {
       after-startup-command = [
         "exec-and-forget ${lib.getExe pkgs.jankyborders} active_color=0xff00ff99 inactive_color=0xaa444444 width=5.0"
       ];
@@ -86,44 +86,44 @@
         ctrl-shift-8 = "move-node-to-workspace 8";
         ctrl-shift-9 = "move-node-to-workspace 9";
         ctrl-shift-0 = "move-node-to-workspace 10";
+        # alt-e = ''
+        #   exec-and-forget osascript -e '
+        #     tell application "Finder"
+        #       make new Finder window to home
+        #       activate
+        #     end tell'
+        # '';
       };
+      on-window-detected = [
+        {
+          "if".app-id = "com.jetbrains.intellij.ce";
+          run = "move-node-to-workspace 1";
+        }
+        {
+          "if".app-id = "com.google.android.studio";
+          run = "move-node-to-workspace 3";
+        }
+        {
+          "if".app-id = "com.zollsoft.air";
+          run = "move-node-to-workspace 4";
+        }
+        {
+          "if".app-id = "org.nixos.firefox";
+          run = "move-node-to-workspace 5";
+        }
+        {
+          "if".app-id = "com.tinyspeck.slackmacgap";
+          run = "move-node-to-workspace 9";
+        }
+        {
+          "if".app-id = "com.gather.Gather";
+          run = "move-node-to-workspace 9";
+        }
+        {
+          "if".app-id = "com.zollsoft.arzeko";
+          run = "move-node-to-workspace 10";
+        }
+      ];
     };
-    extraConfig = ''
-
-      # alt-e = ''''exec-and-forget osascript -e '
-      #   tell application "Finder"
-      #     make new Finder window to home
-      #     activate
-      #   end tell'
-      # ''''
-
-      [[on-window-detected]]
-        if.app-id = "com.jetbrains.intellij.ce"
-        run = "move-node-to-workspace 1"
-
-      [[on-window-detected]]
-        if.app-id = "com.google.android.studio"
-        run = "move-node-to-workspace 3"
-
-      [[on-window-detected]]
-        if.app-id = "com.zollsoft.air"
-        run = "move-node-to-workspace 4"
-
-      [[on-window-detected]]
-        if.app-id = "org.nixos.firefox"
-        run = "move-node-to-workspace 5"
-
-      [[on-window-detected]]
-        if.app-id = "com.tinyspeck.slackmacgap"
-        run = "move-node-to-workspace 9"
-
-      [[on-window-detected]]
-        if.app-id = "com.gather.Gather"
-        run = "move-node-to-workspace 9"
-
-      [[on-window-detected]]
-        if.app-id = "com.zollsoft.arzeko"
-        run = "move-node-to-workspace 10"
-    '';
   };
 }
