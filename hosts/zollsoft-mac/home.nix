@@ -50,11 +50,15 @@
     export LANG=en_US.UTF-8
   '';
 
+  # If spotlight doens't show some apps, try rebuilding its index
+  # https://support.apple.com/en-us/102321
+
   home.packages = with pkgs; [
     betterdisplay
     postman
     slack
     spotify
+    telegram-desktop
   ];
 
   home.stateVersion = "25.05"; # Do not modify
