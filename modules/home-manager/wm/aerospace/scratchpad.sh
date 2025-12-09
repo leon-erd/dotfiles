@@ -41,6 +41,7 @@ focus_app() {
 
   aerospace move-node-to-workspace $current_workspace --window-id $app_window_id 
   aerospace focus --window-id $app_window_id 
+  aerospace fullscreen on --window-id $app_window_id 
   aerospace move-mouse window-lazy-center
 }
 
@@ -77,6 +78,7 @@ app_focused() {
 }
 
 unfocus_app() {
+  aerospace fullscreen off
   aerospace move-node-to-workspace scratchpad
 }
 
@@ -87,7 +89,8 @@ if app_closed; then
   else
     wezterm -e "$FILTER_VALUE" &
   fi
-  sleep 0.5
+  sleep 1
+  focus_app
 else
   if app_focused; then
     unfocus_app
