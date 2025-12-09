@@ -12,7 +12,7 @@
     ../../modules/home-manager/apps/submodules/thunderbird.nix
     ../../modules/home-manager/devel/shell
     ../../modules/home-manager/devel/git.nix
-    # ../../modules/home-manager/devel/python.nix
+    ../../modules/home-manager/devel/python.nix
     ../../modules/home-manager/devel/vscode
     ../../modules/home-manager/devel/wezterm.nix
     ../../modules/home-manager/wm/aerospace

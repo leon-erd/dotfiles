@@ -33,7 +33,7 @@ in
     ../../modules/home-manager/devel/shell
     ../../modules/home-manager/devel/git.nix
     ../../modules/home-manager/devel/latex.nix
-    # ../../modules/home-manager/devel/python.nix
+    ../../modules/home-manager/devel/python.nix
     ../../modules/home-manager/devel/vscode
     ../../modules/home-manager/devel/wezterm.nix
     ../../modules/home-manager/theming/theming.nix

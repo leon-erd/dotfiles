@@ -96,7 +96,7 @@
       };
       on-window-detected = [
         {
-          "if".app-id = "com.jetbrains.intellij.ce";
+          "if".app-id = "com.jetbrains.intellij";
           run = "move-node-to-workspace 1";
         }
         {
