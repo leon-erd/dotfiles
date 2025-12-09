@@ -54,6 +54,7 @@
   # https://support.apple.com/en-us/102321
 
   home.packages = with pkgs; [
+    appcleaner
     betterdisplay
     postman
     slack
