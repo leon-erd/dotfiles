@@ -19,7 +19,7 @@ let
         --checksum
         --copy-unsafe-links
         --delete
-        --chmod=-w
+        --chmod=Du+rwx,Fu+rwX
         --no-group
         --no-owner
       )
