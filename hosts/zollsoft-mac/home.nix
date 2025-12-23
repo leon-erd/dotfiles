@@ -39,9 +39,9 @@
 
   # custom init contents from client and server setup according to ZiWi
   programs.zsh.initContent = ''
-    export PATH=$PATH:/opt/homebrew/opt/libpq/bin$PATH:/opt/homebrew/bin
-    export PATH="/usr/local/bin:$PATH"
-    export PATH="$PATH":"$HOME/.pub-cache/bin"
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="$PATH:/usr/local/bin"
+    export PATH="$PATH:$HOME/.pub-cache/bin"
     ## [Completion]
     ## Completion scripts setup. Remove the following line to uninstall
     [[ -f /Users/leon.erd/.dart-cli-completion/zsh-config.zsh ]] && . /Users/leon.erd/.dart-cli-completion/zsh-config.zsh || true
