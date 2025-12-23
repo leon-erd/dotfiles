@@ -7,6 +7,7 @@
     settings = {
       after-startup-command = [
         "exec-and-forget ${lib.getExe pkgs.jankyborders} active_color=0xff00ff99 inactive_color=0xaa444444 width=5.0"
+        "exec-and-forget ${lib.getExe pkgs.autoraise} -delay 0"
       ];
       automatically-unhide-macos-hidden-apps = true;
       default-root-container-layout = "tiles";

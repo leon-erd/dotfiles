@@ -7,13 +7,13 @@ final: prev: {
   };
 
   autoraise = prev.autoraise.overrideAttrs rec {
-    version = "5.5";
+    version = "5.6";
 
     src = prev.fetchFromGitHub {
       owner = "sbmpost";
       repo = "AutoRaise";
-      rev = "v${version}";
-      hash = "sha256-Fnlca2+XsRaCz3lQ5deQkwBqpt40wp+CfWxtRJAOGvE=";
+      rev = "304b05d18a8aa71dc95aa94ed80eab644bcbf701";
+      hash = "sha256-QmKGptrqzv7PKNpBVZVZhkJwA5U4ir3m21Hw3Kq2FYM=";
     };
 
     # build with EXPERIMENTAL_FOCUS_FIRST to focusing the hovered window before actually raising it

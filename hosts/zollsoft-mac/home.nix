@@ -55,6 +55,7 @@
 
   home.packages = with pkgs; [
     appcleaner
+    autoraise
     betterdisplay
     postman
     slack
