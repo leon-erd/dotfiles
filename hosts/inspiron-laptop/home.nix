@@ -23,7 +23,7 @@ in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
-    ../../modules/home-manager/basic.nix
+    ../../modules/home-manager/basic
     ../../modules/home-manager/apps/media.nix
     ../../modules/home-manager/apps/office.nix
     ../../modules/home-manager/apps/qt-apps.nix
