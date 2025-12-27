@@ -1,6 +1,10 @@
-{ userSettings, ... }:
+{ userSettings, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    glab
+  ];
+
   programs.git = {
     enable = true;
     settings.user = {
@@ -8,4 +12,6 @@
       email = userSettings.email;
     };
   };
+
+  programs.gh.enable = true;
 }
