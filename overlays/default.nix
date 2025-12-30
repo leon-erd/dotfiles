@@ -6,7 +6,7 @@ final: prev: {
     };
   };
 
-  autoraise = prev.autoraise.overrideAttrs rec {
+  autoraise = prev.autoraise.overrideAttrs {
     version = "5.6";
 
     src = prev.fetchFromGitHub {
@@ -34,15 +34,4 @@ final: prev: {
       hash = "sha256-QwEVaUxvXEdx5icIZZYQQjvJO5j0+GeWtJvCJ/LZwpA=";
     };
   };
-
-  spotify = prev.spotify.overrideAttrs (oldAttrs: {
-    src =
-      if (prev.stdenv.isDarwin && prev.stdenv.isAarch64) then
-        prev.fetchurl {
-          url = "https://web.archive.org/web/20251029235406/https://download.scdn.co/SpotifyARM64.dmg";
-          hash = "sha256-0gwoptqLBJBM0qJQ+dGAZdCD6WXzDJEs0BfOxz7f2nQ=";
-        }
-      else
-        oldAttrs.src;
-  });
 }
