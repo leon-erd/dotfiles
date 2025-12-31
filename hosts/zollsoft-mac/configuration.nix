@@ -37,6 +37,7 @@ in
       "middleclick"
       "nextcloud"
       "openvpn-connect"
+      "postman"
       "scroll-reverser"
       "teamviewer"
       "ukelele"

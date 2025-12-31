@@ -57,7 +57,6 @@
     appcleaner
     autoraise
     betterdisplay
-    postman
     slack
     spotify
     telegram-desktop
