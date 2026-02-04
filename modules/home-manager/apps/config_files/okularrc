@@ -1,27 +1,40 @@
 [Desktop Entry]
-FullScreen=false
-shouldShowMenuBarComingFromFullScreen=true
-shouldShowToolBarComingFromFullScreen=true
+FullScreen=true
+shouldShowMenuBarComingFromFullScreen=false
+shouldShowToolBarComingFromFullScreen=false
 
 [General]
 LockSidebar=true
 ShowSidebar=true
 
+[Icons]
+Theme=Tela
+
 [MainWindow]
 3 screens: Window-Maximized=true
-State=AAAA/wAAAAD9AAAAAQAAAAAAAABaAAADmfwCAAAAAfsAAAAcAG8AawB1AGwAYQByAF8AcwBpAGQAZQBiAGEAcgEAAABTAAADmQAAARUA///+AAACjwAAA5kAAAAEAAAABAAAAAgAAAAI/AAAAAMAAAABAAAAAQAAACwAcQB1AGkAYwBrAEEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgIAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAiAGEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
-ToolBarsMovable=Disabled
+MenuBar=Disabled
 
 [Recent Files]
-File1[$e]=$HOME/Downloads/cv-martin-loeper.pdf
-File2[$e]=$HOME/Downloads/pastedImage.png
-File3[$e]=$HOME/Nextcloud/dotfiles/README.md
-Name1[$e]=cv-martin-loeper.pdf
-Name2[$e]=pastedImage.png
-Name3[$e]=README.md
+File1[$e]=$HOME/Downloads/pastedImage.png
+File10[$e]=$HOME/Barbara/Rezepte/Kuchen, Cookies/CHEESECAKE AU POTIMARRON.pdf
+File2[$e]=$HOME/Nextcloud/dotfiles/README.md
+File3[$e]=$HOME/Downloads/Telegram Desktop/Assoziationsvertrag_KJ_TP (2)(1).pdf
+File4[$e]=$HOME/Downloads/Telegram Desktop/Lebenslauf_Lena_Volmer (1).pdf
+File5[$e]=$HOME/Downloads/BA gesamt_-teil II bis Kapitel 8.pdf
+File6[$e]=$HOME/Downloads/BA ab Kaptel 8 _korr.pdf
+File7[$e]=/run/media/barbara/ExternePlatte/Barbara/Reisen, Touren/1810-Silvretta-Runde-Broschuere_OL.pdf
+File8[$e]=$HOME/Barbara/Reisen, Touren/1810-Silvretta-Runde-Broschuere_OL.pdf
+File9[$e]=$HOME/Barbara/Rechnung/Rechnung NotebookPDF
+Name1[$e]=pastedImage.png
+Name10[$e]=CHEESECAKE AU POTIMARRON.pdf
+Name2[$e]=README.md
+Name3[$e]=Assoziationsvertrag_KJ_TP (2)(1).pdf
+Name4[$e]=Lebenslauf_Lena_Volmer (1).pdf
+Name5[$e]=BA gesamt_-teil II bis Kapitel 8.pdf
+Name6[$e]=BA ab Kaptel 8 _korr.pdf
+Name7[$e]=1810-Silvretta-Runde-Broschuere_OL.pdf
+Name8[$e]=1810-Silvretta-Runde-Broschuere_OL.pdf
+Name9[$e]=Rechnung NotebookPDF
 
 [UiSettings]
 ColorScheme=LayanDark
-
-[Icons]
-Theme=Tela

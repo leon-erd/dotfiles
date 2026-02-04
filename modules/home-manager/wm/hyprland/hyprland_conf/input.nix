@@ -16,6 +16,10 @@
       output = "eDP-1";
     };
 
+    cursor = {
+      no_hardware_cursors = 1;
+    };
+
     gesture = [
       "3, horizontal, workspace"
       "3, vertical, scale:1.5, fullscreen"

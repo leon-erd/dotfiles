@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-img_folder="$HOME/Nextcloud/Pictures/Geordnet"
+img_folder="$HOME/Bilder/Wallpaper"
 
 # Extract the directory part of the script
 script_path="$(realpath "$0")"

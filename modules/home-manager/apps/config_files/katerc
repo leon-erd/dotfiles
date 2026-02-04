@@ -13,6 +13,7 @@ Mouse back button action=0
 Mouse forward button action=0
 Open New Tab To The Right Of Current=false
 Output History Limit=100
+PinnedDocuments=
 Recent File List Entry Count=10
 Restore Window Configuration=true
 SDI Mode=false
@@ -34,6 +35,9 @@ Sync section size with tab positions=false
 Tab Double Click New Document=true
 Tab Middle Click Close Document=true
 Tabbar Tab Limit=0
+
+[Icons]
+Theme=Tela
 
 [KTextEditor Document]
 Allow End of Line Detection=true
@@ -162,6 +166,7 @@ RunPrefix=
 SetEditor=false
 
 [MainWindow]
+1536x960 screen: Window-Maximized=true
 1920x1080 screen: Window-Maximized=true
 3 screens: Height=1050
 3 screens: Width=1680
@@ -172,12 +177,10 @@ ToolBarsMovable=Disabled
 [UiSettings]
 ColorScheme=LayanDark
 
-[Icons]
-Theme=Tela
-
 [filetree]
 editShade=183,220,246
 listMode=false
+middleClickToClose=false
 shadingEnabled=true
 showCloseButton=false
 showFullPathOnRoots=false
