@@ -6,13 +6,13 @@
     let
       inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
       zollsoft-mac = import ./hosts/zollsoft-mac/flakeConfiguration.nix inputs;
-      mamas-laptop = import ./hosts/barbara-laptop/flakeConfiguration.nix inputs;
+      barbara-laptop = import ./hosts/barbara-laptop/flakeConfiguration.nix inputs;
     in
     {
       # insert other configurations by merging (need to be imported in let/in)
-      nixosConfigurations = inspiron-laptop // mamas-laptop; # // <someOtherHost>;
+      nixosConfigurations = inspiron-laptop // barbara-laptop; # // <someOtherHost>;
       darwinConfigurations = zollsoft-mac; # // <someOtherHost>;
-      homeConfigurations = inspiron-laptop // zollsoft-mac // mamas-laptop; # // <someOtherHost>;
+      homeConfigurations = inspiron-laptop // zollsoft-mac // barbara-laptop; # // <someOtherHost>;
     };
 
   inputs = {
