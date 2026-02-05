@@ -1,10 +1,9 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
-    ../../modules/system/basic/kernel.nix
     ../../modules/system/basic/locale.nix
     ../../modules/system/basic/nh.nix
     ../../modules/system/basic/settings.nix
@@ -27,6 +26,8 @@
     ../../modules/system/wm/hyprland.nix
     ../../modules/system/wm/kde.nix # home-managers qt theming (in theming.nix) will fuck up plasma6 so you need to disable it if you want to try plasma6
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "23.11"; # Do not modify
 }
