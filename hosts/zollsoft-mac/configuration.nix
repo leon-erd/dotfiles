@@ -26,6 +26,7 @@ in
     brews = [
       "rbenv" # better as brew than nix package because brew package has all dependencies included that we need for "gem install"
       "gettext"
+      "ktlint"
     ];
     casks = [
       "claude-code"
