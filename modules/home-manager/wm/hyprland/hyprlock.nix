@@ -73,7 +73,7 @@ in
           shadow_passes = 1;
         }
         {
-          text = ''<span> </span>'';
+          text = "<span> </span>";
           font_size = 25;
           color = labelColor;
           position = "0, 80";
