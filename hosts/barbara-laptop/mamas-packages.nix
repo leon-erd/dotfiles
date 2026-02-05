@@ -15,5 +15,5 @@
     vlc
     signal-desktop
     kdePackages.audiocd-kio
-    ];
+  ];
 }
