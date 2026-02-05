@@ -3,6 +3,6 @@
 {
   wayland.windowManager.hyprland.settings = {
     # Fallback rule
-    monitor = ", preferred, auto, 1.25";
+    monitor = ", preferred, auto, 1";
   };
 }

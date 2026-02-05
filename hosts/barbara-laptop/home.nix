@@ -37,5 +37,10 @@
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;
 
+  wayland.windowManager.hyprland.settings = {
+    # Fallback rule
+    monitor = lib.mkForce ", preferred, auto, 1.25";
+  };
+
   home.stateVersion = "23.11"; # Do not modify
 }
