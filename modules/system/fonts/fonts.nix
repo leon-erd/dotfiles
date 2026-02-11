@@ -17,4 +17,11 @@ in
   ++ customNerdFontsDerivations;
 
   fonts.fontDir.enable = true;
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = [
+      "Hack Nerd Font Mono"
+      "JetBrainsMono Nerd Font"
+    ];
+  };
 }
