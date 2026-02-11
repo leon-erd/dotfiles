@@ -49,6 +49,8 @@ in
     options = [
       # "defaults"
       "nofail"
+      "noatime"
+      "noauto"
       "x-systemd.automount"
     ];
   };
@@ -58,6 +60,8 @@ in
     options = [
       # "defaults"
       "nofail"
+      "noatime"
+      "noauto"
       "x-systemd.automount"
       "x-systemd.idle-timeout=10min"
     ];
