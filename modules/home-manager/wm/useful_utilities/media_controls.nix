@@ -29,8 +29,7 @@
     ];
 
     layerrule = [
-      "blur, swayosd"
-      "ignorezero, swayosd"
+      "match:namespace swayosd, blur on, ignore_alpha"
     ];
   };
 }

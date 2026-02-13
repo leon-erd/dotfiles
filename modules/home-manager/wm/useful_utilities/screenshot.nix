@@ -7,8 +7,8 @@
       ", Print, exec, ${lib.getExe pkgs.grimblast} --notify --freeze copy area"
     ];
     layerrule = [
-      "noanim, hyprpicker"
-      "noanim, selection"
+      "match:namespace hyprpicker, no_anim on"
+      "match:namespace selection, no_anim on"
     ];
     permission = [
       "${lib.getExe pkgs.grim}, screencopy, allow"

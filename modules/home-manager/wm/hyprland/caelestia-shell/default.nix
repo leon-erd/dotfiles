@@ -165,10 +165,8 @@
     ];
 
     layerrule = [
-      "blur, caelestia-.*"
-      "blur, qs-.*"
-      "blurpopups, caelestia-.*"
-      "ignorealpha 0.1, caelestia-.*"
+      "match:namespace caelestia-.*, blur on, blur_popups on, ignore_alpha 0.1"
+      "match:namespace qs-.*, blur on"
     ];
 
     permission = [

@@ -3,34 +3,25 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-      "float, class:^(org.kde.polkit-kde-authentication-agent-1)$"
+      "match:class ^(org.kde.polkit-kde-authentication-agent-1)$, float on"
 
-      "tag +vscode, class:^(code)$"
-      "tag +vscode, class:^(codium)$"
-      "opacity 0.85, tag:vscode"
-      "opacity 1.00, tag:vscode, title:.*\.pdf.*"
-      "workspace 1, tag:vscode"
+      "match:class ^(code)$, tag +vscode"
+      "match:class ^(codium)$, tag +vscode"
+      "match:tag vscode, opacity 0.85, workspace 1"
+      "match:tag vscode, match:title .*\.pdf.*, opacity 1.00"
 
-      "workspace 5, class:^(firefox)$"
+      "match:class ^(firefox), workspace 5$"
 
-      "tag +social, class:^(discord)$"
-      "tag +social, class:^(org.telegram.desktop)$"
-      "tag +social, class:^(signal)$"
-      "tag +social, class:^(Slack)$"
-      "tag +social, class:^(thunderbird)$"
-      "tag +social, class:^(wasistlos)$"
-      "workspace 9, tag:social"
+      "tag +social, match:class ^(discord)$"
+      "tag +social, match:class ^(org.telegram.desktop)$"
+      "tag +social, match:class ^(signal)$"
+      "tag +social, match:class ^(Slack)$"
+      "tag +social, match:class ^(thunderbird)$"
+      "tag +social, match:class ^(wasistlos)$"
+      "match:tag social, workspace 9"
 
       # KDE CONNECT Presentation Mode
-      "noblur, class:^(org.kde.kdeconnect.daemon)$"
-      "noborder, class:^(org.kde.kdeconnect.daemon)$"
-      "noshadow, class:^(org.kde.kdeconnect.daemon)$"
-      "noanim, class:^(org.kde.kdeconnect.daemon)$"
-      "nofocus, class:^(org.kde.kdeconnect.daemon)$"
-      "suppressevent fullscreen, class:^(org.kde.kdeconnect.daemon)$"
-      "float, class:^(org.kde.kdeconnect.daemon)$"
-      "move 0 0, class:^(org.kde.kdeconnect.daemon)$"
-      "size 100% 100%, class:^(org.kde.kdeconnect.daemon)$"
+      "match:class ^(org.kde.kdeconnect.daemon)$, no_blur on, border_size 0, no_shadow on, no_anim on, no_focus on, suppress_event fullscreen, float on, move 0 0, size 100% 100%"
     ];
   };
 }

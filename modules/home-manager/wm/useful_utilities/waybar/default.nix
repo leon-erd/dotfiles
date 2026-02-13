@@ -28,9 +28,7 @@
     ];
     exec-once = [ "sleep 2 && ${./launch_waybar.sh}" ];
     layerrule = [
-      "blur, waybar"
-      "blurpopups, waybar"
-      "ignorealpha 0.1, waybar"
+      "match:namespace waybar, blur on, blur_popups on, ignore_alpha 0.1"
     ];
   };
 }

@@ -38,8 +38,7 @@
     bindr = [ "$mainMod, $mainMod_L, exec, pkill --exact tofi-drun || tofi-drun --drun-launch=true" ];
     exec-once = [ "rm ~/.cache/tofi-drun" ];
     layerrule = [
-      "blur, launcher"
-      "animation slide, launcher"
+      "match:namespace launcher, blur on, animation slide"
     ];
   };
 }

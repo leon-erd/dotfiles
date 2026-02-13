@@ -9,12 +9,8 @@
     bind = [ "$mainMod, N, exec, swaync-client -t -sw" ];
     exec-once = [ "swaync" ];
     layerrule = [
-      "blur, swaync-control-center"
-      "blur, swaync-notification-window"
-      "ignorezero, swaync-control-center"
-      "ignorezero, swaync-notification-window"
-      "animation popin 90%, swaync-control-center"
-      "animation popin, swaync-notification-window"
+      "match:namespace swaync-control-center, blur on, ignore_alpha, animation popin 90%"
+      "match:namespace swaync-notification-window, blur on, ignore_alpha, animation popin"
     ];
   };
 
