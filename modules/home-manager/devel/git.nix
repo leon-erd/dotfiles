@@ -7,9 +7,12 @@
 
   programs.git = {
     enable = true;
-    settings.user = {
-      name = userSettings.name;
-      email = userSettings.email;
+    settings = {
+      user = {
+        name = userSettings.name;
+        email = userSettings.email;
+      };
+      fetch.prune = true;
     };
   };
 
