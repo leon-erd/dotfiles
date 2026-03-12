@@ -65,6 +65,7 @@
           };
           "uBlock0@raymondhill.net" = {
             settings = {
+              # https://github.com/pixeltris/TwitchAdSolutions?tab=readme-ov-file#applying-a-script-ublock-origin
               # https://raw.githubusercontent.com/pixeltris/TwitchAdSolutions/master/video-swap-new/video-swap-new-ublock-origin.js
               #
               # If block doesn't work, try manually unsetting userResourcesLocation and setting it back to the URL
