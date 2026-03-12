@@ -24,6 +24,7 @@ let
             awk -F'\t' '{printf "%s\t%.1f°C\n", $1, $2/1000}' | \
             column -s $'\t' -t
     '';
+    git-branch-collect-garbage = "git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D";
     homie = "nh home switch --configuration ${userSettings.userConfigurationName}";
     nixie = "nh os switch --hostname ${userSettings.systemConfigurationName}";
     darwie = "nh darwin switch --hostname ${userSettings.systemConfigurationName}";
@@ -73,7 +74,6 @@ in
         # https://blog.nobbz.dev/blog/2023-02-27-nixos-flakes-command-not-found/
         # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos && sudo nix-channel --update
         "command-not-found"
-        "dirhistory"
         "eza"
         "fzf"
         "git"
@@ -117,6 +117,8 @@ in
       # use less with custom lessfilter for anything else
       zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ''${(Q)realpath}'
       export LESSOPEN='|${lib.getExe myLessfilter} %s'
+
+      bindkey -s '\e[1;3A' 'cd ..\n'
     '';
   };
 
