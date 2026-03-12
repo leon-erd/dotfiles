@@ -1,15 +1,11 @@
+# karabiner-elements needs to be installed via brew because it needs to be in /Applications for the permissions to work
 {
-  pkgs,
   lib,
   userSettings,
   ...
 }:
 
 {
-  home.packages = with pkgs; [
-    karabiner-elements
-  ];
-
   home.activation = {
     myKarabinerConfig =
       let
