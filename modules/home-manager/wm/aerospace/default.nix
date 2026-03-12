@@ -1,5 +1,8 @@
 { lib, pkgs, ... }:
 
+let
+  mainMod = "ctrl-alt";
+in
 {
   programs.aerospace = {
     enable = true;
@@ -41,52 +44,52 @@
         };
       };
       mode.main.binding = {
-        cmd-alt-t = "exec-and-forget \${HOME}/Applications/Home\\ Manager\\ Apps/WezTerm.app/wezterm-gui";
-        cmd-alt-s = "exec-and-forget ${lib.getExe pkgs.flameshot} gui";
-        cmd-ctrl-alt-shift-b = "exec-and-forget ${./scratchpad.sh} --command btop";
-        cmd-ctrl-alt-shift-a = "exec-and-forget ${./scratchpad.sh} --app-name \"Activity Monitor\"";
-        cmd-ctrl-alt-shift-e = "exec-and-forget ${./scratchpad.sh} --app-name Finder";
-        cmd-ctrl-alt-shift-s = "exec-and-forget ${./scratchpad.sh} --app-name Spotify";
-        alt-f4 = "close --quit-if-last-window";
-        alt-tab = "focus dfs-next --boundaries-action wrap-around-the-workspace";
-        ctrl-f = "layout floating tiling";
-        ctrl-m = "fullscreen --no-outer-gaps";
-        ctrl-t = "layout tiles horizontal vertical";
-        ctrl-plus = "resize smart +50";
-        ctrl-minus = "resize smart -50";
-        ctrl-alt-left = "move left";
-        ctrl-alt-down = "move down";
-        ctrl-alt-up = "move up";
-        ctrl-alt-right = "move right";
-        ctrl-shift-left = "join-with left";
-        ctrl-shift-down = "join-with down";
-        ctrl-shift-up = "join-with up";
-        ctrl-shift-right = "join-with right";
-        ctrl-cmd-left = "move-workspace-to-monitor left";
-        ctrl-cmd-down = "move-workspace-to-monitor up";
-        ctrl-cmd-up = "move-workspace-to-monitor down";
-        ctrl-cmd-right = "move-workspace-to-monitor right";
-        ctrl-1 = "workspace 1";
-        ctrl-2 = "workspace 2";
-        ctrl-3 = "workspace 3";
-        ctrl-4 = "workspace 4";
-        ctrl-5 = "workspace 5";
-        ctrl-6 = "workspace 6";
-        ctrl-7 = "workspace 7";
-        ctrl-8 = "workspace 8";
-        ctrl-9 = "workspace 9";
-        ctrl-0 = "workspace 10";
-        cmd-alt-tab = "workspace-back-and-forth";
-        ctrl-shift-1 = "move-node-to-workspace 1";
-        ctrl-shift-2 = "move-node-to-workspace 2";
-        ctrl-shift-3 = "move-node-to-workspace 3";
-        ctrl-shift-4 = "move-node-to-workspace 4";
-        ctrl-shift-5 = "move-node-to-workspace 5";
-        ctrl-shift-6 = "move-node-to-workspace 6";
-        ctrl-shift-7 = "move-node-to-workspace 7";
-        ctrl-shift-8 = "move-node-to-workspace 8";
-        ctrl-shift-9 = "move-node-to-workspace 9";
-        ctrl-shift-0 = "move-node-to-workspace 10";
+        "cmd-alt-t" = "exec-and-forget \${HOME}/Applications/Home\\ Manager\\ Apps/WezTerm.app/wezterm-gui";
+        "cmd-alt-s" = "exec-and-forget ${lib.getExe pkgs.flameshot} gui";
+        "${mainMod}-b" = "exec-and-forget ${./scratchpad.sh} --command btop";
+        "${mainMod}-a" = "exec-and-forget ${./scratchpad.sh} --app-name \"Activity Monitor\"";
+        "${mainMod}-e" = "exec-and-forget ${./scratchpad.sh} --app-name Finder";
+        "${mainMod}-s" = "exec-and-forget ${./scratchpad.sh} --app-name Spotify";
+        "alt-f4" = "close --quit-if-last-window";
+        "alt-tab" = "focus dfs-next --boundaries-action wrap-around-the-workspace";
+        "${mainMod}-f" = "layout floating tiling";
+        "${mainMod}-m" = "fullscreen --no-outer-gaps";
+        "${mainMod}-t" = "layout tiles horizontal vertical";
+        "${mainMod}-plus" = "resize smart +50";
+        "${mainMod}-minus" = "resize smart -50";
+        "${mainMod}-left" = "move left";
+        "${mainMod}-down" = "move down";
+        "${mainMod}-up" = "move up";
+        "${mainMod}-right" = "move right";
+        "${mainMod}-shift-left" = "join-with left";
+        "${mainMod}-shift-down" = "join-with down";
+        "${mainMod}-shift-up" = "join-with up";
+        "${mainMod}-shift-right" = "join-with right";
+        "${mainMod}-cmd-left" = "move-workspace-to-monitor left";
+        "${mainMod}-cmd-down" = "move-workspace-to-monitor up";
+        "${mainMod}-cmd-up" = "move-workspace-to-monitor down";
+        "${mainMod}-cmd-right" = "move-workspace-to-monitor right";
+        "${mainMod}-1" = "workspace 1";
+        "${mainMod}-2" = "workspace 2";
+        "${mainMod}-3" = "workspace 3";
+        "${mainMod}-4" = "workspace 4";
+        "${mainMod}-5" = "workspace 5";
+        "${mainMod}-6" = "workspace 6";
+        "${mainMod}-7" = "workspace 7";
+        "${mainMod}-8" = "workspace 8";
+        "${mainMod}-9" = "workspace 9";
+        "${mainMod}-0" = "workspace 10";
+        "${mainMod}-tab" = "workspace-back-and-forth";
+        "${mainMod}-shift-1" = "move-node-to-workspace 1";
+        "${mainMod}-shift-2" = "move-node-to-workspace 2";
+        "${mainMod}-shift-3" = "move-node-to-workspace 3";
+        "${mainMod}-shift-4" = "move-node-to-workspace 4";
+        "${mainMod}-shift-5" = "move-node-to-workspace 5";
+        "${mainMod}-shift-6" = "move-node-to-workspace 6";
+        "${mainMod}-shift-7" = "move-node-to-workspace 7";
+        "${mainMod}-shift-8" = "move-node-to-workspace 8";
+        "${mainMod}-shift-9" = "move-node-to-workspace 9";
+        "${mainMod}-shift-0" = "move-node-to-workspace 10";
         # alt-e = ''
         #   exec-and-forget osascript -e '
         #     tell application "Finder"
@@ -96,10 +99,6 @@
         # '';
       };
       on-window-detected = [
-        {
-          "if".app-id = "com.jetbrains.intellij";
-          run = "move-node-to-workspace 1";
-        }
         {
           "if".app-id = "com.google.android.studio";
           run = "move-node-to-workspace 3";

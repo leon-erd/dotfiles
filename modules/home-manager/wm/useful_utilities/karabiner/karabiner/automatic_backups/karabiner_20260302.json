@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "f20 to cmd+space or ctrl+option",
+                        "description": "left_ctrl to cmd+space or ctrl+option",
                         "manipulators": [
                             {
                                 "from": { "key_code": "f20" },
@@ -21,9 +21,18 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "enabled": false,
+                        "manipulators": [
                             {
-                                "from": { "key_code": "f20", "modifiers": { "optional": ["any"] } },
+                                "description": "Change left_option to control+option.",
+                                "from": {
+                                    "key_code": "left_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
                                 "to": [
                                     {
                                         "key_code": "left_control",
@@ -45,7 +54,7 @@
                                 "to": [
                                     {
                                         "key_code": "q",
-                                        "modifiers": ["control", "command"]
+                                        "modifiers": ["command", "control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -69,6 +78,31 @@
                                     "modifiers": { "mandatory": ["command"] }
                                 },
                                 "to": [{ "consumer_key_code": "scan_next_track" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "left_ctrl to cmd+space (spotlight)",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -154,6 +188,44 @@
                                 ],
                                 "from": { "key_code": "left_control" },
                                 "to": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change command+hjkl to arrow keys",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "key_code": "left_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "key_code": "down_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "key_code": "up_arrow" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "key_code": "right_arrow" }],
                                 "type": "basic"
                             }
                         ]
