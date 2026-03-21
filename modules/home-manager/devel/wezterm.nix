@@ -14,7 +14,6 @@ in
 
       -- This is where you actually apply your config choices.
 
-      -- or, changing the font size and color scheme.
       config.font_size = ${fontSize}
       config.font = wezterm.font "JetBrainsMono Nerd Font"
       config.hide_tab_bar_if_only_one_tab = true
@@ -24,6 +23,23 @@ in
       config.default_cursor_style = "BlinkingBar"
       config.cursor_blink_rate = 500
       config.enable_scroll_bar = true
+
+      config.keys = {
+        -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively
+        {
+          key = 'LeftArrow',
+          mods = 'OPT',
+          action = wezterm.action.SendKey {
+            key = 'b',
+            mods = 'ALT',
+          },
+        },
+        {
+          key = 'RightArrow',
+          mods = 'OPT',
+          action = wezterm.action.SendKey { key = 'f', mods = 'ALT' },
+        },
+      }
 
       -- Finally, return the configuration to wezterm:
       return config
