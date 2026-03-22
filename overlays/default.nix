@@ -1,11 +1,4 @@
 final: prev: {
-  teamviewer = prev.teamviewer.overrideAttrs {
-    src = prev.fetchurl {
-      url = "https://dl.teamviewer.com/download/linux/version_15x/teamviewer_15.61.3_amd64.deb";
-      hash = "sha256-o7Em+QRW4TebRTJS5xjcx1M6KPh1ziB1j0fvlO+RYa4=";
-    };
-  };
-
   autoraise = prev.autoraise.overrideAttrs rec {
     version = "5.6";
 
