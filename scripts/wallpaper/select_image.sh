@@ -1,13 +1,14 @@
 #! /usr/bin/env bash
 
-img_folder="$HOME/Nextcloud/Pictures/Geordnet"
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 <img_folder>" >&2
+    exit 1
+fi
 
-# Extract the directory part of the script
-script_path="$(realpath "$0")"
-script_directory="$(dirname "$script_path")"
+img_folder="$1"
+output_file="${XDG_CONFIG_HOME:-$HOME/.config}/myWallpaper/selected_image.txt"
 
-# Path to the file where we save the selected image
-output_file="$script_directory/selected_image.txt"
+mkdir -p "$(dirname "$output_file")"
 
 # get random horizontal image
 while true; do

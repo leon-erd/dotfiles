@@ -31,6 +31,7 @@ let
     userConfigurationName = "${username}@${systemConfigurationName}";
     wireguardConfig = ../../secrets/files/wireguard_clients/inspiron-laptop.conf;
     isLinux = myPkgs.stdenv.isLinux;
+    wallpaperFolder = "/home/${username}/Nextcloud/Pictures/Geordnet";
   };
 
   myPkgs = import inputs.nixpkgs {

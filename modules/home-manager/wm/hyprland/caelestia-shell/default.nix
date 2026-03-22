@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  userSettings,
   ...
 }:
 
@@ -138,7 +139,7 @@
       "CTRL + ALT, S, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${lib.getExe pkgs.swappy} -f -"
       # https://github.com/caelestia-dots/shell/issues/390
       "CTRL + ALT, B, exec, caelestia shell -k; QT_QPA_PLATFORMTHEME=gtk3 caelestia shell -d"
-      "CTRL + ALT, W, exec, ~/scripts/wallpaper/select_image.sh && ~/scripts/wallpaper/update_wallpaper_caelestia.sh"
+      "CTRL + ALT, W, exec, ~/scripts/wallpaper/select_image.sh ${userSettings.wallpaperFolder} && ~/scripts/wallpaper/update_wallpaper_caelestia.sh"
     ];
 
     # Media controls

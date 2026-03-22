@@ -31,6 +31,7 @@ let
     systemConfigurationName = systemSettings.hostname;
     userConfigurationName = "${username}@${systemConfigurationName}";
     isLinux = myPkgs.stdenv.isLinux;
+    wallpaperFolder = "/home/${username}/Bilder/Wallpaper";
   };
 
   myPkgs = import inputs.nixpkgs {
