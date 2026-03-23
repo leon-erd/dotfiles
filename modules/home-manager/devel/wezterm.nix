@@ -39,6 +39,11 @@ in
           mods = 'OPT',
           action = wezterm.action.SendKey { key = 'f', mods = 'ALT' },
         },
+        {
+          key = 'Enter',
+          mods = 'ALT',
+          action = wezterm.action.DisableDefaultAssignment,
+        },
       }
 
       -- Finally, return the configuration to wezterm:
