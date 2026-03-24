@@ -4,6 +4,7 @@
   wayland.windowManager.hyprland.settings = {
     input = {
       kb_layout = userSettings.kblayout;
+      kb_options = "ctrl:nocaps"; # remap Caps lock to Ctrl (https://wiki.hypr.land/Configuring/Uncommon-tips--tricks/#remapping-caps-lock)
       numlock_by_default = true;
       touchpad = {
         natural_scroll = true;
