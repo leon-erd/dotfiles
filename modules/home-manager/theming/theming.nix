@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   gtk = {
@@ -20,6 +20,7 @@
       name = "NotoSansNerdFont";
       size = 10;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   qt = {

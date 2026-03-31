@@ -14,6 +14,7 @@
       };
       fetch.prune = true;
     };
+    signing.format = "openpgp";
   };
 
   programs.gh.enable = true;
