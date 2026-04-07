@@ -6,11 +6,59 @@
   ...
 }:
 
+let
+  system = pkgs.stdenv.hostPlatform.system;
+
+  # Fix for makeBinaryWrapper set_env_prefix reading past null terminator when
+  # the prefix sits at the end of the existing value (no trailing separator).
+  # This corrupts NIXPKGS_QT6_QML_IMPORT_PATH, causing Firefox to crash when
+  # launched from caelestia (Rust's std::env::vars() panics on non-UTF-8 env vars).
+  #
+  # makeBinaryWrapper uses makeSetupHook -> runCommand, which has no patchPhase.
+  # The fix must be applied via buildCommand post-processing using sed.
+  fixedMakeBinaryWrapper = pkgs.makeBinaryWrapper.overrideAttrs (old: {
+    buildCommand = old.buildCommand + ''
+      # Fix: when prefix is at end of existing value (no trailing sep),
+      # n_before must not include the leading sep, and the tail pointer
+      # must point to the null terminator rather than past it.
+      sed -i \
+        's@int n_before = existing_prefix - existing_env;@int n_before = existing_prefix - existing_env - (*(existing_prefix + prefix_len) ? 0 : (int)sep_len);@' \
+        $out/nix-support/setup-hook
+      sed -i \
+        's@existing_prefix + prefix_len + sep_len));@*(existing_prefix + prefix_len) ? existing_prefix + prefix_len + sep_len : existing_prefix + prefix_len));@' \
+        $out/nix-support/setup-hook
+    '';
+  });
+
+  fixedWrapQt6AppsHook = pkgs.qt6Packages.wrapQtAppsHook.override {
+    makeBinaryWrapper = fixedMakeBinaryWrapper;
+  };
+
+  # Rebuild quickshell from caelestia-shell's pinned flake input with the fixed hook.
+  # caelestia-shell uses inputs.quickshell.packages directly (not pkgs.quickshell),
+  # so user overlays do not affect it — we must patch it explicitly here.
+  caelestia-quickshell =
+    (inputs.caelestia-shell.inputs.quickshell.packages.${system}.default.override {
+      withX11 = false;
+      withI3 = false;
+    }).overrideAttrs
+      (old: {
+        nativeBuildInputs = map (
+          x: if builtins.isAttrs x && x.name == "wrap-qt6-apps-hook" then fixedWrapQt6AppsHook else x
+        ) (old.nativeBuildInputs or [ ]);
+      });
+
+  caelestia-patched = inputs.caelestia-shell.packages.${system}.with-cli.override {
+    quickshell = caelestia-quickshell;
+  };
+in
+
 {
   imports = [ inputs.caelestia-shell.homeManagerModules.default ];
 
   programs.caelestia = {
     enable = true;
+    package = caelestia-patched;
     # https://github.com/caelestia-dots/shell/issues/390
     systemd.environment = [ "QT_QPA_PLATFORMTHEME=gtk3" ];
     cli = {
