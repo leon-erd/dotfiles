@@ -1,0 +1,35 @@
+[ContentDisplay]
+DirectorySizeCount=false
+
+[DetailsMode]
+PreviewSize=16
+
+[General]
+RememberOpenedTabs=false
+ShowFullPath=true
+ShowStatusBar=FullWidth
+ShowZoomSlider=true
+Version=202
+ViewPropsTimestamp=2024,2,9,14,5,44.461
+
+[Icons]
+Theme=Tela
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[KPropertiesDialog]
+3 screens: Window-Maximized=true
+
+[MainWindow]
+MenuBar=Disabled
+
+[PreviewSettings]
+Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
+
+[UiSettings]
+ColorScheme=Layan
+
+[VersionControl]
+enabledPlugins=Git

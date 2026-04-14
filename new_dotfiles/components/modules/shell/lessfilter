@@ -1,0 +1,17 @@
+mime=$(file -bL --mime-type "$1")
+category=${mime%%/*}
+kind=${mime##*/}
+# ext=${1##*.}
+
+if [[ -d "$1" ]]; then
+	eza --icons --long --no-permissions --no-filesize --no-user --group-directories-first --color=always "$1"
+elif [[ "$category" = image ]]; then
+	chafa "$1" --size=x18
+elif [[ "$kind" = pdf ]]; then
+	pdftotext -q "$1" - | sed "s/\f/$(hr ─)\n/g"
+else
+	bat --color=always --theme=Visual\ Studio\ Dark+ --paging=never --style=plain "$1"
+fi
+
+# always echo a newline because if there is no output (e.g. empty directory), less will fall back to default 
+echo
