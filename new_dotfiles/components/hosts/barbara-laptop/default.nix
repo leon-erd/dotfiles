@@ -85,7 +85,6 @@ in
           office
           qtApps
           messenger
-          appsMisc
 
           # base
           base
@@ -99,11 +98,10 @@ in
           alacritty
           git
           vscode
+          wezterm
 
           # shell
           shell
-
-          virtualisation
         ];
         extraSpecialArgs = {
           inherit inputs;

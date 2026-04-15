@@ -7,7 +7,7 @@
       inherit (self.lib) resolveSystemModules;
     in
     {
-      imports = resolveSystemModules "darwin" (
+      imports = resolveSystemModules "nixos" (
         with self.modules;
         [
           nixos.kernel

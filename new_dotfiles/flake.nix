@@ -10,7 +10,7 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
         inputs.home-manager.flakeModules.home-manager
-        (inputs.import-tree.matchNot ".*/flake\\.(nix|lock)" ./components)
+        (inputs.import-tree.matchNot ".*/hosts/raspberrypi(/.*)?$" ./components)
       ];
 
       # configure nixpkgs for all systems

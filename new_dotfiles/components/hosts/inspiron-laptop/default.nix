@@ -101,7 +101,7 @@ in
 
           # shell
           shell
-          wireguard-client
+          wireguardClient
 
           virtualisation
           hostInspironLaptopHmExtra
