@@ -10,13 +10,6 @@
     }:
 
     let
-      hasWireguardConfig = config.myUserConfig.wireguardConfig != null;
-
-      vpnPiAliases = lib.optionalAttrs hasWireguardConfig {
-        vpn_pi_on = "wg-quick up ${config.sops.secrets."wireguard.conf".path}";
-        vpn_pi_off = "wg-quick down ${config.sops.secrets."wireguard.conf".path}";
-      };
-
       myAliases = {
         clearswap = "sudo swapoff -a; sudo swapon -a";
         conda = "micromamba";
@@ -35,8 +28,7 @@
         root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
         tree = "eza --tree";
         venv = "source venv/bin/activate";
-      }
-      // vpnPiAliases;
+      };
 
       myLessfilter = pkgs.writeShellApplication {
         name = "my-lessfilter";
@@ -54,13 +46,7 @@
         text = builtins.readFile ./lessfilter;
       };
     in
-    lib.mkMerge [
     {
-      # packages for vpn aliases
-      home.packages = with pkgs; [
-        wireguard-tools
-      ];
-
       programs.zsh = {
         enable = true;
         dotDir = "${config.xdg.configHome}/zsh";
@@ -181,14 +167,5 @@
         FLAKE = config.myUserConfig.flakeDirectory;
         NH_FLAKE = config.myUserConfig.flakeDirectory;
       };
-    }
-    (lib.mkIf hasWireguardConfig {
-      sops.secrets = {
-        "wireguard.conf" = {
-          format = "binary";
-          sopsFile = config.myUserConfig.wireguardConfig;
-        };
-      };
-    })
-    ];
+    };
 }

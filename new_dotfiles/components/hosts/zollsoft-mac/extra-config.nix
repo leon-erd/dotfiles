@@ -1,7 +1,15 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.modules.nixos.hostZollsoftMacSystemExtra =
-    { self, inputs, pkgs, ... }:
+  flake.modules.darwin.hostZollsoftMacSystemExtra =
+    {
+      inputs,
+      pkgs,
+      config,
+      ...
+    }:
+    let
+      username = (builtins.head config.myUsers).username;
+    in
     {
       imports = [
         inputs.nix-homebrew.darwinModules.nix-homebrew
@@ -10,8 +18,10 @@
       nix-homebrew = {
         enable = true;
         enableRosetta = true; # for Apple Silicon
-        user = "leon.erd";
-        mutableTaps = true;
+        user = username;
+        # declarative tap management
+        taps = { };
+        mutableTaps = true; # with mutableTaps disabled, taps can no longer be added imperatively with `brew tap`
         autoMigrate = true;
       };
 
@@ -44,11 +54,14 @@
         };
       };
 
+      # development tools
       environment.systemPackages = with pkgs; [
+        acli
         docker-compose
         docker-credential-helpers
         fvm
         glab
+        pgcli
         podman
       ];
 
@@ -57,11 +70,13 @@
         jetbrains-mono
       ];
 
-      system.primaryUser = "leon.erd";
+      system.primaryUser = username;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
       system.stateVersion = 6;
     };
 
@@ -93,7 +108,7 @@
         export PATH="$PATH:$HOME/.pub-cache/bin"
         ## [Completion]
         ## Completion scripts setup. Remove the following line to uninstall
-        [[ -f /Users/leon.erd/.dart-cli-completion/zsh-config.zsh ]] && . /Users/leon.erd/.dart-cli-completion/zsh-config.zsh || true
+        [[ -f /Users/${config.myUserConfig.username}/.dart-cli-completion/zsh-config.zsh ]] && . /Users/${config.myUserConfig.username}/.dart-cli-completion/zsh-config.zsh || true
         ## [/Completion]
         eval "$(rbenv init - zsh)"
         export LANG=en_US.UTF-8

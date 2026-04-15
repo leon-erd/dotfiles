@@ -28,6 +28,7 @@ in
         # base
         nixos.locale
         nixos.nh
+        system.settings
         nixos.settings
         nixos.users
 

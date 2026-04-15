@@ -39,40 +39,34 @@
           description = "Keyboard layout";
         };
         localIp = mkOption {
-          type = nullOr str;
-          default = null;
+          type = str;
           description = "Local IP address of the machine";
           example = "192.168.179.200";
         };
         acmeEmail = mkOption {
-          type = nullOr str;
-          default = null;
+          type = str;
           description = "Email address for ACME/Let's Encrypt certificates";
         };
         nextcloud = {
           drives = {
             main = mkOption {
-              type = nullOr str;
-              default = null;
+              type = str;
               description = "udev disk ID for the main Nextcloud drive";
               example = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
             };
             backup = mkOption {
-              type = nullOr str;
-              default = null;
+              type = str;
               description = "udev disk ID for the Nextcloud backup drive";
               example = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
             };
           };
           hostName = mkOption {
-            type = nullOr str;
-            default = null;
+            type = str;
             description = "Public hostname for the Nextcloud instance";
             example = "cloud.example.com";
           };
           trustedDomains = mkOption {
             type = listOf str;
-            default = [ ];
             description = "Additional trusted domains for Nextcloud";
             example = [ "192.168.179.200" ];
           };
@@ -87,8 +81,7 @@
         };
         wireguard = {
           externalInterface = mkOption {
-            type = nullOr str;
-            default = null;
+            type = str;
             description = "Network interface facing the internet (use `ip a`)";
             example = "enu1u1u1";
           };
@@ -120,7 +113,6 @@
     let
       inherit (lib.types)
         listOf
-        nullOr
         path
         str
         submodule
@@ -175,9 +167,9 @@
             example = "/home/leon/Nextcloud/Pictures";
           };
           wireguardConfig = mkOption {
-            type = nullOr path;
-            default = null;
+            type = path;
             description = "Path to the WireGuard client config file";
+            example = lib.literalExpression ''../secrets/files/wireguard_clients/my-wireguard.conf'';
           };
         };
       };

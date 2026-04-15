@@ -3,16 +3,22 @@
 {
   flake.modules.nixos.base =
     { ... }:
-
+    let
+      inherit (self.lib) resolveSystemModules;
+    in
     {
-      imports = with self.modules.nixos; [
-        kernel
-        locale
-        nh
-        settings
-        sops
-        users
-      ];
+      imports = resolveSystemModules "darwin" (
+        with self.modules;
+        [
+          nixos.kernel
+          nixos.locale
+          nixos.nh
+          system.settings
+          nixos.settings
+          nixos.sops
+          nixos.users
+        ]
+      );
     };
 
   flake.modules.homeManager.base =

@@ -15,11 +15,21 @@ in
         modules = resolveSystemModules "darwin" (
           with self.modules;
           [
+            # setup pkgs: use preconfigured pkgs for the current system
+            {
+              nixpkgs.pkgs = withSystem hostSettings.system (
+                { pkgs, ... }: pkgs # perSystem module arguments
+              );
+            }
+
             darwin.hostZollsoftMacSystemConfig
             darwin.hostZollsoftMacSystemExtra
 
             # base
             darwin.macosSettings
+            system.settings
+
+            # shell
             system.cliApps
           ]
         );
@@ -40,6 +50,7 @@ in
           hostZollsoftMacHmExtra
 
           # apps
+          firefox
           thunderbird
           appsMisc
 
