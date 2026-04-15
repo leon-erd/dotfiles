@@ -23,7 +23,10 @@
         };
         selectWallpaperImage = pkgs.writeShellApplication {
           name = "select-wallpaper-image";
-          runtimeInputs = with pkgs; [ imagemagick coreutils ];
+          runtimeInputs = with pkgs; [
+            imagemagick
+            coreutils
+          ];
           text = builtins.readFile ../scripts/select_wallpaper_image.sh;
         };
         updateWallpaperCaelestia = pkgs.writeShellApplication {

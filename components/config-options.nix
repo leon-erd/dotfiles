@@ -7,7 +7,6 @@
     let
       inherit (lib.types)
         listOf
-        nullOr
         str
         submodule
         ;
@@ -169,7 +168,7 @@
           wireguardConfig = mkOption {
             type = path;
             description = "Path to the WireGuard client config file";
-            example = lib.literalExpression ''../secrets/files/wireguard_clients/my-wireguard.conf'';
+            example = lib.literalExpression "../secrets/files/wireguard_clients/my-wireguard.conf";
           };
         };
       };

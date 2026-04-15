@@ -41,16 +41,16 @@
       # Rebuild quickshell from caelestia-shell's pinned flake input with the fixed hook.
       # caelestia-shell uses inputs.quickshell.packages directly (not pkgs.quickshell),
       # so user overlays do not affect it — we must patch it explicitly here.
-      caelestia-quickshell = (
-        inputs.caelestia-shell.inputs.quickshell.packages.${system}.default.override {
+      caelestia-quickshell =
+        (inputs.caelestia-shell.inputs.quickshell.packages.${system}.default.override {
           withX11 = false;
           withI3 = false;
-        }
-      ).overrideAttrs (old: {
-        nativeBuildInputs = map (
-          x: if builtins.isAttrs x && x.name == "wrap-qt6-apps-hook" then fixedWrapQt6AppsHook else x
-        ) (old.nativeBuildInputs or [ ]);
-      });
+        }).overrideAttrs
+          (old: {
+            nativeBuildInputs = map (
+              x: if builtins.isAttrs x && x.name == "wrap-qt6-apps-hook" then fixedWrapQt6AppsHook else x
+            ) (old.nativeBuildInputs or [ ]);
+          });
 
       caelestia-patched = inputs.caelestia-shell.packages.${system}.with-cli.override {
         quickshell = caelestia-quickshell;
@@ -191,7 +191,11 @@
           "CTRL + ALT, S, exec, ${pkgs.wl-clipboard}/bin/wl-paste | ${lib.getExe pkgs.swappy} -f -"
           # https://github.com/caelestia-dots/shell/issues/390
           "CTRL + ALT, B, exec, caelestia shell -k; QT_QPA_PLATFORMTHEME=gtk3 caelestia shell -d"
-          "CTRL + ALT, W, exec, ${self.packages.${system}.selectWallpaperImage} ${config.myUserConfig.wallpaperFolder} && ${self.packages.${system}.updateWallpaperCaelestia} --fallback ${../../../../wallpaper/fallback.jpg}"
+          "CTRL + ALT, W, exec, ${
+            self.packages.${system}.selectWallpaperImage
+          } ${config.myUserConfig.wallpaperFolder} && ${
+            self.packages.${system}.updateWallpaperCaelestia
+          } --fallback ${../../../../wallpaper/fallback.jpg}"
         ];
 
         # Media controls
