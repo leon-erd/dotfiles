@@ -1,0 +1,39 @@
+{ self, ... }:
+
+{
+  flake.modules.homeManager.waybar =
+    { pkgs, ... }:
+
+    {
+      imports = with self.modules.homeManager; [
+        waybarModules
+        waybarSettings
+      ];
+
+      home.packages = with pkgs; [
+        pavucontrol
+        pywal
+      ];
+
+      programs.waybar = {
+        enable = true;
+        package = (
+          pkgs.waybar.override {
+            withMediaPlayer = true;
+          }
+        );
+        style = ./style.css;
+      };
+
+      wayland.windowManager.hyprland.settings = {
+        bind = [
+          "CTRL + ALT, B, exec, ${./launch_waybar.sh}"
+          "CTRL + ALT, W, exec, ${./launch_waybar.sh}"
+        ];
+        exec-once = [ "sleep 2 && ${./launch_waybar.sh}" ];
+        layerrule = [
+          "match:namespace waybar, blur on, blur_popups on, ignore_alpha 0.1"
+        ];
+      };
+    };
+}

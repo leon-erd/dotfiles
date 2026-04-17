@@ -1,0 +1,73 @@
+{
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.fontFamily": "Hack Nerd Font Mono, JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+    "editor.wordWrap": "on",
+    "explorer.autoReveal": false,
+    "files.autoSave": "afterDelay",
+    "git.autofetch": true,
+    "latex-workshop.bibtex-fields.sort.enabled": true,
+    "latex-workshop.bibtex-format.sort.enabled": true,
+    "latex-workshop.latex.build.rootfileInStatus": true,
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.formatting.latexindent.args": [
+        "-c",
+        "%DIR%/out",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'"
+    ],
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.synctex.indicator": "circle",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
+    "nix.serverSettings": {
+        "nixd": {
+            "nixpkgs": {
+                "expr": "import (builtins.getFlake \"github:leon-erd/dotfiles\").inputs.nixpkgs {}"
+            },
+            "formatting": {
+                "command": ["nixfmt"]
+            },
+            "options": {
+                "nixos": {
+                    "expr": "(builtins.getFlake \"github:leon-erd/dotfiles\").nixosConfigurations.inspiron-laptop.options"
+                },
+                "home-manager": {
+                    "expr": "(builtins.getFlake \"github:leon-erd/dotfiles\").homeConfigurations.\"leon@inspiron-laptop\".options"
+                }
+            },
+        }
+    },
+    "python.analysis.typeCheckingMode": "standard",
+    "security.workspace.trust.enabled": false,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "todo-tree.regex.regex": "(%|//|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
+    "window.menuBarVisibility": "hidden",
+    "window.titleBarStyle": "native",
+    "window.customTitleBarVisibility": "never",
+    "workbench.colorCustomizations": {
+        "editor.background": "#000000",
+        "activityBar.background": "#000000",
+        "sideBar.background": "#000000",
+        "sideBarSectionHeader.background": "#000000",
+        "panel.background": "#000000",
+        "statusBar.background": "#000000",
+    },
+    "workbench.editorAssociations": {
+        "*.pdf": "latex-workshop-pdf-hook"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+
+    // Specific settings for vscode (not VSCodium) -> disable telemetry etc
+    "extensions.autoUpdate": false,
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "none",
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "chat.viewSessions.orientation": "stacked",
+    "claudeCode.preferredLocation": "panel",
+}

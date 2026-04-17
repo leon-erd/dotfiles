@@ -1,37 +1,57 @@
 {
-  description = "Leons Flake for NixOS and Home Manager configuration";
-
   outputs =
     { self, ... }@inputs:
-    let
-      inspiron-laptop = import ./hosts/inspiron-laptop/flakeConfiguration.nix inputs;
-      zollsoft-mac = import ./hosts/zollsoft-mac/flakeConfiguration.nix inputs;
-      barbara-laptop = import ./hosts/barbara-laptop/flakeConfiguration.nix inputs;
-    in
-    {
-      # insert other configurations by merging (need to be imported in let/in)
-      nixosConfigurations = inspiron-laptop // barbara-laptop; # // <someOtherHost>;
-      darwinConfigurations = zollsoft-mac; # // <someOtherHost>;
-      homeConfigurations = inspiron-laptop // zollsoft-mac // barbara-laptop; # // <someOtherHost>;
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
+      imports = [
+        inputs.flake-parts.flakeModules.modules
+        inputs.home-manager.flakeModules.home-manager
+        (inputs.import-tree.matchNot ".*/hosts/raspberrypi(/.*)?$" ./components)
+      ];
+
+      # configure nixpkgs for all systems
+      perSystem =
+        { system, ... }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              self.overlays.default
+              inputs.nur.overlays.default
+              inputs.nix-vscode-extensions.overlays.default
+            ];
+            config = {
+              allowUnfree = true;
+            };
+          };
+        };
     };
 
   inputs = {
     #nixpkgsLocal.url = "git+file:///home/leon/Downloads/nixpkgs";
     #nixpkgsStable.url = "nixpkgs/nixos-24.05";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #home-managerStable = {
-    #  url = "github:nix-community/home-manager/release-24.05";
-    #  inputs.nixpkgs.follows = "nixpkgsStable";
-    #};
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #home-managerStable = {
+    #  url = "github:nix-community/home-manager/release-24.05";
+    #  inputs.nixpkgs.follows = "nixpkgsStable";
+    #};
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     nur.url = "github:nix-community/NUR";
 
