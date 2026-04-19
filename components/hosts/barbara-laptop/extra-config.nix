@@ -12,6 +12,10 @@
     {
       programs.firefox.profiles.${config.myUserConfig.username} = {
         bookmarks = lib.mkForce { };
+        search = lib.mkForce {
+          default = "ecosia";
+          force = true;
+        };
       };
 
       wayland.windowManager.hyprland.settings = {
