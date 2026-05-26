@@ -108,7 +108,11 @@
           zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ''${(Q)realpath}'
           export LESSOPEN='|${lib.getExe myLessfilter} %s'
 
+          # make alt + arrow-up go to parent directory
           bindkey -s '\e[1;3A' 'cd ..\n'
+
+          # prepend nix bin to PATH so that it takes precedence over system packages
+          export PATH="/run/current-system/sw/bin:$PATH"
         '';
       };
 
