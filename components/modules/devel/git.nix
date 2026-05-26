@@ -2,7 +2,12 @@
 
 {
   flake.modules.homeManager.git =
-    { config, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
 
     {
       home.packages = with pkgs; [
@@ -16,6 +21,7 @@
             name = config.myUserConfig.name;
             email = config.myUserConfig.email;
           };
+          core.editor = lib.getExe pkgs.nano;
           fetch.prune = true;
         };
         signing.format = "openpgp";
