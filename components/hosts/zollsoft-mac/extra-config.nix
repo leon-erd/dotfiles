@@ -45,7 +45,9 @@
           "postman"
           "scroll-reverser"
           "teamviewer"
+          "telegram-desktop"
           "ukelele"
+          "whatsapp"
         ];
         onActivation = {
           cleanup = "zap";
@@ -60,7 +62,9 @@
         docker-compose
         docker-credential-helpers
         fvm
+        gitlab-ci-local
         glab
+        orbstack
         pgcli
         podman
       ];
@@ -120,7 +124,6 @@
         betterdisplay
         slack
         spotify
-        telegram-desktop
       ];
 
       home.stateVersion = "25.05"; # Do not modify
