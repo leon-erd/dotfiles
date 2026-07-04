@@ -33,9 +33,9 @@
           "ktlint"
         ];
         casks = [
+          "android-studio"
           "claude-code"
-          "gather"
-          "jetbrains-toolbox"
+          "intellij-idea"
           "karabiner-elements"
           "keka"
           "libreoffice"
@@ -46,6 +46,7 @@
           "scroll-reverser"
           "teamviewer"
           "telegram-desktop"
+          "temurin@21"
           "ukelele"
           "whatsapp"
         ];
