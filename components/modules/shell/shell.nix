@@ -112,7 +112,7 @@
           bindkey -s '\e[1;3A' 'cd ..\n'
 
           # prepend nix bin to PATH so that it takes precedence over system packages
-          export PATH="/run/current-system/sw/bin:$PATH"
+          export PATH="/run/wrappers/bin:/run/current-system/sw/bin:$PATH"
         '';
       };
 
