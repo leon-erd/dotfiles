@@ -8,7 +8,6 @@
       gtk = {
         enable = true;
         theme = {
-          package = pkgs.layan-gtk-theme;
           name = "Layan-Dark";
         };
         cursorTheme = {

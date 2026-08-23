@@ -10,7 +10,7 @@
     }:
 
     let
-      vscodePackage = if pkgs.stdenv.isLinux then pkgs.vscode-fhs else pkgs.vscode;
+      vscodePackage = if pkgs.stdenv.hostPlatform.isLinux then pkgs.vscode-fhs else pkgs.vscode;
     in
     {
       programs.vscode = {
@@ -44,14 +44,14 @@
 
       home.packages = with pkgs; [
         nixd # language server
-        nixfmt-rfc-style # formatter
+        nixfmt # formatter
       ];
 
       home.activation = {
         myVscodeFiles =
           let
             vscodePath =
-              if pkgs.stdenv.isLinux then "~/.config/Code" else "~/Library/Application\\ Support/Code";
+              if pkgs.stdenv.hostPlatform.isLinux then "~/.config/Code" else "~/Library/Application\\ Support/Code";
             targetDirectory = "${config.myUserConfig.flakeDirectory}/components/modules/devel/vscode";
           in
           lib.hm.dag.entryAfter [ "writeBoundary" ] ''

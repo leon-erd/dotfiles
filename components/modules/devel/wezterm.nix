@@ -4,7 +4,7 @@
   flake.modules.homeManager.wezterm =
     { pkgs, ... }:
     let
-      fontSize = if pkgs.stdenv.isLinux then "11" else "13";
+      fontSize = if pkgs.stdenv.hostPlatform.isLinux then "11" else "13";
     in
     {
       programs.wezterm = {
@@ -23,7 +23,7 @@
           config.hide_tab_bar_if_only_one_tab = true
           config.window_background_opacity = 0.75
           config.macos_window_background_blur = 100
-          config.kde_window_background_blur = true
+          config.wayland_window_background_blur = true
           config.default_cursor_style = "BlinkingBar"
           config.cursor_blink_rate = 500
           config.enable_scroll_bar = true

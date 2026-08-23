@@ -163,7 +163,7 @@
           "--group"
           "--group-directories-first"
           "--header"
-          "--hyperlink"
+          "--hyperlink=auto"
         ];
       };
 

@@ -82,9 +82,12 @@
         };
         settings = {
           appearance = {
-            font.family = {
-              mono = "NotoMonoNerdFont";
-              sans = "NotoSansNerdFont";
+            font = {
+              headline.family = "NotoMonoNerdFont";
+              title.family = "NotoSansNerdFont";
+              body.family = "NotoSansNerdFont";
+              label.family = "NotoSansNerdFont";
+              mono.family = "NotoMonoNerdFont";
             };
             transparency = {
               enabled = true;

@@ -128,6 +128,7 @@
             ];
           };
         };
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
       };
 
       home.sessionVariables = {

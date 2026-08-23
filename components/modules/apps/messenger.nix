@@ -10,7 +10,7 @@
         slack
         telegram-desktop
         discord
-        wasistlos # whatsapp-for-linux
+        whatsie # whatsapp
       ];
     };
 }

@@ -19,15 +19,5 @@
         runHook postBuild
       '';
     };
-
-    nix-output-monitor = prev.nix-output-monitor.overrideAttrs {
-      version = "2.1.8-unstable-2025-11-09";
-      src = prev.fetchFromGitHub {
-        owner = "maralorn";
-        repo = "nix-output-monitor";
-        rev = "698e6f3afdc9d68dd65d84df7b030499dbfaf84b";
-        hash = "sha256-QwEVaUxvXEdx5icIZZYQQjvJO5j0+GeWtJvCJ/LZwpA=";
-      };
-    };
   };
 }

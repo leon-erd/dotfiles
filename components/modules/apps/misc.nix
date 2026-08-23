@@ -23,6 +23,6 @@
 
     lib.mkMerge [
       config
-      (lib.mkIf pkgs.stdenv.isLinux linuxConfig)
+      (lib.mkIf pkgs.stdenv.hostPlatform.isLinux linuxConfig)
     ];
 }
