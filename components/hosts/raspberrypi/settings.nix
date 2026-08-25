@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules.nixos.hostRaspberrypiSystemConfig =
-    { ... }:
+    { config, ... }:
     {
       imports = with self.modules.generic; [
         configSystemOptions
@@ -13,7 +13,7 @@ in
 
       mySystemConfig = {
         hostname = settings.hostname;
-        localIp = "192.168.179.200";
+        localIp = "192.168.178.200";
         acmeEmail = "leonvincenterd@web.de";
         nextcloud = {
           drives = {
@@ -21,11 +21,11 @@ in
             backup = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
           };
           hostName = "amysweinhaus.ddnss.de";
-          trustedDomains = [ "192.168.179.200" ];
+          trustedDomains = [ config.mySystemConfig.localIp ];
         };
         pihole.hosts = [
-          "192.168.179.200 raspberry.pi"
-          "192.168.179.200 amysweinhaus.ddnss.de"
+          "${config.mySystemConfig.localIp} raspberry.pi"
+          "${config.mySystemConfig.localIp} amysweinhaus.ddnss.de"
         ];
         wireguard = {
           externalInterface = "enu1u1u1";

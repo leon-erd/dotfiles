@@ -43,7 +43,7 @@
         ];
       };
       networking.defaultGateway = {
-        address = "192.168.179.1";
+        address = "192.168.178.1";
         interface = "enu1u1u1";
       };
       networking.nameservers = [
