@@ -32,7 +32,7 @@ in
 {
   disabledModules = [ "targets/darwin/linkapps.nix" ];
 
-  config = lib.mkIf pkgs.stdenv.isDarwin {
+  config = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     home.activation.copyApplications = lib.hm.dag.entryAfter [ "writeBoundary" ] copyScript;
   };
 }
