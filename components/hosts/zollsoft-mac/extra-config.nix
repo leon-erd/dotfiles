@@ -139,6 +139,9 @@
         ## [/Completion]
         eval "$(rbenv init - zsh)"
         export LANG=en_US.UTF-8
+
+        # OrbStack: command-line tools and integration
+        source ~/.orbstack/shell/init.zsh 2>/dev/null || :
       '';
 
       home.packages = with pkgs; [
