@@ -48,7 +48,8 @@
             };
           };
           mode.main.binding = {
-            "cmd-alt-t" = "exec-and-forget \${HOME}/Applications/Home\\ Manager\\ Apps/WezTerm.app/wezterm-gui";
+            "cmd-alt-t" =
+              "exec-and-forget \${HOME}/Applications/Home\\ Manager\\ Apps/WezTerm.app/Contents/MacOS/wezterm-gui";
             "cmd-alt-s" = "exec-and-forget ${lib.getExe pkgs.flameshot} gui";
             "${mainMod}-b" = "exec-and-forget ${./scratchpad.sh} --command btop";
             "${mainMod}-a" = "exec-and-forget ${./scratchpad.sh} --app-name \"Activity Monitor\"";
