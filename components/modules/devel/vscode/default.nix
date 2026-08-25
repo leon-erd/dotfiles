@@ -51,7 +51,10 @@
         myVscodeFiles =
           let
             vscodePath =
-              if pkgs.stdenv.hostPlatform.isLinux then "~/.config/Code" else "~/Library/Application\\ Support/Code";
+              if pkgs.stdenv.hostPlatform.isLinux then
+                "~/.config/Code"
+              else
+                "~/Library/Application\\ Support/Code";
             targetDirectory = "${config.myUserConfig.flakeDirectory}/components/modules/devel/vscode";
           in
           lib.hm.dag.entryAfter [ "writeBoundary" ] ''
