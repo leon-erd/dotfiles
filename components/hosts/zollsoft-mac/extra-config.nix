@@ -15,6 +15,19 @@
         inputs.nix-homebrew.darwinModules.nix-homebrew
       ];
 
+      # cross-build aarch64-linux (raspberrypi) via a local Linux VM instead of binfmt/QEMU
+      nix.linux-builder = {
+        enable = true;
+        package = pkgs.darwin.linux-builder-vz;
+        systems = [ "aarch64-linux" ];
+        maxJobs = 12;
+        config = {
+          virtualisation.cores = 12;
+          virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
+          virtualisation.darwin-builder.diskSize = 100 * 1024; # MiB
+        };
+      };
+
       nix-homebrew = {
         enable = true;
         enableRosetta = true; # for Apple Silicon
@@ -65,6 +78,7 @@
         fvm
         gitlab-ci-local
         glab
+        nixos-rebuild
         orbstack
         pgcli
         podman
@@ -107,6 +121,14 @@
         bookmarks = lib.mkForce { };
       };
 
+      home.sessionVariables = {
+        DEPLOY_FLAKE = "${config.myUserConfig.flakeDirectory}/components/hosts/raspberrypi";
+        DEPLOY_USER = "leon";
+        DEPLOY_HOST = "raspberry.pi";
+        DEPLOY_USER_CONFIG_NAME = "leon@raspberrypi";
+        DEPLOY_SYSTEM_CONFIG_NAME = "raspberrypi";
+      };
+
       programs.zsh.initContent = ''
         export PATH="/opt/homebrew/bin:$PATH"
         export PATH="$PATH:/usr/local/bin"
@@ -125,6 +147,9 @@
         betterdisplay
         slack
         spotify
+
+        self.packages.${pkgs.stdenv.hostPlatform.system}.remoteDeploymentSystem
+        self.packages.${pkgs.stdenv.hostPlatform.system}.remoteDeploymentHome
       ];
 
       home.stateVersion = "25.05"; # Do not modify
