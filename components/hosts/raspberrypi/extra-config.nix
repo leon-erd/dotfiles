@@ -10,6 +10,7 @@
       users.users.${username} = {
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM22vgwjJ9HTFLvJTyQcyq4sgEFzI6jAS2FX6aB7AXVK leon@inspiron-laptop"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKNQj1Y70rPJey192A0YT2IL8gqKvYYBwDuAztsztpdH leon@zollsoft-mac"
         ];
       };
       nix.settings.trusted-users = [ username ];
