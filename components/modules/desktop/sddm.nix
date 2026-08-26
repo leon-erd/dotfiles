@@ -11,20 +11,22 @@
 
       environment.systemPackages = with pkgs; [
         (
+          # https://github.com/Keyitdev/sddm-astronaut-theme#using-system-configuration-with-custom-overrides
           (sddm-astronaut.override {
             embeddedTheme = "pixel_sakura";
             themeConfig = {
               Background = "Backgrounds/my_background.mp4";
+              Font = "Open Sans";
               HideVirtualKeyboard = false;
               HideSystemButtons = false;
             };
           }).overrideAttrs
-          (prevAttrs: {
-            installPhase = prevAttrs.installPhase + ''
-              chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
-              cp ${../../wallpaper/animated/mountains-in-clouds.mp4} $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/my_background.mp4
-            '';
-          })
+            (prevAttrs: {
+              installPhase = prevAttrs.installPhase + ''
+                chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/
+                cp ${../../wallpaper/animated/mountains-in-clouds.mp4} $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/my_background.mp4
+              '';
+            })
         )
       ];
 
