@@ -2,11 +2,23 @@
 
 {
   flake.modules.homeManager.firefox =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
 
     {
       programs.firefox = {
         enable = true;
+        # Silences home-manager's stateVersion migration warning on Linux
+        # (default configPath there only moves to the XDG path once
+        # stateVersion >= 26.05). Must stay Linux-only: on Darwin, configPath
+        # is hardcoded to "Library/Application Support/Firefox" and setting
+        # it here would make home-manager manage a profile the real Firefox
+        # app never reads.
+        configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/mozilla/firefox";
         profiles.${config.myUserConfig.username} = {
           search = {
             default = "ddg"; # DuckDuckGo
@@ -128,7 +140,6 @@
             ];
           };
         };
-        configPath = "${config.xdg.configHome}/mozilla/firefox";
       };
 
       home.sessionVariables = {
