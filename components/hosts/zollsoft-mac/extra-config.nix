@@ -24,7 +24,15 @@
         config = {
           virtualisation.cores = 12;
           virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
-          virtualisation.darwin-builder.diskSize = 100 * 1024; # MiB
+          virtualisation.darwin-builder.diskSize = 40 * 1024; # MiB
+
+          # root ("/", where Nix builds under /tmp by default) is a RAM-backed
+          # tmpfs capped at ~50% of memorySize on both the QEMU and VZ builder
+          # backends; large builds can exceed that.
+          # Build on the much bigger persistent store disk instead.
+          # Must be root-only (0755) -- Nix refuses a world-writable build-dir.
+          systemd.tmpfiles.rules = [ "d /nix/.rw-store/build-tmp 0755 root root - -" ];
+          nix.settings.build-dir = "/nix/.rw-store/build-tmp";
         };
       };
 
