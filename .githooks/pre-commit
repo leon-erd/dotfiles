@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+if ! command -v nixfmt >/dev/null 2>&1 && ! command -v nix-shell >/dev/null 2>&1; then
+    echo "Commit aborted: nixfmt or nix-shell is required for the Nix formatting check." >&2
+    exit 1
+fi
+
+# Check the complete prospective commit, including partially staged files.
+snapshot=$(mktemp -d "${TMPDIR:-/tmp}/dotfiles-nix-format.XXXXXX")
+trap 'rm -rf -- "$snapshot"' EXIT
+git checkout-index --all --prefix="$snapshot/"
+
+echo "Checking Nix formatting of the commit contents..." >&2
+if ! (
+    # Do not carry the original repository's Git context into the temporary tree.
+    while IFS= read -r variable; do
+        unset "$variable"
+    done < <(git rev-parse --local-env-vars)
+    cd "$snapshot" || exit 1
+    # CI's nixfmt-tree uses nixfmt; avoid starting a Nix shell when it is installed.
+    if command -v nixfmt >/dev/null 2>&1; then
+        find . -type f -name '*.nix' -exec nixfmt --check {} +
+    else
+        nix-shell -p nixfmt --run 'find . -type f -name "*.nix" -exec nixfmt --check {} +'
+    fi
+); then
+    echo "Commit aborted: Nix formatting check failed." >&2
+    echo "Fix the reported files and stage them again. Working files and the Git index were not changed." >&2
+    exit 1
+fi

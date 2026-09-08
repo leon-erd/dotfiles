@@ -75,6 +75,20 @@ cd ~/dotfiles
 home-manager switch --flake ./#<userConfigurationName>
 ```
 
+## Local commit checks
+
+Enable the repository's pre-commit hook once after cloning:
+
+```bash
+git config --local core.hooksPath .githooks
+```
+
+The hook checks every `.nix` file in the prospective commit with `nixfmt --check`,
+using the same formatter as CI's `nixfmt-tree`. It uses an installed `nixfmt`
+directly for fast checks and falls back to `nix-shell -p nixfmt` if needed.
+It checks a temporary copy of the Git index, so neither working files nor staged
+contents are formatted automatically.
+
 ## Raspberry Pi
 
 The raspberrypi has its own `flake.nix` + `flake.lock` for independent `nixpkgs` update cycles (server stability). Build from its subdirectory:
