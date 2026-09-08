@@ -85,5 +85,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    aerospace-scratchpad = {
+      url = "github:cristianoliveira/aerospace-scratchpad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

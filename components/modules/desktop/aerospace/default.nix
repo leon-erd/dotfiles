@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 
 {
   flake.modules.homeManager.aerospace =
@@ -8,10 +8,13 @@
       mainMod = "ctrl-alt";
     in
     {
+      imports = [ self.modules.homeManager.aerospaceScratchpads ];
+
       programs.aerospace = {
         enable = true;
         launchd.enable = true;
         settings = {
+          config-version = 2;
           after-startup-command = [
             "exec-and-forget ${lib.getExe pkgs.jankyborders} active_color=0xff00ff99 inactive_color=0xaa444444 width=5.0"
             "exec-and-forget ${lib.getExe pkgs.autoraise} -delay 0"
@@ -21,7 +24,6 @@
           default-root-container-orientation = "auto";
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
-          exec-on-workspace-change = [ ]; # sketchybar
           gaps = {
             inner = {
               horizontal = 3;
@@ -48,13 +50,8 @@
             };
           };
           mode.main.binding = {
-            "cmd-alt-t" =
-              "exec-and-forget \${HOME}/Applications/Home\\ Manager\\ Apps/WezTerm.app/Contents/MacOS/wezterm-gui";
+            "cmd-alt-t" = "exec-and-forget ${lib.getExe pkgs.wezterm}";
             "cmd-alt-s" = "exec-and-forget ${lib.getExe pkgs.flameshot} gui";
-            "${mainMod}-b" = "exec-and-forget ${./scratchpad.sh} --command btop";
-            "${mainMod}-a" = "exec-and-forget ${./scratchpad.sh} --app-name \"Activity Monitor\"";
-            "${mainMod}-e" = "exec-and-forget ${./scratchpad.sh} --app-name Finder";
-            "${mainMod}-s" = "exec-and-forget ${./scratchpad.sh} --app-name Spotify";
             "alt-f4" = "close --quit-if-last-window";
             "alt-tab" = "focus dfs-next --boundaries-action wrap-around-the-workspace";
             "${mainMod}-f" = "layout floating tiling";
@@ -121,7 +118,7 @@
               run = "move-node-to-workspace 9";
             }
             {
-              "if".app-id = "com.gather.Gather";
+              "if".app-id = "com.gather.GatherV2";
               run = "move-node-to-workspace 9";
             }
             {

@@ -28,6 +28,14 @@
           config.cursor_blink_rate = 500
           config.enable_scroll_bar = true
 
+          -- Separate GUI processes keep scratchpad titles stable across tabs and commands.
+          local scratchpad_title = os.getenv 'WEZTERM_SCRATCHPAD_TITLE'
+          if scratchpad_title then
+            wezterm.on('format-window-title', function()
+              return scratchpad_title
+            end)
+          end
+
           config.keys = {
             -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively
             {
