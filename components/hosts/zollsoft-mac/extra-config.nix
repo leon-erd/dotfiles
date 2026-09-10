@@ -68,6 +68,7 @@
           "teamviewer"
           "telegram-desktop"
           "temurin@21"
+          "temurin@25"
           "ukelele"
           "whatsapp"
         ];
@@ -81,11 +82,13 @@
       # development tools
       environment.systemPackages = with pkgs; [
         acli
+        chatgpt
         docker-compose
         docker-credential-helpers
         fvm
         gitlab-ci-local
         glab
+        lulu
         nixos-rebuild
         orbstack
         pgcli
