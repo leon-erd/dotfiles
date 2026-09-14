@@ -27,7 +27,7 @@ in
       myUsers = [
         {
           username = settings.username;
-          name = "Leon";
+          name = "Barbara";
           email = "leonvincenterd@web.de";
           flakeDirectory = "/home/${settings.username}/dotfiles";
           systemConfigurationName = settings.systemConfigurationName;
