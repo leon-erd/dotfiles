@@ -53,7 +53,10 @@
             };
           };
           general = {
-            apps.terminal = [ "${lib.getExe pkgs.alacritty}" ];
+            apps = {
+              terminal = [ "${lib.getExe pkgs.alacritty}" ];
+              explorer = [ "${lib.getExe pkgs.kdePackages.dolphin}" ];
+            };
             idle.timeouts = [
               # {
               #   timeout = 180;
@@ -72,6 +75,36 @@
           };
           bar = {
             clock.showIcon = false;
+            statusIcons = [
+              {
+                "id" = "lockStatus";
+                "enabled" = false;
+              }
+              {
+                "id" = "audio";
+                "enabled" = true;
+              }
+              {
+                "id" = "microphone";
+                "enabled" = true;
+              }
+              {
+                "id" = "kbLayout";
+                "enabled" = false;
+              }
+              {
+                "id" = "network";
+                "enabled" = true;
+              }
+              {
+                "id" = "bluetooth";
+                "enabled" = true;
+              }
+              {
+                "id" = "battery";
+                "enabled" = true;
+              }
+            ];
             entries = [
               {
                 id = "logo";
@@ -110,10 +143,6 @@
                 enabled = true;
               }
             ];
-            status = {
-              showAudio = true;
-              showMicrophone = true;
-            };
             tray = {
               background = true;
             };
@@ -129,6 +158,9 @@
           border = {
             thickness = 1;
             rounding = 20;
+          };
+          dashboard = {
+            showWeather = false;
           };
           launcher = {
             showOnHover = false;
