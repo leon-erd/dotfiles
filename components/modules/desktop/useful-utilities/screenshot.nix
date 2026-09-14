@@ -15,8 +15,8 @@
           "match:namespace selection, no_anim on"
         ];
         permission = [
-          "${lib.getExe pkgs.grim}, screencopy, allow"
-          "${lib.getExe pkgs.hyprpicker}, screencopy, allow" # required for freezing the screen when selecting area
+          "${lib.escapeRegex (lib.getExe pkgs.grim)}, screencopy, allow"
+          "${lib.escapeRegex (lib.getExe pkgs.hyprpicker)}, screencopy, allow" # required for freezing the screen when selecting area
         ];
       };
     };

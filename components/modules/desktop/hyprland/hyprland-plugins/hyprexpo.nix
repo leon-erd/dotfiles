@@ -2,7 +2,7 @@
 
 {
   flake.modules.homeManager.hyprexpo =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
 
     let
       inherit (pkgs.hyprlandPlugins) hyprexpo;
@@ -24,7 +24,7 @@
           };
           bind = [ "$mainMod, W, hyprexpo:expo, toggle" ];
           permission = [
-            "${hyprexpo}/lib/libhyprexpo.so, plugin, allow"
+            "${lib.escapeRegex "${hyprexpo}/lib/libhyprexpo.so"}, plugin, allow"
           ];
         };
       };

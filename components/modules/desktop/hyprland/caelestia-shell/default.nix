@@ -187,7 +187,14 @@
         ];
 
         permission = [
-          "/nix/store/[a-z0-9]{32}-quickshell-wrapped-[0-9.]*/bin/.quickshell-wrapped, screencopy, allow"
+          "${
+            lib.escapeRegex (
+              lib.getExe' (lib.findFirst (p: (p.pname or null) == "quickshell")
+                (throw "quickshell not found in caelestia-shell buildInputs")
+                config.programs.caelestia.package.buildInputs
+              ) ".quickshell-wrapped"
+            )
+          }, screencopy, allow"
         ];
 
         general.gaps_out = lib.mkForce 10;

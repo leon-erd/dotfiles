@@ -2,7 +2,7 @@
 
 {
   flake.modules.homeManager.hyprDynamicCursors =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
 
     let
       inherit (pkgs.hyprlandPlugins) hypr-dynamic-cursors;
@@ -17,7 +17,7 @@
             mode = "tilt";
           };
           permission = [
-            "${hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so, plugin, allow"
+            "${lib.escapeRegex "${hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so"}, plugin, allow"
           ];
         };
       };
