@@ -184,9 +184,9 @@
           # https://github.com/caelestia-dots/shell/issues/390
           "CTRL + ALT, B, exec, caelestia shell -k; QT_QPA_PLATFORMTHEME=gtk3 caelestia shell -d"
           "CTRL + ALT, W, exec, ${
-            self.packages.${system}.selectWallpaperImage
+            lib.getExe self.packages.${system}.selectWallpaperImage
           } ${config.myUserConfig.wallpaperFolder} && ${
-            self.packages.${system}.updateWallpaperCaelestia
+            lib.getExe self.packages.${system}.updateWallpaperCaelestia
           } --fallback ${../../../../wallpaper/fallback.jpg}"
         ];
 
