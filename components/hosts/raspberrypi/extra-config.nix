@@ -33,24 +33,13 @@
       networking.hostName = config.mySystemConfig.hostname;
       networking.wireless.enable = false;
 
-      # Static IP configuration
-      networking.interfaces.enu1u1u1 = {
-        useDHCP = false;
-        ipv4.addresses = [
-          {
-            address = config.mySystemConfig.localIp;
-            prefixLength = 24;
-          }
-        ];
-      };
-      networking.defaultGateway = {
-        address = "192.168.178.1";
-        interface = "enu1u1u1";
-      };
-      networking.nameservers = [
-        "1.1.1.1"
-        "8.8.8.8"
-      ];
+      # Request the preferred IP via DHCP; the router supplies gateway and DNS.
+      # The DHCP server may assign a different address unless it is reserved.
+      networking.interfaces.${config.mySystemConfig.externalInterface}.useDHCP = true;
+      networking.dhcpcd.extraConfig = ''
+        interface ${config.mySystemConfig.externalInterface}
+        request ${config.mySystemConfig.localIp}
+      '';
 
       swapDevices = [
         {

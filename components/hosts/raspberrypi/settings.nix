@@ -1,6 +1,7 @@
 { self, ... }:
 let
   settings = import ./_settings-base.nix;
+  network = "10.10.10";
 in
 {
   flake.modules.nixos.hostRaspberrypiSystemConfig =
@@ -13,7 +14,8 @@ in
 
       mySystemConfig = {
         hostname = settings.hostname;
-        localIp = "192.168.178.200";
+        localIp = "${network}.10";
+        externalInterface = "enu1u1u1";
         acmeEmail = "leonvincenterd@web.de";
         nextcloud = {
           drives = {
@@ -26,9 +28,9 @@ in
         pihole.hosts = [
           "${config.mySystemConfig.localIp} raspberry.pi"
           "${config.mySystemConfig.localIp} amysweinhaus.ddnss.de"
+          "${network}.1 fritz.box"
         ];
         wireguard = {
-          externalInterface = "enu1u1u1";
           clientPeers = [
             {
               name = "inspiron-laptop";

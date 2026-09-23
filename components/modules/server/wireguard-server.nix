@@ -15,7 +15,7 @@
       };
 
       networking.nat.enable = true;
-      networking.nat.externalInterface = config.mySystemConfig.wireguard.externalInterface;
+      networking.nat.externalInterface = config.mySystemConfig.externalInterface;
       networking.nat.internalInterfaces = [ "wg0" ];
       networking.firewall = {
         allowedUDPPorts = [ 51820 ];
@@ -29,14 +29,14 @@
 
           # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
           postSetup = ''
-            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ${config.mySystemConfig.wireguard.externalInterface} -j MASQUERADE
-            ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o ${config.mySystemConfig.wireguard.externalInterface} -j ACCEPT
+            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o ${config.mySystemConfig.externalInterface} -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o ${config.mySystemConfig.externalInterface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o wg0 -j ACCEPT
           '';
 
           postShutdown = ''
-            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ${config.mySystemConfig.wireguard.externalInterface} -j MASQUERADE
-            ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o ${config.mySystemConfig.wireguard.externalInterface} -j ACCEPT
+            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o ${config.mySystemConfig.externalInterface} -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o ${config.mySystemConfig.externalInterface} -j ACCEPT
             ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o wg0 -j ACCEPT
           '';
 

@@ -42,6 +42,11 @@
           description = "Local IP address of the machine";
           example = "192.168.179.200";
         };
+        externalInterface = mkOption {
+          type = str;
+          description = "Network interface connected to the upstream router (use `ip a`)";
+          example = "enu1u1u1";
+        };
         acmeEmail = mkOption {
           type = str;
           description = "Email address for ACME/Let's Encrypt certificates";
@@ -79,11 +84,6 @@
           };
         };
         wireguard = {
-          externalInterface = mkOption {
-            type = str;
-            description = "Network interface facing the internet (use `ip a`)";
-            example = "enu1u1u1";
-          };
           clientPeers = mkOption {
             type = listOf (submodule {
               options = {
