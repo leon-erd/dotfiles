@@ -15,6 +15,7 @@ in
       mySystemConfig = {
         hostname = settings.hostname;
         localIp = "${network}.10";
+        localNetwork = "${network}.0/24";
         externalInterface = "eno1";
         acmeEmail = "leonvincenterd@web.de";
         nextcloud = {
@@ -27,6 +28,7 @@ in
         };
         pihole.hosts = [
           "${config.mySystemConfig.localIp} amysweinhaus.ddnss.de"
+          "${config.mySystemConfig.localIp} ${config.mySystemConfig.hostname}.home.arpa"
           "${network}.1 fritz.box"
         ];
         wireguard = {

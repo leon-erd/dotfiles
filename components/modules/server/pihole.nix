@@ -9,6 +9,11 @@
       ...
     }:
 
+    let
+      localNetwork = config.mySystemConfig.localNetwork;
+      networkAddress = lib.head (lib.splitString "/" localNetwork);
+      localDnsServer = "${lib.concatStringsSep "." (lib.take 3 (lib.splitString "." networkAddress))}.1";
+    in
     {
       services.pihole-ftl = {
         enable = true;
@@ -26,19 +31,21 @@
         settings = {
           dns = {
             upstreams = [
+              # quad9 (with Malware Blocking and DNSSEC Validation)
+              "9.9.9.9"
+              "149.112.112.112"
+              "2620:fe::fe"
+              "2620:fe::9"
               # DNS.WATCH
               "84.200.69.80"
               "84.200.70.40"
               "2001:1608:10:25:0:0:1c04:b12f"
               "2001:1608:10:25:0:0:9249:d69b"
-              # Cloudflare (with Malware Blocking and DNSSEC Validation)
-              "9.9.9.9"
-              "149.112.112.112"
-              "2620:fe::fe"
-              "2620:fe::9"
             ];
             # Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
             hosts = config.mySystemConfig.pihole.hosts;
+            # https://docs.pi-hole.net/ftldns/configfile/#revservers
+            revServers = lib.optional (localNetwork != null) "true,${localNetwork},${localDnsServer},fritz.box";
           };
           webserver = {
             paths = {

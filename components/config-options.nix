@@ -7,6 +7,7 @@
     let
       inherit (lib.types)
         listOf
+        nullOr
         str
         submodule
         ;
@@ -41,6 +42,16 @@
           type = str;
           description = "Local IP address of the machine";
           example = "192.168.179.200";
+        };
+        localNetwork = mkOption {
+          type = nullOr str;
+          default = null;
+          description = ''
+            Local IPv4 subnet in CIDR notation. Pi-hole forwards local name
+            lookups to the address ending in .1 in this network. 
+            Null disables this forwarding.
+          '';
+          example = "192.168.179.0/24";
         };
         externalInterface = mkOption {
           type = str;

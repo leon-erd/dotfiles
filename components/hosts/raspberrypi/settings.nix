@@ -15,6 +15,7 @@ in
       mySystemConfig = {
         hostname = settings.hostname;
         localIp = "${network}.10";
+        localNetwork = "${network}.0/24";
         externalInterface = "enu1u1u1";
         acmeEmail = "leonvincenterd@web.de";
         nextcloud = {
