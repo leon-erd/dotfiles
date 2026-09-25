@@ -15,16 +15,23 @@
         inputs.nix-homebrew.darwinModules.nix-homebrew
       ];
 
-      # cross-build aarch64-linux (raspberrypi) via a local Linux VM instead of binfmt/QEMU
+      # Build Linux systems locally; the VZ guest uses Rosetta for x86_64 binaries.
       nix.linux-builder = {
         enable = true;
         package = pkgs.darwin.linux-builder-vz;
-        systems = [ "aarch64-linux" ];
+        systems = [
+          "aarch64-linux"
+          "x86_64-linux"
+        ];
         maxJobs = 12;
         config = {
           virtualisation.cores = 12;
           virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
           virtualisation.darwin-builder.diskSize = 40 * 1024; # MiB
+
+          # Keep guest kernel diagnostics without macOS unified-log rate limiting.
+          virtualisation.vz.console = "file";
+          virtualisation.vz.consoleLog = "./console.log";
 
           # root ("/", where Nix builds under /tmp by default) is a RAM-backed
           # tmpfs capped at ~50% of memorySize on both the QEMU and VZ builder
