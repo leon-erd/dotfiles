@@ -5,14 +5,21 @@
     {
       pkgs,
       config,
+      lib,
       ...
     }:
-
+    let
+      peerAddresses = lib.concatMap (
+        peer: peer.allowedIPs
+      ) config.networking.wireguard.interfaces.wg0.peers;
+    in
     {
-      sops.secrets = {
-        "wireguard/server/private_key" = {
-        };
-      };
+      # Peer access must be allowed before the reverse proxy's deny-all rule.
+      services.nginx.commonHttpConfig = lib.mkBefore (
+        lib.concatMapStrings (ip: "allow ${ip};\n") peerAddresses
+      );
+
+      sops.secrets."wireguard/server/private_key" = { };
 
       networking.nat.enable = true;
       networking.nat.externalInterface = config.mySystemConfig.externalInterface;

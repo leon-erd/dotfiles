@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 
 {
   flake.modules.nixos.nextcloud =
@@ -28,6 +28,7 @@
 
     {
       imports = [
+        self.modules.nixos.reverseProxy
         {
           options.services.nextcloud.settings = lib.mkOption {
             # Manage all mail settings in Nextcloud's web UI, including defaults.
@@ -108,7 +109,7 @@
         };
 
         ### main settings ###
-        hostName = config.mySystemConfig.nextcloud.hostName;
+        hostName = "cloud.${config.mySystemConfig.domain}";
         home = "/var/lib/nextcloud";
         datadir = mainDriveMountPoint;
         config = {
@@ -187,23 +188,12 @@
       };
 
       ### CONFIGURE NGINX and ACME ###
-      security.acme.acceptTerms = true;
-      security.acme.defaults.email = config.mySystemConfig.acmeEmail;
-      services.nginx.recommendedTlsSettings = true;
-      services.nginx.recommendedOptimisation = true;
       services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-        forceSSL = true;
-        enableACME = true;
         extraConfig = ''
+          allow all;
           http2_body_preread_size 1m; # this makes large uploads in local network a lot faster
         '';
       };
-
-      ### open ports in firewall ###
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
 
       ### CONFIGURE SYSTEMD SERVICES AND TIMERS ###
       systemd.timers."nextcloud-preview-generator" = {

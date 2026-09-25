@@ -14,6 +14,7 @@ in
 
       mySystemConfig = {
         hostname = settings.hostname;
+        domain = "amysweinhaus.ddnss.de";
         localIp = "${network}.10";
         localNetwork = "${network}.0/24";
         externalInterface = "enu1u1u1";
@@ -23,12 +24,10 @@ in
             main = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
             backup = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
           };
-          hostName = "amysweinhaus.ddnss.de";
           trustedDomains = [ config.mySystemConfig.localIp ];
         };
         pihole.hosts = [
           "${config.mySystemConfig.localIp} raspberry.pi"
-          "${config.mySystemConfig.localIp} amysweinhaus.ddnss.de"
           "${network}.1 fritz.box"
         ];
         wireguard = {
@@ -46,6 +45,7 @@ in
           ];
         };
       };
+
     };
 
   flake.modules.generic.hostRaspberrypiUserConfig =

@@ -7,7 +7,6 @@
     let
       inherit (lib.types)
         listOf
-        nullOr
         str
         submodule
         ;
@@ -19,6 +18,11 @@
           type = str;
           description = "Hostname, unique identifier for building the flake";
           example = "inspiron-laptop";
+        };
+        domain = mkOption {
+          type = str;
+          description = "Base domain for the shared HTTPS reverse proxy and wildcard certificate";
+          example = "example.com";
         };
         timezone = mkOption {
           type = str;
@@ -44,12 +48,10 @@
           example = "192.168.179.200";
         };
         localNetwork = mkOption {
-          type = nullOr str;
-          default = null;
+          type = str;
           description = ''
             Local IPv4 subnet in CIDR notation. Pi-hole forwards local name
-            lookups to the address ending in .1 in this network. 
-            Null disables this forwarding.
+            lookups to the address ending in .1 in this network.
           '';
           example = "192.168.179.0/24";
         };
@@ -74,11 +76,6 @@
               description = "udev disk ID for the Nextcloud backup drive";
               example = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
             };
-          };
-          hostName = mkOption {
-            type = str;
-            description = "Public hostname for the Nextcloud instance";
-            example = "cloud.example.com";
           };
           trustedDomains = mkOption {
             type = listOf str;

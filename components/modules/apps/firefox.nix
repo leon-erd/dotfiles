@@ -105,11 +105,11 @@
                   }
                   {
                     name = "Amy's Weinhaus";
-                    url = "https://amysweinhaus.ddnss.de";
+                    url = "https://cloud.amysweinhaus.ddnss.de";
                   }
                   {
                     name = "Pihole";
-                    url = "https://pi.hole:8443";
+                    url = "https://dns.amysweinhaus.ddnss.de/admin/";
                   }
                   {
                     name = "Github";

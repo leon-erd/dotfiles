@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 
 {
   flake.modules.nixos.pihole =
@@ -10,16 +10,20 @@
     }:
 
     let
+      hostName = "dns.${config.mySystemConfig.domain}";
+      webListenAddress = "127.0.0.1:8080";
       localNetwork = config.mySystemConfig.localNetwork;
       networkAddress = lib.head (lib.splitString "/" localNetwork);
       localDnsServer = "${lib.concatStringsSep "." (lib.take 3 (lib.splitString "." networkAddress))}.1";
     in
     {
+      imports = [ self.modules.nixos.reverseProxy ];
+
       services.pihole-ftl = {
         enable = true;
         openFirewallDNS = true;
         openFirewallDHCP = true;
-        openFirewallWebserver = true;
+        openFirewallWebserver = false;
         lists = [
           {
             url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
@@ -43,9 +47,15 @@
               "2001:1608:10:25:0:0:9249:d69b"
             ];
             # Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
-            hosts = config.mySystemConfig.pihole.hosts;
+            hosts = lib.unique (
+              config.mySystemConfig.pihole.hosts
+              # Additional entries that resolve all virtual hosts on the reverse proxy to the local ip
+              ++ map (name: "${config.mySystemConfig.localIp} ${name}") (
+                builtins.attrNames config.services.nginx.virtualHosts
+              )
+            );
             # https://docs.pi-hole.net/ftldns/configfile/#revservers
-            revServers = lib.optional (localNetwork != null) "true,${localNetwork},${localDnsServer},fritz.box";
+            revServers = [ "true,${localNetwork},${localDnsServer},fritz.box" ];
           };
           webserver = {
             paths = {
@@ -61,10 +71,17 @@
 
       services.pihole-web = {
         enable = true;
-        ports = [
-          "8080r"
-          "8443s"
-        ];
+        hostName = hostName;
+        # Allow connection only through the reverse proxy
+        # https://docs.pi-hole.net/ftldns/configfile/#port_1
+        ports = [ webListenAddress ];
+      };
+
+      services.nginx.virtualHosts.${hostName} = {
+        locations."/" = {
+          proxyPass = "http://${webListenAddress}";
+          proxyWebsockets = true;
+        };
       };
     };
 }
