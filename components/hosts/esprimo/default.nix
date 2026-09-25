@@ -35,8 +35,8 @@ in
         nixos.fail2ban
         nixos.n8n
         nixos.nextcloud
-        # nixos.pihole
-        # nixos.wireguardServer
+        nixos.pihole
+        nixos.wireguardServer
 
         # shell
         system.cliApps

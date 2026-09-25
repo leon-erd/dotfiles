@@ -5,7 +5,7 @@ Includes configurations for desktop NixOS, server NixOS, nix-darwin, and home-ma
 
 ## Architecture
 
-`import-tree` auto-imports every `.nix` file under `components/` into the flake. No manual registration needed when adding new modules.\
+`import-tree` auto-imports `.nix` files under `components/` into the flake. The Raspberry Pi and Esprimo host directories are excluded because they use separate flakes. No manual registration needed when adding new modules.\
 Modules are namespaced by flake-parts module class and accessed via `self.modules.<class>.<name>`:
 
 | Class | Used for |
