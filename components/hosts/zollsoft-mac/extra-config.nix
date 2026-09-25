@@ -62,6 +62,7 @@
         ];
         casks = [
           "android-studio"
+          "chatgpt"
           "claude-code"
           "intellij-idea"
           "karabiner-elements"
@@ -89,7 +90,6 @@
       # development tools
       environment.systemPackages = with pkgs; [
         acli
-        chatgpt
         docker-compose
         docker-credential-helpers
         fvm
