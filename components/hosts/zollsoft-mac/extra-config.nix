@@ -140,11 +140,11 @@
       };
 
       home.sessionVariables = {
-        DEPLOY_FLAKE = "${config.myUserConfig.flakeDirectory}/components/hosts/raspberrypi";
+        DEPLOY_FLAKE = "${config.myUserConfig.flakeDirectory}/components/hosts/esprimo";
         DEPLOY_USER = "leon";
-        DEPLOY_HOST = "raspberry.pi";
-        DEPLOY_USER_CONFIG_NAME = "leon@raspberrypi";
-        DEPLOY_SYSTEM_CONFIG_NAME = "raspberrypi";
+        DEPLOY_HOST = "esprimo.home.arpa";
+        DEPLOY_USER_CONFIG_NAME = "leon@esprimo";
+        DEPLOY_SYSTEM_CONFIG_NAME = "esprimo";
       };
 
       programs.zsh.initContent = ''
