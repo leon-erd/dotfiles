@@ -20,7 +20,12 @@
     {
         "key": "ctrl+[Backslash]",
         "command": "editor.action.commentLine",
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "!isMac && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+[Backslash]",
+        "command": "editor.action.commentLine",
+        "when": "isMac && editorTextFocus && !editorReadonly"
     },
     {
         "key": "ctrl+numpad_divide",
@@ -30,7 +35,12 @@
     {
         "key": "ctrl+shift+[Backslash]",
         "command": "editor.action.blockComment",
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "!isMac && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+cmd+[Backslash]",
+        "command": "editor.action.blockComment",
+        "when": "isMac && editorTextFocus && !editorReadonly"
     },
     {
         "key": "ctrl+shift+numpad_divide",
@@ -102,7 +112,7 @@
         "command": "-editor.action.inlineSuggest.acceptNextWord",
         "when": "inlineSuggestionVisible && !editorReadonly"
     },
-{
+    {
         "key": "shift+enter",
         "command": "workbench.action.terminal.sendSequence",
         "args": {
