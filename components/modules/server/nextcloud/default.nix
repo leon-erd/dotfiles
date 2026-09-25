@@ -27,6 +27,15 @@
     in
 
     {
+      imports = [
+        {
+          options.services.nextcloud.settings = lib.mkOption {
+            # Manage all mail settings in Nextcloud's web UI, including defaults.
+            apply = settings: lib.filterAttrs (name: _: !(lib.hasPrefix "mail_" name)) settings;
+          };
+        }
+      ];
+
       environment.systemPackages = with pkgs; [
         myCloudScripts
         borgbackup
@@ -137,7 +146,10 @@
             "OC\\Preview\\HEIC"
           ];
           log_type = "file";
-          maintenance_window_start = 2; # run non time-sensitive tasks at 2:00am for up to 4 hours
+          default_phone_region = "DE";
+          # UTC: 23:00-03:00 CET / 00:00-04:00 CEST, before the 04:00 local backup.
+          # This schedules non-time-sensitive jobs; already running jobs may finish later.
+          maintenance_window_start = 22;
           trusted_domains = config.mySystemConfig.nextcloud.trustedDomains;
           overwriteprotocol = "https";
           preview_max_x = 2048;
@@ -147,17 +159,20 @@
 
         ### php.ini settings ###
         phpOptions = {
+          "apc.shm_size" = "128M"; # https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#apcu
           "opcache.interned_strings_buffer" = 16;
           # we allow uploads of up to 8GB (it seems that this is only neccessary for WebDAV uploads (e.g. FolderSync); large file uploads from the web interface or nextcloud client also work with low limits) but we do not want the PHP memory limit to be that high for low resource setups (the nixos module sets it to maxUploadSize by default)
           "memory_limit" = lib.mkForce "512M";
         };
         maxUploadSize = "8G";
 
-        ### php-fpm.conf settings (reduce overhead for low resource setups) ###
+        ### php-fpm.conf settings (keep workers ready for incoming requests) ###
         poolSettings = {
-          pm = "ondemand";
+          pm = "dynamic";
           "pm.max_children" = 12;
-          "pm.process_idle_timeout" = "1m";
+          "pm.start_servers" = 2;
+          "pm.min_spare_servers" = 2;
+          "pm.max_spare_servers" = 4;
           "pm.max_requests" = 500;
         };
 
@@ -165,7 +180,10 @@
         https = true;
 
         ### notify push settings ###
-        notify_push.enable = false;
+        notify_push = {
+          enable = true;
+          bendDomainToLocalhost = true;
+        };
       };
 
       ### CONFIGURE NGINX and ACME ###
@@ -176,6 +194,9 @@
       services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
         forceSSL = true;
         enableACME = true;
+        extraConfig = ''
+          http2_body_preread_size 1m; # this makes large uploads in local network a lot faster
+        '';
       };
 
       ### open ports in firewall ###
