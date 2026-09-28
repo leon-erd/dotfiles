@@ -91,6 +91,30 @@
             example = [ "192.168.179.200 raspberry.pi" ];
           };
         };
+        smartHome.zigbee2mqtt = {
+          port = mkOption {
+            type = str;
+            description = "Zigbee coordinator device path or TCP address";
+            example = "/dev/serial/by-id/usb-coordinator";
+          };
+          adapter = mkOption {
+            type = str;
+            description = "Zigbee coordinator adapter type";
+            example = "ember";
+          };
+          channel = mkOption {
+            type = lib.types.ints.between 11 26;
+            description = "Zigbee channel for this network";
+          };
+          panId = mkOption {
+            type = lib.types.ints.u16;
+            description = "Stable PAN ID for this Zigbee network";
+          };
+          extPanId = mkOption {
+            type = listOf lib.types.ints.u8;
+            description = "Stable extended PAN ID for this Zigbee network (eight bytes)";
+          };
+        };
         wireguard = {
           clientPeers = mkOption {
             type = listOf (submodule {

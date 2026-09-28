@@ -36,6 +36,7 @@ in
         nixos.n8n
         nixos.nextcloud
         nixos.pihole
+        nixos.smartHome
         nixos.wireguardServer
 
         # shell
