@@ -22,7 +22,10 @@
             email = config.myUserConfig.email;
           };
           core.editor = lib.getExe pkgs.nano;
-          fetch.prune = true;
+          fetch = {
+            prune = true;
+            pruneTags = true;
+          };
         };
         signing.format = "openpgp";
       };
