@@ -7,6 +7,7 @@
 - Declare such values through configuration options and supply concrete values
   in host/setup configuration. This includes IP addresses, network ranges,
   local domains, DNS server choices, and other environment-specific settings.
+- Values with a sensible default for all setups belong directly in the module, not in host configuration.
 - Reuse existing configuration values instead of duplicating them. Only add new
   configuration values when neccessary
 
