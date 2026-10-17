@@ -86,8 +86,8 @@
 
         ### package setup ###
         # remember you can only upgrade Nextcloud to the next major version
-        # if you want to upgrade to a newer version, change the nextcloud package (and customcss package) here
-        package = pkgs.nextcloud34;
+        # if you want to upgrade to a newer version, change the nextcloud package here
+        package = pkgs.nextcloud35;
         extraApps = {
           inherit (config.services.nextcloud.package.packages.apps)
             calendar
@@ -95,12 +95,8 @@
             notes
             previewgenerator
             tasks
+            theming_customcss
             ;
-          theming_customcss = pkgs.fetchNextcloudApp {
-            url = "https://github.com/nextcloud/theming_customcss/archive/refs/tags/v1.21.0.tar.gz";
-            sha256 = "sha256-9cJr93LOYzLG/EI3POYXkFrUwzZVjj6k84WMOOr21c4=";
-            license = "agpl3Plus";
-          };
         };
         appstoreEnable = false;
         autoUpdateApps = {
