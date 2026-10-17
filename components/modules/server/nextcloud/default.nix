@@ -143,12 +143,20 @@
             "OC\\Preview\\HEIC"
           ];
           log_type = "file";
+          # Failed client logins (WebDAV, apps) are logged at debug level; log them for fail2ban
+          "log.condition".matches = [
+            {
+              message = "Login failed:";
+              loglevel = 0;
+            }
+          ];
           default_phone_region = "DE";
           # UTC: 23:00-03:00 CET / 00:00-04:00 CEST, before the 04:00 local backup.
           # This schedules non-time-sensitive jobs; already running jobs may finish later.
           maintenance_window_start = 22;
           trusted_domains = config.mySystemConfig.nextcloud.trustedDomains;
           overwriteprotocol = "https";
+          twofactor_enforced = "true";
           preview_max_x = 2048;
           preview_max_y = 2048;
           jpeg_quality = 60;
@@ -262,7 +270,6 @@
           filter = "nextcloud";
           logpath = "${mainDriveMountPoint}/data/nextcloud.log";
         };
-        nginx-bad-request.settings.enabled = true;
         nginx-botsearch.settings.enabled = true;
       };
     };
