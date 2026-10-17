@@ -66,7 +66,10 @@
           };
           background = {
             desktopClock.enabled = false;
-            visualiser.enabled = true;
+            visualiser = {
+              enabled = true;
+              blur = true;
+            };
           };
           paths = {
             mediaGif = ./gifs/moose.gif;
@@ -148,11 +151,13 @@
             };
             workspaces = {
               showWindows = false;
+              showUnoccupied = false;
               label = "";
               activeLabel = "";
               occupiedLabel = "";
               shown = 10;
               activeTrail = true;
+              displayType = "text";
             };
           };
           border = {
