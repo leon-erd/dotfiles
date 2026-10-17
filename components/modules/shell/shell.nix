@@ -21,9 +21,9 @@
                 column -s $'\t' -t
         '';
         git-branch-collect-garbage = "git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D";
-        homie = "nh home switch --configuration ${config.myUserConfig.userConfigurationName}";
-        nixie = "nh os switch --hostname ${config.myUserConfig.systemConfigurationName}";
-        darwie = "nh darwin switch --hostname ${config.myUserConfig.systemConfigurationName}";
+        homie = "nh home switch --show-activation-logs --configuration ${config.myUserConfig.userConfigurationName}";
+        nixie = "nh os switch --show-activation-logs --hostname ${config.myUserConfig.systemConfigurationName}";
+        darwie = "nh darwin switch --show-activation-logs --hostname ${config.myUserConfig.systemConfigurationName}";
         neofetch = "nix run nixpkgs\#fastfetch -- --config examples/7.jsonc";
         root-shell = "sudo env \"HOME=/home/$USER\" zsh --login";
         tree = "eza --tree";
