@@ -110,7 +110,7 @@
               run = "move-node-to-workspace 4";
             }
             {
-              "if".app-id = "org.nixos.firefox";
+              "if".app-id = "org.mozilla.firefox";
               run = "move-node-to-workspace 5";
             }
             {

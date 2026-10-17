@@ -64,6 +64,7 @@
           "android-studio"
           "chatgpt"
           "claude-code"
+          "firefox"
           "intellij-idea"
           "karabiner-elements"
           "keka"
@@ -77,6 +78,7 @@
           "telegram-desktop"
           "temurin@21"
           "temurin@25"
+          "thunderbird"
           "ukelele"
           "whatsapp"
         ];
@@ -131,6 +133,30 @@
       home.homeDirectory = "/Users/${config.myUserConfig.username}";
       xdg.enable = true;
       programs.home-manager.enable = true;
+
+      # Firefox is installed as a brew cask: Nix's firefox and firefox-bin
+      # bundles are not validly signed, so macOS denies them access to their
+      # own profile in "Library/Application Support/Firefox".
+      # Same applies to Thunderbird.
+      programs.firefox.package = null;
+      # home-manager's thunderbird module doesn't accept null.
+      programs.thunderbird.package = pkgs.emptyDirectory;
+
+      # The signed Firefox would otherwise create a dedicated per-install profile,
+      # which it can't register in the read-only profiles.ini linked by home-manager.
+      # The LegacyProfiles policy has no effect on macOS.
+      launchd.agents.firefox-legacy-profiles = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "/bin/launchctl"
+            "setenv"
+            "MOZ_LEGACY_PROFILES"
+            "1"
+          ];
+          RunAtLoad = true;
+        };
+      };
 
       programs.firefox.profiles.${config.myUserConfig.username} = {
         settings = lib.mkForce {
