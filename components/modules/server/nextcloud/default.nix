@@ -200,6 +200,32 @@
       };
 
       ### CONFIGURE SYSTEMD SERVICES AND TIMERS ###
+      # Apply settings that Nextcloud stores in its database
+      systemd.services.nextcloud-setup.script =
+        let
+          occ = lib.getExe config.services.nextcloud.occ;
+          customCss = ''
+            .editor__content {
+              max-width: 80% !important;
+            }
+          '';
+        in
+        lib.mkAfter ''
+          # TOTP can be set up at login, which enforced two-factor authentication relies on
+          ${occ} app:enable twofactor_nextcloud_notification twofactor_totp
+          ${occ} app:disable dashboard firstrunwizard recommendations weather_status
+
+          # Do not use the setup from the previewgenerator README, it misses previews needed by the Android app:
+          # https://web.archive.org/web/20220531105303/https://ownyourbits.com/2019/06/29/understanding-and-improving-nextcloud-previews/
+          ${occ} config:app:set previewgenerator squareSizes --value="32 256"
+          ${occ} config:app:set previewgenerator widthSizes --value="256 384"
+          ${occ} config:app:set previewgenerator heightSizes --value="256"
+          ${occ} config:app:set preview jpeg_quality --value="60"
+
+          ${occ} config:app:set theming_customcss customcss --value=${lib.escapeShellArg customCss}
+          ${occ} config:app:set theming_customcss cachebuster --value=${builtins.hashString "sha256" customCss}
+        '';
+
       systemd.timers."nextcloud-preview-generator" = {
         wantedBy = [ "timers.target" ];
         after = [ "nextcloud-setup.service" ];
