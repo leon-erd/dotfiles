@@ -29,6 +29,10 @@
           virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
           virtualisation.darwin-builder.diskSize = 40 * 1024; # MiB
 
+          # Reboot the guest after a kernel panic instead of hanging with all
+          # vCPUs spinning at 100%.
+          boot.kernelParams = [ "panic=5" ];
+
           # Keep guest kernel diagnostics without macOS unified-log rate limiting.
           virtualisation.vz.console = "file";
           virtualisation.vz.consoleLog = "./console.log";
