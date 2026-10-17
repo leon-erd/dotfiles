@@ -63,10 +63,12 @@
           "rbenv" # better as brew than nix package because brew package has all dependencies included that we need for "gem install"
           "gettext"
           "ktlint"
+          "poppler"
         ];
         casks = [
           "android-studio"
           "chatgpt"
+          "claude"
           "claude-code"
           "firefox"
           "intellij-idea"
