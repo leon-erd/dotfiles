@@ -36,6 +36,12 @@
         # KWin default for all touchpads (plasma-manager's input.touchpads needs per-device ids)
         configFile.kcminputrc."Libinput/Defaults/Touchpad".NaturalScroll = true;
 
+        # Ctrl+Alt+T opens WezTerm instead of Konsole (whose desktop file defines it as default)
+        shortcuts = {
+          "services/org.kde.konsole.desktop"._launch = [ ];
+          "services/org.wezfurlong.wezterm.desktop"._launch = "Ctrl+Alt+T";
+        };
+
         # Layan global theme, applied part by part instead of via lookAndFeel:
         # applying the global theme would override window decorations and splash on login
         workspace = {
