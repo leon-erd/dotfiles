@@ -93,52 +93,6 @@
               };
             };
           };
-          bookmarks = {
-            force = true;
-            settings = [
-              {
-                toolbar = true;
-                bookmarks = [
-                  {
-                    name = "Fast.com";
-                    url = "https://fast.com";
-                  }
-                  {
-                    name = "Amy's Weinhaus";
-                    url = "https://cloud.amysweinhaus.ddnss.de";
-                  }
-                  {
-                    name = "Pihole";
-                    url = "https://dns.amysweinhaus.ddnss.de/admin/";
-                  }
-                  {
-                    name = "Github";
-                    url = "https://github.com/";
-                  }
-                  {
-                    name = "Twitch";
-                    url = "https://twitch.tv/directory/following";
-                  }
-                  {
-                    name = "Youtube";
-                    url = "https://youtube.com";
-                  }
-                  {
-                    name = "ChatGPT";
-                    url = "https://chat.openai.com";
-                  }
-                  {
-                    name = "T3 Chat";
-                    url = "https://t3.chat/";
-                  }
-                  {
-                    name = "Noogle";
-                    url = "https://noogle.dev/";
-                  }
-                ];
-              }
-            ];
-          };
         };
       };
 
