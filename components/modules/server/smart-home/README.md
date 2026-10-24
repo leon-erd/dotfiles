@@ -16,6 +16,12 @@ müssen vor dem ersten Zugriff über Nginx in der Weboberfläche gesetzt werden
 3. MQTT-Integration hinzufügen: Broker `127.0.0.1`, Port `1883`, kein TLS,
    Benutzer `homeassistant`. Passwort in sops secrets.
 4. Z2M-Login-Token in sops secrets.
+5. Sprachsteuerung: Unter **Profil → Sicherheit** einen Langzeit-Zugriffstoken für
+   Speech-to-Phrase erstellen und vor dem Deploy in sops secrets eintragen. Danach die
+   Wyoming-Integration je Dienst hinzufügen (Host `127.0.0.1`, Port `10300` für
+   Speech-to-Phrase, `10200` für Piper) und unter **Einstellungen → Sprachassistenten**
+   Speech-to-Phrase als Spracherkennung und Piper als Sprachausgabe wählen.
+   Erkannt werden nur Befehle für Entitäten, die für Assist freigegeben sind.
 
 Globale Z2M-Einstellungen in Nix ändern; UI-Änderungen daran werden beim Neustart
 überschrieben. Geräte und Gruppen bleiben erhalten. PAN-IDs und Netzwerkschlüssel
