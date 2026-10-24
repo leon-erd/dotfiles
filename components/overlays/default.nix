@@ -12,6 +12,9 @@
           propagatedUserEnvPkgs = [ ];
         });
 
+    # Removed from nixpkgs 2025-08-20 as "only compatible with Plasma 5", but upstream's look-and-feel and plasma style use the Plasma 6 format.
+    layan-kde = final.callPackage ./layan-kde/_package.nix { };
+
     autoraise = (prev.autoraise.override { enableExperimentalFocusFirst = true; }).overrideAttrs rec {
       version = "5.6";
 

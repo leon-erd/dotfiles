@@ -15,10 +15,17 @@
     };
 
   flake.modules.homeManager.kde =
-    { inputs, ... }:
+    {
+      config,
+      inputs,
+      pkgs,
+      ...
+    }:
 
     {
       imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+
+      home.packages = [ pkgs.layan-kde ];
 
       # https://github.com/nix-community/stylix/issues/267#issuecomment-2314636091
       programs.plasma = {
@@ -28,6 +35,26 @@
         };
         # KWin default for all touchpads (plasma-manager's input.touchpads needs per-device ids)
         configFile.kcminputrc."Libinput/Defaults/Touchpad".NaturalScroll = true;
+
+        # Layan global theme, applied part by part instead of via lookAndFeel:
+        # applying the global theme would override window decorations and splash on login
+        workspace = {
+          colorScheme = "Layan"; # from the theming module
+          iconTheme = config.gtk.iconTheme.name;
+          cursor = {
+            theme = config.gtk.cursorTheme.name;
+            size = config.gtk.cursorTheme.size;
+          };
+          theme = "Layan";
+          windowDecorations = {
+            library = "org.kde.breeze";
+            theme = "Breeze";
+          };
+          splashScreen = {
+            engine = "KSplashQML";
+            theme = "com.github.vinceliuice.Layan";
+          };
+        };
       };
     };
 }
