@@ -2,23 +2,16 @@
 
 {
   flake.modules.nixos.fonts =
-    { pkgs, lib, ... }:
-
-    # install all nerd fonts except Iosevka and its variants because they are huge and not needed
-    let
-      allNerdFontsNames = builtins.attrNames pkgs.nerd-fonts;
-      dropIosevka = builtins.filter (name: lib.hasPrefix "iosevka" name) allNerdFontsNames;
-      customNerdFonts = builtins.removeAttrs pkgs.nerd-fonts dropIosevka;
-      customNerdFontsDerivations = builtins.filter lib.attrsets.isDerivation (
-        builtins.attrValues customNerdFonts
-      );
-    in
+    { pkgs, ... }:
 
     {
-      fonts.packages = [
-
-      ]
-      ++ customNerdFontsDerivations;
+      # Only install the nerd fonts that are referenced in the configuration, the full set is several GB.
+      fonts.packages = with pkgs.nerd-fonts; [
+        hack
+        jetbrains-mono
+        noto
+        symbols-only # nerd icons as fallback for all other fonts
+      ];
 
       fonts.fontDir.enable = true;
 
