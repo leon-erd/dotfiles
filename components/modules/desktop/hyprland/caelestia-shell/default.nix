@@ -175,6 +175,9 @@
         };
       };
 
+      # Don't start in other sessions (e.g. KDE) that also reach the wayland target
+      systemd.user.services.caelestia.Unit.ConditionEnvironment = "XDG_CURRENT_DESKTOP=Hyprland";
+
       wayland.windowManager.hyprland.settings = {
         bindr = [
           "$mainMod, $mainMod_L, exec, caelestia shell drawers toggle launcher"
