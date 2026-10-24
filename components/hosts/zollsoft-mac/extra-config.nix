@@ -29,6 +29,13 @@
           virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
           virtualisation.darwin-builder.diskSize = 40 * 1024; # MiB
 
+          # The guest store is only a cache; results are copied back to the host.
+          # Empty it daily instead of relying on auto-GC: that only starts when the
+          # disk is almost full and then frees too little for 12 parallel jobs.
+          # Auto-GC must stay a last resort, since a GC during a deploy deletes
+          # inputs that in-flight remote builds found present and did not re-copy.
+          nix.gc.automatic = true;
+
           # Reboot the guest after a kernel panic instead of hanging with all
           # vCPUs spinning at 100%.
           boot.kernelParams = [ "panic=5" ];
@@ -168,7 +175,6 @@
         settings = lib.mkForce {
           "browser.toolbars.bookmarks.visibility" = "never";
         };
-        bookmarks = lib.mkForce { };
       };
 
       home.sessionVariables = {
