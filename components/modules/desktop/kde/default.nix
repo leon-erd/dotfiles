@@ -26,6 +26,8 @@
         configFile.kded5rc = {
           "Module-gtkconfig"."autoload" = false;
         };
+        # KWin default for all touchpads (plasma-manager's input.touchpads needs per-device ids)
+        configFile.kcminputrc."Libinput/Defaults/Touchpad".NaturalScroll = true;
       };
     };
 }
