@@ -13,7 +13,7 @@ in
 
       mySystemConfig = {
         hostname = settings.hostname;
-        defaultLocale = "de_AT.UTF-8";
+        defaultLocale = "de_DE.UTF-8";
       };
     };
 

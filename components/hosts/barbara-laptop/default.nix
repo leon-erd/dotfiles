@@ -46,13 +46,13 @@ in
         nixos.automount
         nixos.bluetooth
         nixos.intel
+        nixos.locationInformation
         nixos.networking
         nixos.pipewire
         nixos.printing
-        nixos.remote
 
         # security
-        nixos.locationInformation
+        nixos.remote
         nixos.runBinaries
 
         # shell

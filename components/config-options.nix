@@ -34,7 +34,7 @@
         };
         extraLocale = mkOption {
           type = str;
-          default = "de_AT.UTF-8";
+          default = "de_DE.UTF-8";
           description = "Extra locale (for measurement, numeric, time, …)";
         };
         kblayout = mkOption {
