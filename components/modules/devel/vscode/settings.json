@@ -49,14 +49,6 @@
     "window.menuBarVisibility": "hidden",
     "window.titleBarStyle": "native",
     "window.customTitleBarVisibility": "never",
-    "workbench.colorCustomizations": {
-        "editor.background": "#000000",
-        "activityBar.background": "#000000",
-        "sideBar.background": "#000000",
-        "sideBarSectionHeader.background": "#000000",
-        "panel.background": "#000000",
-        "statusBar.background": "#000000",
-    },
     "workbench.editorAssociations": {
         "*.pdf": "latex-workshop-pdf-hook"
     },
