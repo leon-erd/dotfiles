@@ -57,6 +57,19 @@
             esac
           done
 
+          # nh only asks for the sudo password in the system step, after the long build.
+          # Ask once at the start instead and keep the credentials fresh until the script ends.
+          run_step "Sudo password" sudo -v
+          (
+            while true; do
+              sleep 60
+              kill -0 "$$" || exit
+              sudo -n -v || exit
+            done
+          ) 2>/dev/null &
+          keepalive_pid=$!
+          trap 'kill "$keepalive_pid"' EXIT
+
           if [ "$update_repo" = true ]; then
             run_step "Repo update" update_dotfiles
           fi
