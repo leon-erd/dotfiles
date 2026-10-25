@@ -24,6 +24,10 @@
           "x86_64-linux"
         ];
         maxJobs = 12;
+        # Start every builder with an empty disk. Store state does not survive a
+        # new builder image: the DB keeps the previous image's paths as valid
+        # although their files are gone, so Nix skips copying them and builds fail.
+        ephemeral = true;
         config = {
           virtualisation.cores = 12;
           virtualisation.darwin-builder.memorySize = 16 * 1024; # MiB
