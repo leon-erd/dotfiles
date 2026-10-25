@@ -2,14 +2,14 @@
 
 {
   flake.modules.homeManager.tofi =
-    { ... }:
+    { pkgs, ... }:
 
     {
       programs.tofi = {
         enable = true;
         settings = {
           # General
-          font = "/run/current-system/sw/share/X11/fonts/NotoSansNerdFont-Regular.ttf";
+          font = "${pkgs.nerd-fonts.noto}/share/fonts/truetype/NerdFonts/Noto/NotoSansNerdFont-Regular.ttf";
           font-size = 14;
           background-color = "#00000099";
           border-color = "#6400c8";

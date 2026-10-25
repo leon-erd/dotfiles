@@ -13,8 +13,6 @@
         symbols-only # nerd icons as fallback for all other fonts
       ];
 
-      fonts.fontDir.enable = true;
-
       fonts.fontconfig.defaultFonts = {
         monospace = [
           "Hack Nerd Font Mono"
