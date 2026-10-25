@@ -58,8 +58,6 @@ in
         # shell
         system.cliApps
         nixos.cliApps
-
-        nixos.virtualisation
       ]
     );
     specialArgs = {
@@ -93,7 +91,6 @@ in
           theming
 
           # devel
-          alacritty
           git
           vscode
           wezterm

@@ -58,8 +58,6 @@ in
         # shell
         system.cliApps
         nixos.cliApps
-
-        nixos.virtualisation
       ]
     );
     specialArgs = {

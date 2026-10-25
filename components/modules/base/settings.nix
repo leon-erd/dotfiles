@@ -28,5 +28,8 @@
     {
       hardware.enableAllFirmware = true;
       users.defaultUserShell = pkgs.zsh;
+
+      # no NixOS manual (menu entry, configuration.nix man page)
+      documentation.nixos.enable = false;
     };
 }
