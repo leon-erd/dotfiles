@@ -21,6 +21,7 @@
         runtimeInputs = with pkgs; [
           boxes
           cowsay
+          curl
           figlet
           lolcat
           ncurses # tput
@@ -53,6 +54,15 @@
 
           update_dotfiles() { ${updateDotfiles}; }
 
+          wait_for_network() {
+            for _ in {1..24}; do
+              curl --silent --fail --max-time 5 --output /dev/null https://cache.nixos.org/nix-cache-info && return 0
+              echo "Waiting for the network ..."
+              sleep 5
+            done
+            return 1
+          }
+
           # usage: update [--no-pull]
           update_repo=true
           for arg in "$@"; do
@@ -82,6 +92,7 @@
             run_step "Repo update" update_dotfiles
           fi
           run_step "System update" ${switchSystem}
+          run_step "Network" wait_for_network
           run_step "Home update" ${aliases.homie}
 
           echo
