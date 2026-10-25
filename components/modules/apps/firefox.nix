@@ -16,6 +16,11 @@
         languagePacks = lib.mkDefault [ "de" ];
         # Without this firefox always uses its default language (en-US). An empty list makes it follow the system locale.
         policies.RequestedLocales = lib.mkIf (config.programs.firefox.languagePacks != [ ]) [ ];
+        # Run the content blockers in private windows as well
+        policies.ExtensionSettings = {
+          "uBlock0@raymondhill.net".private_browsing = true;
+          "gdpr@cavi.au.dk".private_browsing = true; # consent-o-matic
+        };
         # Silences home-manager's stateVersion migration warning on Linux
         # (default configPath there only moves to the XDG path once
         # stateVersion >= 26.05). Must stay Linux-only: on Darwin, configPath
@@ -33,6 +38,7 @@
             "signon.rememberSignons" = false; # don't ask to save passwords
             "extensions.activeThemeID" = "firefox-compact-light@mozilla.org"; # light theme
             "extensions.autoDisableScopes" = 0; # automatically enable extensions installed with home-manager
+            "extensions.originControls.grantByDefault" = true; # manifest v3 extensions get their site access on install
             "browser.download.always_ask_before_handling_new_types" = true; # ask whether to "open" or to "save"
             "browser.download.start_downloads_in_tmp_dir" = true; # if "open" selected: save in tmp dir
             "browser.download.useDownloadDir" = false; # if "save" selected: ask where to save
@@ -43,12 +49,21 @@
             "privacy.trackingprotection.enabled" = true;
             "dom.private-attribution.submission.enabled" = false;
             "datareporting.healthreport.uploadEnabled" = false;
+            "extensions.formautofill.creditCards.enabled" = false;
+            # No sponsored content or trends
+            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+            "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+            "browser.urlbar.suggest.trending" = false;
+            "browser.newtabpage.activity-stream.showSponsored" = false;
+            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+            "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
           };
           extensions = {
             force = true;
             packages = with pkgs.nur.repos.rycee.firefox-addons; [
               betterttv
               bitwarden
+              consent-o-matic
               duckduckgo-privacy-essentials
               grammarly
               ublock-origin
@@ -84,6 +99,33 @@
               };
               "uBlock0@raymondhill.net" = {
                 settings = {
+                  # Replaces the whole selection, so uBO's default lists have to be repeated.
+                  selectedFilterLists = [
+                    # defaults
+                    "user-filters"
+                    "ublock-filters"
+                    "ublock-badware"
+                    "ublock-privacy"
+                    "ublock-unbreak"
+                    "ublock-quick-fixes"
+                    "easylist"
+                    "easyprivacy"
+                    "urlhaus-1"
+                    "plowe-0"
+                    # cookie notices
+                    "adguard-cookies"
+                    "ublock-cookies-adguard"
+                    # annoyances (without mobile app banners and social widgets)
+                    "ublock-annoyances"
+                    "adguard-popup-overlays"
+                    "adguard-other-annoyances"
+                    "adguard-widgets"
+                    "easylist-annoyances"
+                    "easylist-chat"
+                    "easylist-newsletters"
+                    "easylist-notifications"
+                    "fanboy-ai-suggestions"
+                  ];
                   # https://github.com/pixeltris/TwitchAdSolutions?tab=readme-ov-file#applying-a-script-ublock-origin
                   # https://raw.githubusercontent.com/pixeltris/TwitchAdSolutions/master/video-swap-new/video-swap-new-ublock-origin.js
                   #

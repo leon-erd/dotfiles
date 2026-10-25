@@ -178,12 +178,6 @@
         };
       };
 
-      programs.firefox.profiles.${config.myUserConfig.username} = {
-        settings = lib.mkForce {
-          "browser.toolbars.bookmarks.visibility" = "never";
-        };
-      };
-
       home.sessionVariables = {
         DEPLOY_FLAKE = "${config.myUserConfig.flakeDirectory}/components/hosts/esprimo";
         DEPLOY_USER = "leon";
