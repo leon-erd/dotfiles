@@ -8,7 +8,8 @@
       ];
 
       imports = [
-        inputs.flake-parts.flakeModules.modules
+        # flake-parts' modules, additionally with a key for every module (allows importing a module several times)
+        (import ./components/_modules-with-key.nix inputs.flake-parts.flakeModules.modules)
         inputs.home-manager.flakeModules.home-manager
         (inputs.import-tree.matchNot ".*/hosts/(raspberrypi|esprimo)(/.*)?$" ./components)
       ];
