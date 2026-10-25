@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 
 {
   flake.modules.homeManager.shell =
@@ -47,6 +47,9 @@
       };
     in
     {
+      # uses the aliases defined here (nixie, homie, darwie)
+      imports = [ self.modules.homeManager.dotfilesUpdate ];
+
       programs.zsh = {
         enable = true;
         dotDir = "${config.xdg.configHome}/zsh";
