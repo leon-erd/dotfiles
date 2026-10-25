@@ -2,11 +2,9 @@
 
 {
   flake.modules.nixos.remote =
-    { ... }:
+    { pkgs, ... }:
 
     {
-      services.teamviewer = {
-        enable = true;
-      };
+      environment.systemPackages = [ pkgs.rustdesk-flutter ];
     };
 }

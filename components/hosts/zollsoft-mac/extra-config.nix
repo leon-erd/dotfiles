@@ -90,6 +90,7 @@
           "nextcloud"
           "openvpn-connect"
           "postman"
+          "rustdesk"
           "scroll-reverser"
           "teamviewer"
           "telegram-desktop"
