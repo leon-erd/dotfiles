@@ -106,6 +106,24 @@
             ];
           }
         ];
+
+        window-rules = [
+          {
+            description = "WezTerm: open maximized";
+            match.window-class = {
+              value = "org.wezfurlong.wezterm";
+              match-whole = false; # only the class, not "name class"
+            };
+            apply.maximizehoriz = {
+              value = true;
+              apply = "initially";
+            };
+            apply.maximizevert = {
+              value = true;
+              apply = "initially";
+            };
+          }
+        ];
       };
     };
 }
