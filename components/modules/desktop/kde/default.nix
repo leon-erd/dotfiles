@@ -52,6 +52,8 @@
             size = config.gtk.cursorTheme.size;
           };
           theme = "Layan";
+          # not via QT_STYLE_OVERRIDE: Qt Quick Controls would use it as its style name and plasmashell would not start
+          widgetStyle = "kvantum";
           windowDecorations = {
             library = "org.kde.breeze";
             theme = "Breeze";
