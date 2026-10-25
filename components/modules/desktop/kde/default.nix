@@ -27,6 +27,15 @@
 
       home.packages = [ pkgs.layan-kde ];
 
+      # Plasma has its own bluetooth applet. Overrides the autostart entry of blueman (services.blueman).
+      xdg.configFile."autostart/blueman.desktop".text = ''
+        [Desktop Entry]
+        Type=Application
+        Name=Blueman Applet
+        Exec=blueman-applet
+        NotShowIn=KDE;
+      '';
+
       # https://github.com/nix-community/stylix/issues/267#issuecomment-2314636091
       programs.plasma = {
         enable = true;
