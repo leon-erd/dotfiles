@@ -33,7 +33,6 @@
             "signon.rememberSignons" = false; # don't ask to save passwords
             "extensions.activeThemeID" = "firefox-compact-light@mozilla.org"; # light theme
             "extensions.autoDisableScopes" = 0; # automatically enable extensions installed with home-manager
-            "browser.toolbars.bookmarks.visibility" = "always"; # toolbar always visible
             "browser.download.always_ask_before_handling_new_types" = true; # ask whether to "open" or to "save"
             "browser.download.start_downloads_in_tmp_dir" = true; # if "open" selected: save in tmp dir
             "browser.download.useDownloadDir" = false; # if "save" selected: ask where to save
