@@ -85,6 +85,26 @@
             theme = "com.github.vinceliuice.Layan";
           };
         };
+
+        # Plasma's default panel without "Peek at Desktop" (org.kde.plasma.showdesktop).
+        panels = [
+          {
+            floating = true; # plasma-manager defaults to false
+            widgets = [
+              "org.kde.plasma.kickoff"
+              "org.kde.plasma.pager"
+              "org.kde.plasma.icontasks"
+              "org.kde.plasma.marginsseparator"
+              "org.kde.plasma.systemtray"
+              {
+                digitalClock.date = {
+                  enable = false;
+                  position = "belowTime";
+                };
+              }
+            ];
+          }
+        ];
       };
     };
 }
