@@ -12,6 +12,10 @@
     {
       programs.firefox = {
         enable = true;
+        # English is built in
+        languagePacks = lib.mkDefault [ "de" ];
+        # Without this firefox always uses its default language (en-US). An empty list makes it follow the system locale.
+        policies.RequestedLocales = lib.mkIf (config.programs.firefox.languagePacks != [ ]) [ ];
         # Silences home-manager's stateVersion migration warning on Linux
         # (default configPath there only moves to the XDG path once
         # stateVersion >= 26.05). Must stay Linux-only: on Darwin, configPath

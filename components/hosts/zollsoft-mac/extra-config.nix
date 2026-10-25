@@ -158,6 +158,9 @@
       programs.firefox.package = null;
       # home-manager's thunderbird module doesn't accept null.
       programs.thunderbird.package = pkgs.emptyDirectory;
+      # Language packs are applied through policies, which can't be added to these packages.
+      programs.firefox.languagePacks = [ ];
+      programs.thunderbird.languagePacks = [ ];
 
       # The signed Firefox would otherwise create a dedicated per-install profile,
       # which it can't register in the read-only profiles.ini linked by home-manager.
