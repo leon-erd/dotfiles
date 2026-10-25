@@ -23,11 +23,19 @@
           cowsay
           figlet
           lolcat
+          ncurses # tput
         ];
         text = ''
-          # big figlet text in the speech bubble (-n: no word wrapping), colored by lolcat
+          # lolcat can only do rainbows, so a plain red for errors is done with tput
+          red() {
+            tput setaf 1 2>/dev/null || true # set the foreground color to ANSI color 1 (red)
+            cat
+            tput sgr0 2>/dev/null || true # reset all text attributes (set graphics rendition 0)
+          }
+
+          # big figlet text in the speech bubble (-n: no word wrapping), colored by the command in $3
           banner() {
-            { figlet "$1"; echo; echo "$2"; } | cowsay -n -f stegosaurus | lolcat
+            { figlet "$1"; echo; echo "$2"; } | cowsay -n -f stegosaurus | "$3"
           }
 
           # runs a command, if it fails the banner is shown and the whole script stops
@@ -38,7 +46,7 @@
             figlet "$label" | boxes | lolcat
             if ! "$@"; then
               echo
-              banner "FEHLER" "Fehlgeschlagen: $label"
+              banner "FEHLER" "Fehlgeschlagen: $label" red
               exit 1
             fi
           }
@@ -77,7 +85,7 @@
           run_step "Home update" ${aliases.homie}
 
           echo
-          banner "ALLES OK" "Keine Probleme, alles aktuell."
+          banner "ALLES OK" "Keine Probleme, alles aktuell." lolcat
         '';
       };
     in
