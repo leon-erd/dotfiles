@@ -31,7 +31,10 @@
     }:
 
     {
-      imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+      imports = [
+        inputs.plasma-manager.homeModules.plasma-manager
+        self.modules.homeManager.wezterm
+      ];
 
       home.packages = [ pkgs.layan-kde ];
 
@@ -54,6 +57,9 @@
         configFile.kcminputrc."Libinput/Defaults/Touchpad".NaturalScroll = true;
 
         shortcuts."services/org.wezfurlong.wezterm.desktop"._launch = "Ctrl+Alt+T";
+
+        # Terminal for desktop entries with Terminal=true (e.g. btop), otherwise KDE falls back to Konsole
+        configFile.kdeglobals.General.TerminalApplication = "wezterm";
 
         # Layan global theme, applied part by part instead of via lookAndFeel:
         # applying the global theme would override window decorations and splash on login
