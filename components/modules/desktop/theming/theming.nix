@@ -49,6 +49,8 @@
           standard_dialogs=default
           style=kvantum
         '';
+        # plasmashell runs with QT_QPA_PLATFORMTHEME=qt5ct and reads this as well
+        "qt6ct/qt6ct.conf".source = config.xdg.configFile."qt5ct/qt5ct.conf".source;
       };
 
       # [Colors:View] BackgroundAlternate overridden for dolphin
