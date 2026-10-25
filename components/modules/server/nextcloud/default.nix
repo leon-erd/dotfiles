@@ -112,8 +112,6 @@
           dbuser = "nextcloud";
           dbtype = "mysql";
           dbname = "nextcloud";
-          adminuser = "admin";
-          adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
         };
         database.createLocally = true;
 
@@ -211,6 +209,12 @@
           '';
         in
         lib.mkAfter ''
+          # The NixOS module no longer creates an admin account during installation
+          if ! ${occ} user:info admin > /dev/null; then
+            NC_PASS="$(<${config.sops.secrets."nextcloud/adminpass".path})" \
+              ${occ} user:add --password-from-env --group=admin admin
+          fi
+
           # TOTP can be set up at login, which enforced two-factor authentication relies on
           ${occ} app:enable twofactor_nextcloud_notification twofactor_totp
           ${occ} app:disable dashboard firstrunwizard recommendations weather_status
