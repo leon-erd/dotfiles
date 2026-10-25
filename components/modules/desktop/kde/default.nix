@@ -56,6 +56,9 @@
         # KWin default for all touchpads (plasma-manager's input.touchpads needs per-device ids)
         configFile.kcminputrc."Libinput/Defaults/Touchpad".NaturalScroll = true;
 
+        # disable baloo (file indexer)
+        configFile.baloofilerc."Basic Settings"."Indexing-Enabled" = false;
+
         shortcuts."services/org.wezfurlong.wezterm.desktop"._launch = "Ctrl+Alt+T";
 
         # Terminal for desktop entries with Terminal=true (e.g. btop), otherwise KDE falls back to Konsole
