@@ -22,6 +22,7 @@
             email = config.myUserConfig.email;
           };
           core.editor = lib.getExe pkgs.nano;
+          push.autoSetupRemote = true;
           fetch = {
             prune = true;
             pruneTags = true;
