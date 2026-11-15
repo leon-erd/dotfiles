@@ -6,6 +6,7 @@
     # Die Namen der packages findest du auf: https://search.nixos.org/packages?channel=unstable&
     vlc
     kdePackages.audiocd-kio
+    kdePackages.skanpage
     zoom-us
   ];
 }
