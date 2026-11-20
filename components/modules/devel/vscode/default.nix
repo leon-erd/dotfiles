@@ -21,6 +21,7 @@
             aaron-bond.better-comments
             charliermarsh.ruff
             corker.vscode-micromamba
+            esbenp.prettier-vscode
             # github.copilot # install copilot manually (will fetch correct version of copilot-chat)
             # github.copilot-chat
             gruntfuggly.todo-tree

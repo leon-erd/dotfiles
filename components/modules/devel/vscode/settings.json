@@ -24,6 +24,9 @@
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.synctex.indicator": "circle",
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "nix.enableLanguageServer": true,
     "nix.serverPath": "nixd",
     "nix.serverSettings": {
