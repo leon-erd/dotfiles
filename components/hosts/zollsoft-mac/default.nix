@@ -53,6 +53,7 @@ in
           firefox
           thunderbird
           xournalpp
+          kdeAppsMacos
           appsMisc
 
           # desktop
