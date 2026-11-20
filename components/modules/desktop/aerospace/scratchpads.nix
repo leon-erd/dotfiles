@@ -68,11 +68,6 @@
             "-a"
             "Activity Monitor"
           ];
-          "${mainMod}-e" = toggle "Finder" "" [
-            "/usr/bin/open"
-            "-a"
-            "Finder"
-          ];
           "${mainMod}-s" = toggle "Spotify" "" [
             "/usr/bin/open"
             "-a"

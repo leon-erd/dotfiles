@@ -52,6 +52,7 @@
           mode.main.binding = {
             "cmd-alt-t" = "exec-and-forget ${lib.getExe pkgs.wezterm}";
             "cmd-alt-s" = "exec-and-forget ${lib.getExe pkgs.flameshot} gui";
+            "${mainMod}-e" = "exec-and-forget /usr/bin/open -n -b org.kde.dolphin";
             "alt-f4" = "close --quit-if-last-window";
             "alt-tab" = "focus dfs-next --boundaries-action wrap-around-the-workspace";
             "${mainMod}-f" = "layout floating tiling";
@@ -92,13 +93,6 @@
             "${mainMod}-shift-8" = "move-node-to-workspace 8";
             "${mainMod}-shift-9" = "move-node-to-workspace 9";
             "${mainMod}-shift-0" = "move-node-to-workspace 10";
-            # alt-e = ''
-            #   exec-and-forget osascript -e '
-            #     tell application "Finder"
-            #       make new Finder window to home
-            #       activate
-            #     end tell'
-            # '';
           };
           on-window-detected = [
             {
