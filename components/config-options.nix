@@ -125,6 +125,18 @@
             description = "Stable extended PAN ID for this Zigbee network (eight bytes)";
           };
         };
+        smartHome.thread = {
+          device = mkOption {
+            type = str;
+            description = "Serial device path of the OpenThread RCP radio";
+            example = "/dev/serial/by-id/usb-thread-radio";
+          };
+          baudRate = mkOption {
+            type = lib.types.ints.positive;
+            description = "Baud rate of the OpenThread RCP firmware";
+            example = 460800;
+          };
+        };
         wireguard = {
           clientPeers = mkOption {
             type = listOf (submodule {

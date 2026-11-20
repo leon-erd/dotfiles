@@ -11,7 +11,10 @@
     }:
     let
       haPort = 8123;
-      z2mPort = 8081;
+      z2mPort = 8080;
+      otbrRestPort = 8081;
+      otbrWebPort = 8082;
+      matterPort = 5580;
       mosquittoPort = 1883;
       speechToPhrasePort = 10300;
       piperPort = 10200;
@@ -35,13 +38,34 @@
           proxyPass = "http://127.0.0.1:${toString z2mPort}";
           proxyWebsockets = true;
         };
+        # The OTBR web interface and Matter dashboard have no login of their own.
+        "otbr.${config.mySystemConfig.domain}" = {
+          basicAuthFile = config.sops.secrets."smart-home/web-htpasswd".path;
+          locations = {
+            "/".proxyPass = "http://127.0.0.1:${toString otbrWebPort}";
+            # Over HTTPS the web interface calls the REST API on its own host.
+            "/api/".proxyPass = "http://127.0.0.1:${toString otbrRestPort}";
+          };
+        };
+        "matter.${config.mySystemConfig.domain}" = {
+          basicAuthFile = config.sops.secrets."smart-home/web-htpasswd".path;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString matterPort}";
+            proxyWebsockets = true;
+            # The dashboard WebSocket can stay silent for minutes; nginx closes it after 60s by default.
+            extraConfig = "proxy_read_timeout 1h;";
+          };
+        };
       };
 
       services.home-assistant = {
         enable = true;
         extraComponents = options.services.home-assistant.extraComponents.default ++ [
+          "matter"
           "mqtt"
+          "otbr"
           "telegram_bot"
+          "thread"
           "webdav"
           "workday"
           "wyoming"
@@ -98,6 +122,38 @@
         };
       };
 
+      services.openthread-border-router = {
+        enable = true;
+        backboneInterfaces = [ config.mySystemConfig.externalInterface ];
+        rest.listenPort = otbrRestPort;
+        web = {
+          enable = true;
+          listenPort = otbrWebPort;
+        };
+        radio = {
+          inherit (config.mySystemConfig.smartHome.thread) device baudRate;
+        };
+      };
+
+      services.matterjs-server = {
+        enable = true;
+        port = matterPort;
+        extraArgs = [
+          # Home Assistant vendor ID, shown to other Matter controllers. Fixed once the fabric exists.
+          "--vendorid=4939"
+          "--primary-interface=${config.mySystemConfig.externalInterface}"
+          # Commission over Home Assistant's Bluetooth adapters.
+          "--ble-proxy"
+        ];
+      };
+
+      networking.firewall = {
+        # Battery-powered Thread devices report less often than the firewall remembers UDP flows; Matter ports are not fixed.
+        trustedInterfaces = [ config.services.openthread-border-router.interfaceName ];
+        # mDNS discovery of Matter devices and Thread border routers.
+        interfaces.${config.mySystemConfig.externalInterface}.allowedUDPPorts = [ 5353 ];
+      };
+
       # Local speech-to-text for Assist. Language and recognizable sentences come from Home Assistant.
       systemd.services.speech-to-phrase = {
         description = "Wyoming speech-to-phrase";
@@ -144,6 +200,7 @@
         "smart-home/zigbee2mqtt/frontend-token" = { };
         "smart-home/zigbee2mqtt/network-key" = { };
         "smart-home/speech-to-phrase/ha-token" = { };
+        "smart-home/web-htpasswd".owner = config.services.nginx.user;
       };
       sops.templates."speech-to-phrase.env".content = ''
         HASS_TOKEN=${config.sops.placeholder."smart-home/speech-to-phrase/ha-token"}

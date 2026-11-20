@@ -40,6 +40,10 @@ in
             255
           ];
         };
+        smartHome.thread = {
+          device = "/dev/serial/by-id/usb-SONOFF_SONOFF_Dongle_Plus_MG24_2eacf4eb0575f01181c8a32f1045c30f-if00-port0";
+          baudRate = 460800;
+        };
         nextcloud = {
           drives = {
             main = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";

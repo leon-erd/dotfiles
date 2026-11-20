@@ -47,6 +47,8 @@
       # Keep SLAAC and the IPv6 default route despite the fixed address.
       networking.dhcpcd.IPv6rs = true;
 
+      hardware.bluetooth.enable = true;
+
       system.stateVersion = "24.11"; # Do not modify
     };
 
