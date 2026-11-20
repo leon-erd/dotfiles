@@ -153,6 +153,19 @@
       xdg.enable = true;
       programs.home-manager.enable = true;
 
+      # The system-wide nix.gc runs as root and doesn't remove the user profile
+      # generations in ~/.local/state/nix/profiles.
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+      };
+      # On Darwin, home-manager passes nix.gc.options to launchd as a single
+      # argument, which nix-collect-garbage rejects. Append the arguments separately.
+      launchd.agents.nix-gc.config.ProgramArguments = lib.mkAfter [
+        "--delete-older-than"
+        "7d"
+      ];
+
       # Firefox is installed as a brew cask: Nix's firefox and firefox-bin
       # bundles are not validly signed, so macOS denies them access to their
       # own profile in "Library/Application Support/Firefox".
