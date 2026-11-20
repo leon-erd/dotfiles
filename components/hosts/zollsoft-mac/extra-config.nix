@@ -99,6 +99,7 @@
           "thunderbird"
           "ukelele"
           "whatsapp"
+          "wispr-flow"
         ];
         onActivation = {
           cleanup = "zap";
