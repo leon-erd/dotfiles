@@ -42,18 +42,28 @@
           default = "de";
           description = "Keyboard layout";
         };
-        localIp = mkOption {
+        localIpv4 = mkOption {
           type = str;
-          description = "Local IP address of the machine";
+          description = "Local IPv4 address of the machine";
           example = "192.168.179.200";
         };
-        localNetwork = mkOption {
+        localNetworkIpv4 = mkOption {
           type = str;
           description = ''
             Local IPv4 subnet in CIDR notation. Pi-hole forwards local name
             lookups to the address ending in .1 in this network.
           '';
           example = "192.168.179.0/24";
+        };
+        localIpv6 = mkOption {
+          type = str;
+          description = "Static local IPv6 address (ULA) of the machine";
+          example = "fd10:10:10::10";
+        };
+        localNetworkIpv6 = mkOption {
+          type = str;
+          description = "Local IPv6 subnet (ULA) in CIDR notation";
+          example = "fd10:10:10::/64";
         };
         externalInterface = mkOption {
           type = str;

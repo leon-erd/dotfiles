@@ -11,8 +11,9 @@
 
     let
       hostName = "dns.${config.mySystemConfig.domain}";
-      webListenAddress = "127.0.0.1:8080";
-      localNetwork = config.mySystemConfig.localNetwork;
+      # The default ports 80/443 belong to nginx.
+      webListenAddress = "127.0.0.1:8083";
+      localNetwork = config.mySystemConfig.localNetworkIpv4;
       networkAddress = lib.head (lib.splitString "/" localNetwork);
       localDnsServer = "${lib.concatStringsSep "." (lib.take 3 (lib.splitString "." networkAddress))}.1";
     in
@@ -49,10 +50,11 @@
             # Array of custom DNS records each one in HOSTS form: "IP HOSTNAME"
             hosts = lib.unique (
               config.mySystemConfig.pihole.hosts
-              # Additional entries that resolve all virtual hosts on the reverse proxy to the local ip
-              ++ map (name: "${config.mySystemConfig.localIp} ${name}") (
-                builtins.attrNames config.services.nginx.virtualHosts
-              )
+              # Additional entries that resolve all virtual hosts on the reverse proxy to the local ips
+              ++ lib.concatMap (name: [
+                "${config.mySystemConfig.localIpv4} ${name}"
+                "${config.mySystemConfig.localIpv6} ${name}"
+              ]) (builtins.attrNames config.services.nginx.virtualHosts)
             );
             # https://docs.pi-hole.net/ftldns/configfile/#revservers
             revServers = [ "true,${localNetwork},${localDnsServer},fritz.box" ];

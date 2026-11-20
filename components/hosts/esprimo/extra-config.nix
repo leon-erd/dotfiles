@@ -30,11 +30,22 @@
 
       # Request the preferred IP via DHCP; the router supplies gateway and DNS.
       # The DHCP server may assign a different address unless it is reserved.
-      networking.interfaces.${config.mySystemConfig.externalInterface}.useDHCP = true;
+      networking.interfaces.${config.mySystemConfig.externalInterface} = {
+        useDHCP = true;
+        # Fixed IPv6 address in addition to the ones from router advertisements.
+        ipv6.addresses = [
+          {
+            address = config.mySystemConfig.localIpv6;
+            prefixLength = 64;
+          }
+        ];
+      };
       networking.dhcpcd.extraConfig = ''
         interface ${config.mySystemConfig.externalInterface}
-        request ${config.mySystemConfig.localIp}
+        request ${config.mySystemConfig.localIpv4}
       '';
+      # Keep SLAAC and the IPv6 default route despite the fixed address.
+      networking.dhcpcd.IPv6rs = true;
 
       system.stateVersion = "24.11"; # Do not modify
     };

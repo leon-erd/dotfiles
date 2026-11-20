@@ -47,7 +47,8 @@
             error_page 403 = @not_found;
             allow 127.0.0.1;
             allow ::1;
-            allow ${config.mySystemConfig.localNetwork};
+            allow ${config.mySystemConfig.localNetworkIpv4};
+            allow ${config.mySystemConfig.localNetworkIpv6};
             deny all;
           '';
           # Reject the base domain and any hostname without its own virtual host.

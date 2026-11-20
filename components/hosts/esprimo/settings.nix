@@ -1,7 +1,8 @@
 { self, ... }:
 let
   settings = import ./_settings-base.nix;
-  network = "10.10.10";
+  networkIpv4 = "10.10.10";
+  networkIpv6 = "fd10:10:10";
 in
 {
   flake.modules.nixos.hostEsprimoSystemConfig =
@@ -15,8 +16,10 @@ in
       mySystemConfig = {
         hostname = settings.hostname;
         domain = "amysweinhaus.ddnss.de";
-        localIp = "${network}.10";
-        localNetwork = "${network}.0/24";
+        localIpv4 = "${networkIpv4}.10";
+        localNetworkIpv4 = "${networkIpv4}.0/24";
+        localIpv6 = "${networkIpv6}::10";
+        localNetworkIpv6 = "${networkIpv6}::/64";
         externalInterface = "eno1";
         acmeEmail = "leonvincenterd@web.de";
         smartHome.zigbee2mqtt = {
@@ -42,11 +45,12 @@ in
             main = "usb-TOSHIBA_External_USB_3.0_20200714006512F-0:0-part1";
             backup = "usb-Intenso_External_USB_3.0_20161230160B8-0:0-part1";
           };
-          trustedDomains = [ config.mySystemConfig.localIp ];
+          trustedDomains = [ config.mySystemConfig.localIpv4 ];
         };
         pihole.hosts = [
-          "${config.mySystemConfig.localIp} ${config.mySystemConfig.hostname}.home.arpa"
-          "${network}.1 fritz.box"
+          "${config.mySystemConfig.localIpv4} ${config.mySystemConfig.hostname}.home.arpa"
+          "${config.mySystemConfig.localIpv6} ${config.mySystemConfig.hostname}.home.arpa"
+          "${networkIpv4}.1 fritz.box"
         ];
         wireguard = {
           clientPeers = [
