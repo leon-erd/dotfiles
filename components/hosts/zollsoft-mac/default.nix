@@ -52,6 +52,7 @@ in
           # apps
           firefox
           thunderbird
+          xournalpp
           appsMisc
 
           # desktop
