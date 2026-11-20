@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  flake.modules.homeManager.office =
+  flake.modules.homeManager.xournalpp =
     {
       pkgs,
       lib,
@@ -11,11 +11,8 @@
 
     {
       home.packages = with pkgs; [
-        qalculate-gtk
         xournalpp
       ];
-
-      programs.onlyoffice.enable = true;
 
       home.activation = {
         myXorunalppSettings =
